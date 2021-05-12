@@ -1,0 +1,17 @@
+<?php
+	//echo ('dsfsd sdf');
+	ob_start();
+    include(dirname(__FILE__).'/../adodb5/adodb.inc.php');	
+
+	/*$pwd   = urlencode('Gzk^ubibP.ZZ');
+	//$flags =  MYSQL_CLIENT_COMPRESS;
+	$dsn   = "mysqli://sstei207_lex:$pwd@gator4166.hostgator.com/sstei207_lex?persist";
+	$db    = ADONewConnection($dsn);  # no need for PConnect()
+	if (!$db) die("Conexion incorrecta");*/
+
+	$pwd   = urlencode('mysql');
+	//$flags =  MYSQL_CLIENT_COMPRESS;
+	$dsn   = "mysqli://root:$pwd@localhost/bd_lex?persist";
+	$db    = ADONewConnection($dsn);  # no need for PConnect()
+	if (!$db) die("Conexion incorrecta");
+?>

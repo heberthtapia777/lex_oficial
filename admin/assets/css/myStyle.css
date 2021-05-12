@@ -1,0 +1,42 @@
+table tbody td.dt-body-center { text-align: center}
+
+.has-error .help-block, .has-error .control-label, .has-error .radio, .has-error .checkbox, .has-error .radio-inline, .has-error .checkbox-inline, .has-error.radio label, .has-error.checkbox label, .has-error.radio-inline label, .has-error.checkbox-inline label {
+    color: #a94442;
+}
+.form-error {
+    font-size: 9px;
+}
+
+div#tema{
+    padding: 0 0 0 30px;
+    height: 250px;
+    border: 1px solid #ddd;
+	background: #f1f1f1;
+    overflow-y: scroll;
+}
+
+.badge {
+    display: inline-block;
+    padding: 3px 5px;
+    font-size: 0.875em;
+    font-weight: 600;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    background-image: var(--bs-gradient);
+    margin: 0 5px 0 0;
+}
+.badge a{
+    text-decoration: none;
+    color: #fafafa;
+}
+.btn-xs,
+.btn-group-xs > .btn {
+    padding: 0.1875rem 0.55rem;
+    font-size: 0.775rem;
+    border-radius: 0.2rem;
+    margin-right: 5px;
+}

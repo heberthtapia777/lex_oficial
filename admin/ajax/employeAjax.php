@@ -1,0 +1,161 @@
+	<?php
+
+	session_start();
+
+	require_once "../inc/employe.php";
+
+	$objEmpleado = new Empleado();
+
+	switch ($_GET["op"]) {
+
+		case 'SaveOrUpdate':
+
+			$apellidos        = $_POST["txtApellidos"];
+			$nombre           = $_POST["txtNombre"];
+			$tipo_documento   = $_POST["cboTipo_Documento"];
+			$num_documento    = $_POST["txtNum_Documento"];
+			$direccion        = $_POST["txtDireccion"];
+			$coorX            = $_POST["cx"];
+			$coorY            = $_POST["cy"];
+			$telefono         = $_POST["txtTelefono"];
+			$email            = $_POST["txtEmail"];
+			$fecha_nacimiento = $_POST["txtFecha_Nacimiento"];
+			$imagen           = $_FILES["imagenEmp"]["tmp_name"];
+			$ruta             = $_FILES["imagenEmp"]["name"];
+			$login            = $_POST["txtLogin"];
+			$clave            = md5($_POST["txtClave"]);
+			$estado           = $_POST["txtEstado"];
+
+			if(move_uploaded_file($imagen, "../Files/Empleado/".$ruta)){
+
+				if(empty($_POST["txtIdEmpleado"])){
+
+					if($objEmpleado->Registrar($apellidos,$nombre,$tipo_documento,$num_documento,$direccion,$coorX,$coorY,$telefono,$email,$fecha_nacimiento,"Files/Empleado/".$ruta, $login, $clave,$estado)){
+						echo "Empleado Registrado correctamente.";
+					}else{
+						echo "Empleado no ha podido ser registado.";
+					}
+				}else{
+
+					if ($_POST["txtClave"] == "") {
+						$idempleado = $_POST["txtIdEmpleado"];
+						if($objEmpleado->Modificar($idempleado, $apellidos,$nombre,$tipo_documento,$num_documento,$direccion,$coorX,$coorY,$telefono,$email,$fecha_nacimiento,"Files/Empleado/".$ruta, $login, $_POST["txtClaveOtro"], $estado)){
+							echo "La información del empleado ha sido actualizada.";
+						}else{
+							echo "La información del empleado no ha podido ser actualizada.";
+						}
+					} else {
+						$idempleado = $_POST["txtIdEmpleado"];
+						if($objEmpleado->Modificar($idempleado, $apellidos,$nombre,$tipo_documento,$num_documento,$direccion,$coorX,$coorY,$telefono,$email,$fecha_nacimiento,"Files/Empleado/".$ruta, $login, $clave, $estado)){
+							echo "La información del empleado ha sido actualizada.";
+						}else{
+							echo "La información del empleado no ha podido ser actualizada.";
+						}
+					}
+
+					$objEmpleado->updatePerfil($_SESSION["idusuario"]);
+
+				}
+			} else {
+				$ruta_img = $_POST["txtRutaImgEmp"];
+				if(empty($_POST["txtIdEmpleado"])){
+
+					if($objEmpleado->Registrar($apellidos,$nombre,$tipo_documento,$num_documento,$direccion,$coorX,$coorY,$telefono,$email,$fecha_nacimiento, $ruta_img, $login, $clave, $estado)){
+						echo "Empleado Registrado correctamente.";
+					}else{
+						echo "Empleado no ha podido ser registado.";
+					}
+				}else{
+
+					$idempleado = $_POST["txtIdEmpleado"];
+
+					if ($_POST["txtClave"] == "") {
+						$idempleado = $_POST["txtIdEmpleado"];
+						if($objEmpleado->Modificar($idempleado, $apellidos,$nombre,$tipo_documento,$num_documento,$direccion,$coorX,$coorY,$telefono,$email,$fecha_nacimiento,$ruta_img, $login, $_POST["txtClaveOtro"], $estado)){
+							echo "La información del empleado ha sido actualizada.";
+						}else{
+							echo "La información del empleado no ha podido ser actualizada.";
+						}
+					} else {
+						$idempleado = $_POST["txtIdEmpleado"];
+						if($objEmpleado->Modificar($idempleado, $apellidos,$nombre,$tipo_documento,$num_documento,$direccion,$coorX,$coorY,$telefono,$email,$fecha_nacimiento, $ruta_img, $login, $clave, $estado)){
+							echo "La información del empleado ha sido actualizada.";
+						}else{
+							echo "La información del empleado no ha podido ser actualizada.";
+						}
+					}
+
+					$objEmpleado->updatePerfil($_SESSION["idusuario"]);
+				}
+			}
+
+			break;
+
+		case "delete":
+
+			$id = $_POST["id"];// Llamamos a la variable id del js que mandamos por $.post (Categoria.js (Linea 62))
+			$result = $objEmpleado->Eliminar($id);
+			if ($result) {
+				echo "Eliminado Exitosamente";
+			} else {
+				echo "No fue Eliminado";
+			}
+			break;
+
+		case "list":
+			$query_Tipo = $objEmpleado->Listar();
+			$data= Array();
+            $i = 1;
+     		while ($reg = $query_Tipo->FetchRow()) {
+
+     			$data[] = array(
+					"0"=>$i,
+					"1"=>$reg['paterno'].'&nbsp;'.$reg['materno'].'&nbsp;'.$reg['name'],
+					"2"=>$reg['docType'],
+					"3"=>$reg['docNum'],
+					"4"=>$reg['email'],
+					"5"=>$reg['celular'],
+					"6"=>$reg['login'],
+					"7"=>'<img width=100px height=100px src="./'.$reg['photo'].'" />',
+					"8"=>'<button class="btn btn-warning" data-toggle="tooltip" title="Editar" onclick="cargarDataEmpleado('.$reg['idEmpleado'].',\''.$reg['paterno'].'\',\''.$reg['materno'].'\',\''.$reg['name'].'\',\''.$reg['docType'].'\',\''.$reg['docNum'].'\',\''.$reg['address'].'\',\''.$reg['coorX'].'\',\''.$reg['coorY'].'\',\''.$reg['celular'].'\',\''.$reg['email'].'\',\''.$reg['fecha_nacimiento'].'\',\''.$reg['photo'].'\',\''.$reg['login'].'\',\''.$reg['clave'].'\',\''.$reg['estad'].'\')"><i class="fas fa-pencil"></i> </button>&nbsp;'.
+					'<button class="btn btn-danger" data-toggle="tooltip" title="Eliminar" onclick="eliminarEmpleado('.$reg['idempleado'].')"><i class="fas fa-trash"></i> </button>');
+				$i++;
+			}
+			$results = array(
+            "sEcho" => 1,
+        	"iTotalRecords" => count($data),
+        	"iTotalDisplayRecords" => count($data),
+            "aaData"=>$data);
+			echo json_encode($results);
+
+			break;
+
+		case "listTipo_DocumentoPersona":
+		        require_once "../model/Tipo_Documento.php";
+
+		        //$objTipo_Documento = new Tipo_Documento();
+
+		        $query_tipo_Documento = $objTipo_Documento->VerTipo_Documento_Persona();
+
+		        while ($reg = $query_tipo_Documento->fetch_object()) {
+		            echo '<option value=' . $reg->nombre . '>' . $reg->nombre . '</option>';
+		        }
+
+		    break;
+
+		case "listEmpleado":
+	        require_once "../model/Empleado.php";
+
+	        $objEmpleado = new Empleado();
+
+	        $query_empleado = $objEmpleado->ListarEmp();
+
+	        echo '<option value="0">TODOS</option>';
+
+	        while ($reg = $query_empleado->fetch_object()) {
+	            echo '<option value=' . $reg->idempleado . '>' . $reg->nombre . ' ' . $reg->apellidos . '</option>';
+	        }
+
+	        break;
+
+	}
