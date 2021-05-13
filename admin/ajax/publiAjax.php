@@ -14,8 +14,12 @@
 			$publi_contens  = $_POST['publi_contens'];
 			$publi_autor	= $_POST['publi_autor'];			
 
-			$idUser = $_SESSION['idUser'];			
+			$idUser = $_SESSION['idUser'];
 			
+			$character  = array("&#8216;","&#8217;","'");
+			$change		= array("‘","’","&#39;");
+			$publi_resume = str_replace($character, $change, $publi_resume);
+			$publi_contens = str_replace($character, $change, $publi_contens);			
 			
 			if(empty($_POST['publi_id'])){
 				if($objPublicacion->Registrar($publi_title, $publi_resume, $publi_contens, $publi_autor, $idUser)){

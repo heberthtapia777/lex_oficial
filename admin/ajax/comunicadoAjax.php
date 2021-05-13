@@ -14,8 +14,12 @@
 			$com_contens  	= $_POST['com_contens'];
 			$com_autor		= $_POST['com_autor'];			
 
-			$idUser = $_SESSION['idUser'];			
-			
+			$idUser = $_SESSION['idUser'];
+
+			$character  = array("&#8216;","&#8217;","'");
+			$change		= array("‘","’","&#39;");
+			$com_resume = str_replace($character, $change, $com_resume);
+			$com_contens = str_replace($character, $change, $com_contens);			
 			
 			if(empty($_POST['com_id'])){
 				if($objComunicado->Registrar($com_title, $com_resume, $com_contens, $com_autor, $idUser)){

@@ -8,7 +8,7 @@
 	switch ($_GET["op"]) {
 
 		case 'saveOrUpdate':	
-			$tax_id				= $_POST['tax_id'];		
+			$tax_id			= $_POST['tax_id'];		
 			$tax_title  	= $_POST['tax_title'];
 			$tax_resume     = $_POST['tax_resume'];
 			$tax_contens    = $_POST['tax_contens'];
@@ -21,7 +21,12 @@
 			$type_file   = $_FILES['tax_file']['type'];
 			$size_file   = $_FILES['tax_file']['size'];
 
-			$idUser = $_SESSION['idUser'];			
+			$idUser = $_SESSION['idUser'];
+			
+			$character  = array("&#8216;","&#8217;","'");
+			$change		= array("‘","’","&#39;");
+			$tax_resume = str_replace($character, $change, $tax_resume);
+			$tax_contens = str_replace($character, $change, $tax_contens);
 			
 			if(empty($_POST["tax_id"])){
 				if($objTaxAlert->Registrar($tax_title, $tax_resume, $tax_contens, $name_file, $name_img, $idUser)){

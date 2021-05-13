@@ -26,6 +26,13 @@
 			$tipo_img      = $_FILES['imgBol']['type'];
 			$tamano_img    = $_FILES['imgBol']['size'];
 
+			$character  = array("&#8216;","&#8217;","'");
+			$change		= array("‘","’","&#39;");
+
+			$asunto = str_replace($character, $change, $asunto);
+			$intro = str_replace($character, $change, $intro);
+			$cont = str_replace($character, $change, $cont);
+
 			$idUser = $_SESSION['idUser'];			
 			
 			if(empty($_POST["idBoletin"])){

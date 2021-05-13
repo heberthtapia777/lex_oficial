@@ -5,19 +5,20 @@
 
 	switch ($_GET["op"]) {
 
-		case 'SaveOrUpdate':
-			
+		case 'SaveOrUpdate':			
 
-			$idsucursal   = $_POST["cboSucursal"];
-			$idempleado   = $_POST["txtIdEmpleado"];
-			$tipo_usuario = $_POST["cboTipoUsuario"];
-			$num_grupo    = $_POST["cboGrupo"];
-			
+			$usersId	= $_POST["txtIdUsuario"];
+			$empresaId	= $_POST["txtIdEmpresa"];
+			$empresa	= $_POST["txtEmpresa"];
+			$typeUser	= $_POST["cboTypeUser"];
+			$email		= $_POST['txtEmail'];
+			$users		= $_POST['txtUser'];
+			$password	= $_POST['txtPassword'];
+			$passwordRep= $_POST['txtPasswordRep'];			
 
-				if(empty($_POST["txtIdUsuario"])){
+				if(empty($_POST["txtIdUsuario"])){					
 
-					if($objusuario->Registrar($idsucursal, $idempleado, $tipo_usuario, $num_grupo, $alm, $comp, $vent, $mant, $seg, $cons_comp,
-						$cons_vent, $admin, $perfil)){
+					if($objusuario->Registrar($empresaId, $empresa,	$typeUser, $email, $users, $password, $passwordRep)){
 						echo "Registrado Exitosamente";
 					}else{
 						echo "Usuario no ha podido ser registado.";
@@ -25,8 +26,7 @@
 				}else{
 
 					$idusuario = $_POST["txtIdUsuario"];
-					if($objusuario->Modificar($idusuario, $idsucursal, $idempleado, $tipo_usuario, $num_grupo, $alm, $comp, $vent, $mant, $seg, $cons_comp,
-						$cons_vent, $admin, $perfil)){
+					if($objusuario->Modificar($usersId, $empresaId, $empresa,	$typeUser, $email, $users, $password, $passwordRep)){
 						echo "Informacion del Usuario ha sido actualizada";
 					}else{
 						echo "Informacion del usuario no ha podido ser actualizada.";

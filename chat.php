@@ -106,7 +106,7 @@
       <script src="admin/assets/js/jquery.mCustomScrollbar.concat.min.js" ></script>
 <script>
     var pusher = new Pusher('771af8d70dee299e131f');
-    var canal = pusher.subscribe('canal_lex');
+    var canal = pusher.subscribe('canal_local');
 
     var idAdmin   = 651;
 

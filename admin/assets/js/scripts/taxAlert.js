@@ -208,7 +208,7 @@ function cargaEditor(){
                 id: id
             },            
             success: function(data){
-                $('#id').val(id);
+                $('#tax_id').val(id);
                 $('#tax_title').val(data.tax_title);
                 $('#tax_resume').val(data.tax_resume);                
                 $('#tax_contens').val(data.tax_contens);
