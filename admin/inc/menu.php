@@ -37,7 +37,7 @@
                   <ul class="nav collapse" id="contac" data-parent="#navbarVerticalCollapse">
                     <li class="nav-item"><a class="nav-link" href="../../modulo/empleado/employe.php">Empleados</a></li>
                     <li class="nav-item"><a class="nav-link" id="user" href="../../modulo/usuario/user.php">Usuarios</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../../modulo/empleado/client.php">Clientes</a></li>   
+                    <li class="nav-item"><a class="nav-link" id="client" href="../../modulo/client/client.php">Clientes</a></li>   
                     <li class="nav-item"><a class="nav-link" href="../../modulo/empleado/client.php">Recuperar contraseña</a></li>                  
                   </ul>
                 </li>

@@ -27,7 +27,6 @@
 <script type="text/javascript" src="../../vendors/datatables/vfs_fonts.js"></script>
 <script type="text/javascript" src="../../vendors/datatables/buttons.html5.min.js"></script>
 <script type="text/javascript" src="../../vendors/datatables/Chart.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"></script>
 <script type="text/javascript" src="../../assets/js/jquery.json-2.3.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- <script type="text/javascript" src="../../vendors/datatables/jquery.ui.autocomplete.js"></script> -->

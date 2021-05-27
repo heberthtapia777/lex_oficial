@@ -363,7 +363,7 @@ function sendSubmit(data){
 
 		var fecha = hoy.getDate() + '-' + hoy.getMonth() + '-' + hoy.getFullYear();
 		//var hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
-		var fecha = hoy.getDate() + '-' + hoy.getMonth() + '-' + hoy.getFullYear();
+		//var fecha = hoy.getDate() + '-' + hoy.getMonth() + '-' + hoy.getFullYear();
 
 		var hora = hoy.getHours();
 		var minutos = hoy.getMinutes();

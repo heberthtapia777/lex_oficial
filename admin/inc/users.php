@@ -4,30 +4,50 @@
 
 	class usuario{
 
-
 		public function __construct(){
 		}
 
-		public function Registrar($idsucursal, $idempleado, $tipo_usuario, $num_grupo, $mnu_almacen, $mnu_compras, $mnu_ventas, $mnu_mantenimiento, $mnu_seguridad, $mnu_consulta_compras, $mnu_consultas_ventas, $mnu_admin, $mnu_perfil){
-			global $conexion;
+		public function Registrar($empresaId, $empresa, $usuario, $typeUser, $email, $nameUsers, $password){
+			global $db;
+
+			date_default_timezone_set("America/La_Paz");
+			$date = date( 'Y-m-d H:i', time());
 			
-			$sql = "INSERT INTO usuario(idsucursal, idempleado, tipo_usuario, num_grupo, fecha_registro, mnu_almacen, mnu_compras, mnu_ventas, mnu_mantenimiento, mnu_seguridad, mnu_consulta_compras, mnu_consulta_ventas, mnu_admin, mnu_perfil, estado)
-						VALUES($idsucursal, $idempleado, '$tipo_usuario', $num_grupo, curdate(), $mnu_almacen, $mnu_compras, $mnu_ventas, $mnu_mantenimiento, $mnu_seguridad, $mnu_consulta_compras, $mnu_consultas_ventas, $mnu_admin, $mnu_perfil, 'A')";
-			$query = $conexion->query($sql);
+			$sql = "INSERT INTO users(name, email, username, password, block, registerDate) VALUES('$usuario', '$email', '$nameUsers', '$password', '0', '$date')";
+			$query = $db->Execute($sql);			
+
+			$lastId = $db->insert_Id();
+
+			$sql = "INSERT INTO user_usergroup_map(user_id, group_id) VALUES('$lastId', '$typeUser')";
+			$query = $db->Execute($sql);			
+
+			$sql = "INSERT INTO cliente_usuario(id_usuario, id_empresa, nombre, cargo, email) VALUES('$lastId', '$empresaId', '$usuario', '', '$email')";
+			$query = $db->Execute($sql);
+			return $query;
+
+		}
+
+		public function Modificar($usersId, $empresaId, $empresa, $usuario,	$typeUser, $email, $nameUsers, $password){
+			global $db;
+
+			date_default_timezone_set("America/La_Paz");
+			$date = date( 'Y-m-d H:i', time());
+
+			$sql = "UPDATE users set name = '$usuario', email = '$email', username = '$nameUsers', password = '$password', lastvisitDate = '$date' WHERE id = $usersId";
+			$query = $db->Execute($sql);
+
+			$sql = "UPDATE user_usergroup_map set group_id = '$typeUser' WHERE user_id = '$usersId'";
+			$query = $db->Execute($sql);
+			
+			$sql = "UPDATE cliente_usuario set id_empresa = '$empresaId', nombre = '$usuario', cargo = '', email = '$email' WHERE id_usuario = '$usersId' ";
+			$query = $db->Execute($sql);
 			return $query;
 		}
 
-		public function Modificar($idusuario, $idsucursal, $idempleado, $tipo_usuario, $num_grupo, $mnu_almacen, $mnu_compras, $mnu_ventas, $mnu_mantenimiento, $mnu_seguridad, $mnu_consulta_compras, $mnu_consultas_ventas, $mnu_admin, $mnu_perfil){
-			global $conexion;
-			$sql = "UPDATE usuario set idsucursal = $idsucursal, idempleado = $idempleado, tipo_usuario = '$tipo_usuario', num_grupo = '$num_grupo', mnu_almacen = $mnu_almacen, mnu_compras = $mnu_compras, mnu_ventas = $mnu_ventas, mnu_mantenimiento = $mnu_mantenimiento, mnu_seguridad = $mnu_seguridad, mnu_consulta_compras = $mnu_consulta_compras, mnu_consulta_ventas = $mnu_consultas_ventas, mnu_admin = $mnu_admin, mnu_perfil = $mnu_perfil WHERE idusuario = $idusuario";
-			$query = $conexion->query($sql);
-			return $query;
-		}
-
-		public function Eliminar($idusuario){
-			global $conexion;
-			$sql = "DELETE from usuario WHERE idusuario = $idusuario";
-			$query = $conexion->query($sql);
+		public function Eliminar($usersId){
+			global $db;
+			$sql = "DELETE from users WHERE id = $usersId";
+			$query = $db->Execute($sql);
 			return $query;
 		}
 
@@ -39,18 +59,17 @@
 			return $query;
 		}
 
+		public function edit( $id ){
+			global $db;			
+			$sql = "SELECT e.id AS idEmp, e.empresa, u.id, u.name, u.username, u.block, g.id AS title, u.email, u.registerDate, u.lastVisitDate FROM users u INNER JOIN user_usergroup_map m ON u.id = m.user_id INNER JOIN usergroups g ON m.group_id = g.id INNER JOIN cliente_usuario s ON s.id_usuario = u.id INNER JOIN cliente_empresa e ON s.id_empresa = e.id WHERE u.id = '$id' ORDER BY u.id DESC";
+			$sqlQuery = $db->Execute($sql);
+			return $sqlQuery;
+		}
+
 		public function listaEmpresa(){
 			global $db;
 			
 			$sql = "SELECT * FROM cliente_empresa";
-			$query = $db->Execute($sql);
-			return $query;
-		}
-
-		public function listaTypeUser(){
-			global $db;
-			
-			$sql = "SELECT * FROM usergroups";
 			$query = $db->Execute($sql);
 			return $query;
 		}
@@ -67,9 +86,18 @@
 			return $query;
 		}
 
+
+		public function listaTypeUser(){
+			global $db;
+			
+			$sql = "SELECT * FROM usergroups";
+			$query = $db->Execute($sql);
+			return $query;
+		}		
+
 		public function status($id, $val){
 			global $db;	
-			$sql = "UPDATE users set block = '$val' WHERE id = $id";
+			$sql = "UPDATE users set block = $val WHERE id = $id";
 			$query = $db->Execute($sql);
 			return $query;
 		}

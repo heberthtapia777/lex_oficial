@@ -2,6 +2,7 @@
 <html lang="en-US" dir="ltr">
 <head>
 	<?PHP		
+		date_default_timezone_set("America/La_Paz" );
 		include '../../inc/sessionControl.php';
 		include '../../inc/header.php';
 	?>
@@ -70,7 +71,7 @@
 						</div>
 						<div class="col-auto">							
 							<button class="btn btn-outline-primary btn-sm" id="btnNuevo"><i class="fas fa-plus"></i> Nuevo</button>
-							<button class="btn btn-outline-danger btn-sm" id="btnCancel" onclick="ocultarForm()"><i class="fas fa-window-close"></i> Cancelar</button>
+							<button class="btn btn-outline-danger btn-sm" id="btnCancel" onclick="ocultarForm('','')"><i class="fas fa-window-close"></i> Cancelar</button>
 						</div>
 					</div>
 				</div>
@@ -120,29 +121,30 @@
 					</div>				
 				</div>
 			</div>
+			
 			<div id="verForm">
 				<div class="card mb-3">
 					<div class="card-body">
 						<div class="row flex-between-center">
 							<div class="col-md">
-								<h5 class="mb-2 mb-md-0">Nuevo Boletin</h5>
+								<h5 class="mb-2 mb-md-0">Nuevo Usuario</h5>
 							</div>							
 						</div>
 					</div>
 				</div>
-				<form role="form" name="frmUsuarios" id="frmUsuarios" enctype="multipart/form-data">
+				<form role="form" name="frmUser" id="frmUser" enctype="multipart/form-data">
 				<div class="row g-0">				
 					<div class="col-lg-12">
 						<div class="card mb-3">                
 							<div class="card-body bg-light">							
 								<div class="row gx-2">
-									<div class="col-12 mb-3">
+									<div class="col-6 mb-3">
 										<div class="form-group">
 											<input id="txtIdUsuario" type="hidden" maxlength="50" class="form-control" name="txtIdUsuario" />
-											<label>Empresa (*):</label>
+											<label>Empresa:</label>
 											<input id="txtIdEmpresa" type="hidden" class="form-control" name="txtIdEmpresa" />
 											<div class="input-group has-success">
-												<input id="txtEmpresa" type="text" class="form-control" name="txtEmpresa" data-validation="required" placeholder="Seleccione un Trabajador" readonly/>
+												<input id="txtEmpresa" type="text" class="form-control" name="txtEmpresa" data-validation="required" placeholder="Seleccione una Empresa o Cliente" readonly/>
 												<span class="input-group-btn" >
 													<button type="button" class="btn btn-success" id="btnBuscarCliente"><i class='fa fa-search'></i>
 														Buscar
@@ -151,20 +153,26 @@
 											</div>
 										</div>
 									</div>
+									<div class="col-6 mb-3">
+										<div class="form-group">									
+											<label>Nombre Usuario:</label>								
+												<input id="txtUsuario" type="text" class="form-control" name="txtUsuario" placeholder="Nombre Usuario" />
+										</div>
+									</div>
 								</div>
 													
 								<div class="row mb-3">
 									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 left">
 										<div class="form-group has-success">
 											<label>Tipo de Usuario:</label>
-											<select id="cboTypeUser" name="cboTypeUser" class="form-select" aria-label="Default select example" data-validation="required" >
+											<select id="cboTypeUser" name="cboTypeUser" class="form-select form-control-sm" aria-label="Default select example" >
 											
 											</select>
 										</div>
 									</div>	
 									<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 left">
 										<div class="form-group">									
-											<label>Correo Electronico (*):</label>								
+											<label>Correo Electronico:</label>								
 												<input id="txtEmail" type="text" class="form-control" name="txtEmail" placeholder="Correo Electronico" data-validation="required email" />
 										</div>
 									</div>							
@@ -172,19 +180,19 @@
 								<div class="row mb-3">
 									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 left">
 										<div class="form-group">									
-											<label>Usuario (*):</label>								
+											<label>Usuario:</label>								
 												<input id="txtUser" type="text" class="form-control" name="txtUser" data-validation="required" placeholder="Usuario" />
 										</div>
 									</div>
 									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 left">
 										<div class="form-group">									
-											<label>Contraseña (*):</label>								
+											<label>Contraseña:</label>								
 												<input id="txtPassword" type="password" class="form-control" name="txtPassword" data-validation="required" placeholder="Contraseña"  />
 										</div>								
 									</div>
 									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 left">
 										<div class="form-group">									
-											<label>Repita contraseña (*):</label>								
+											<label>Repita contraseña:</label>								
 												<input id="txtPasswordRep" type="password" class="form-control" name="txtPasswordRep" data-validation="confirmation" data-validation-confirm="txtPassword" placeholder="Repita contraseña"  />
 										</div>
 									</div>							
@@ -198,7 +206,7 @@
 						<div class="row justify-content-between align-items-center">	
 							<div class="col-auto">						
 								<button type="submit" class="btn btn-outline-success btn-sm mr-2"><i class="fas fa-save"></i> Guardar</button>
-								<button class="btn btn-outline-danger btn-sm" onclick="ocultarForm()"><i class="fas fa-window-close"></i> Cancelar</button>
+								<button type="button" class="btn btn-outline-danger btn-sm" onclick="ocultarForm()"><i class="fas fa-window-close"></i> Cancelar</button>
 							</div>
 						</div>
 					</div>
@@ -279,65 +287,7 @@
 	<script type="text/javascript" src="../../assets/js/scripts/user.js"></script>	
 	<script>
 		$( document ).ready( function () {
-			var validator = $("#frmUsuarios").submit(function() {
-				// update underlying textarea before submit validation				
-			}).validate({
-				ignore: "",
-				rules: {
-					txtEmpresa: "required",
-					cboTypeUser: "required",
-					txtEmail: {
-						required: true,
-						email: true
-					},
-					txtUser: "required",
-					txtPassword: {
-						required: true,
-						minlength: 5
-					},
-					txtPasswordRep: {
-						required: true,
-						minlength: 5,
-						equalTo: "#txtPassword"
-					},	
-				},				
-				messages: {
-					txtEmail: "Por favor, introduce una dirección de correo válida",					
-					txtPassword: {
-						required: "Por favor ingrese una contraseña",
-						minlength: "Tu contraseña debe tener al menos 5 caracteres"
-					},
-					txtPasswordRep: {
-						required: "Por favor ingrese una contraseña",
-						minlength: "Tu contraseña debe tener al menos 5 caracteres",
-						equalTo: "La contraseña no es igual"
-					}
-				},
-				errorElement: "em",
-				errorPlacement: function(label, element) {
-					// Add the `invalid-feedback` class to the label element
-					label.addClass( "invalid-feedback" );
-
-					if ( element.prop( "type" ) === "checkbox" ) {
-						label.insertAfter( element.next() );
-					} else {
-						//label.insertAfter( element );
-						// position label label after generated textarea
-						if (element.is("textarea")) {
-							label.insertAfter(element.next());
-						} else {
-							label.insertAfter(element)
-						}
-					}							
-				},
-				highlight: function ( error, errorClass, validClass ) {
-					$( error ).addClass( "is-invalid" ).removeClass( "is-valid" );
-				},
-				unhighlight: function (error, errorClass, validClass) {
-					$( error ).addClass( "is-valid" ).removeClass( "is-invalid" );
-				}
-				
-			});			
+			
 
 		});
 	</script>
