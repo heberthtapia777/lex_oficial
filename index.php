@@ -1,3 +1,6 @@
+<?php 
+    include "admin/inc/conexion.php";
+?>
 <html lang="es">
     <head>
         <meta charset="utf-8">
@@ -128,72 +131,47 @@
             <div class="carousel slide carousel-fade" data-ride="carousel" id="carousel-example-2">
                 <!--Indicators-->
                 <ol class="carousel-indicators">
-                    <li class="active" data-slide-to="0" data-target="#carousel-example-2">
-                    </li>
-                    <li data-slide-to="1" data-target="#carousel-example-2">
-                    </li>
-                    <li data-slide-to="2" data-target="#carousel-example-2">
-                    </li>
-                    <li data-slide-to="3" data-target="#carousel-example-2">
-                    </li>
-                    <li data-slide-to="4" data-target="#carousel-example-2">
-                    </li>
+                <?php
+                    $c=0;
+                    $sql = "SELECT * FROM banner WHERE status = 1 ORDER BY (id) DESC";
+                    $query = $db->Execute($sql);
+                    while ($reg = $query->FetchRow()) {
+                ?>
+                    <li class="<?=($c == 0) ? 'active' : '';?>" data-slide-to="<?=$c;?>" data-target="#carousel-example-2"></li>
+                <?php 
+                    $c++;
+                }
+                ?> 
                 </ol>
                 <!--/.Indicators-->
                 <!--Slides-->
                 <div class="carousel-inner" role="listbox">
-                    <div class="carousel-item active">
+                <?php
+                    $c=0;
+                    $sql = "SELECT * FROM banner WHERE status = 1 ORDER BY (id) DESC";
+                    $query = $db->Execute($sql);
+                    while ($reg = $query->FetchRow()) {
+                ?>
+                    <div class="carousel-item <?=($c == 0) ? 'active' : '';?>">
                         <div class="view">
-                            <img alt="First slide" class="d-block w-100" src="images/banner/banner01.jpg">
+                            <img alt="First slide" class="d-block w-100" src="admin/modulo/banner/img/<?=$reg['imagen'];?>">
                                 <div class="mask rgba-black-light">
                                 </div>
                             </img>
                         </div>
                         <div class="carousel-caption">
                             <h3 class="h3-responsive">
-                                Light mask
+                                <?=$reg['title'];?>
                             </h3>
                             <p>
-                                First text
+                                <?=$reg['subtitle'];?>
                             </p>
                         </div>
                     </div>
-                    <div class="carousel-item">
-                        <!--Mask color-->
-                        <div class="view">
-                            <img alt="Second slide" class="d-block w-100" src="images/banner/banner02.jpg">
-                                <div class="mask rgba-black-strong">
-                                </div>
-                            </img>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <!--Mask color-->
-                        <div class="view">
-                            <img alt="Third slide" class="d-block w-100" src="images/banner/banner03.jpg">
-                                <div class="mask rgba-black-slight">
-                                </div>
-                            </img>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <!--Mask color-->
-                        <div class="view">
-                            <img alt="Second slide" class="d-block w-100" src="images/banner/banner04.jpg">
-                                <div class="mask rgba-black-strong">
-                                </div>
-                            </img>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <!--Mask color-->
-                        <div class="view">
-                            <img alt="Third slide" class="d-block w-100" src="images/banner/banner05.jpg">
-                                <div class="mask rgba-black-slight">
-                                </div>
-                            </img>
-                        </div>
-                    </div>
+                <?php 
+                    $c++;
+                }
+                ?>                    
                 </div>
                 <!--/.Slides-->
                 <!--Controls-->

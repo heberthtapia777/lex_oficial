@@ -1,34 +1,19 @@
 <?php
 	include "conexion.php";	
 
-	class taxAlert{
+	class banner{
 
 		public function __construct(){
 		}
 
-		public function Registrar($tax_title, $tax_resume, $tax_contens, $name_file, $name_img, $idUser){
-			global $db;
-
-			$archivo = '';
-
-			$ubicacionTemporal = $_FILES["tax_file"]["tmp_name"];
-			$dir_subida = '../modulo/taxAlert/file/';
-			$nombreArchivo = $_FILES["tax_file"]["name"];
-			$extension = pathinfo($nombreArchivo, PATHINFO_EXTENSION);
-			// Renombrar archivo
-			$nuevoNombre = sprintf("%s_%d.%s", uniqid(), 1, $extension);
-			
-			$archivo = $nuevoNombre;
-				
-			$fichero_subido = $dir_subida.basename($nuevoNombre);
-			// Mover del temporal al directorio actual
-			move_uploaded_file($ubicacionTemporal, $fichero_subido);		
+		public function Registrar($banner_title, $banner_subtitle, $idUser){
+			global $db;	
 
 			$img = '';
 
-			$ubicacionTemporal = $_FILES["tax_img"]["tmp_name"];
-			$dir_subida = '../modulo/taxAlert/img/';
-			$nombreArchivo = $_FILES["tax_img"]["name"];
+			$ubicacionTemporal = $_FILES["banner_img"]["tmp_name"];
+			$dir_subida = '../modulo/banner/img/';
+			$nombreArchivo = $_FILES["banner_img"]["name"];
 			$extension = pathinfo($nombreArchivo, PATHINFO_EXTENSION);
 			// Renombrar archivo
 			$nuevoNombre = sprintf("%s_%d.%s", uniqid(), 1, $extension);
@@ -40,43 +25,20 @@
 			move_uploaded_file($ubicacionTemporal, $fichero_subido);
 			
 
-			$sql = "INSERT INTO tax_alert(titulo, resumen, contenido, archivo, imagen, creatorUser) VALUES('$tax_title', '$tax_resume', '$tax_contens', '$archivo', '$img', '$idUser')";
-			$query = $db->Execute($sql);		
-			
-			/*$dir_subida = '../modulo/taxAlert/file/';
-			$fichero_subido = $dir_subida.basename($_FILES['tax_file']['name']);
-			move_uploaded_file($_FILES['tax_file']['tmp_name'], $fichero_subido);
-
-			$dir_subida = '../modulo/taxAlert/img/';
-			$fichero_subido = $dir_subida.basename($_FILES['tax_img']['name']);
-			move_uploaded_file($_FILES['tax_img']['tmp_name'], $fichero_subido);*/
+			$sql = "INSERT INTO banner(title, subtitle, imagen, creatorUser) VALUES('$banner_title', '$banner_subtitle', '$img', '$idUser')";
+			$query = $db->Execute($sql);
 			
 			return $query;
 		}
 
-		public function Modificar($id, $tax_title, $tax_resume, $tax_contens, $name_file, $name_img, $idUser){
+		public function Modificar($banner_id, $banner_title, $banner_subtitle, $idUser, $status){
 			global $db;
-
-			$archivo = '';
-
-			$ubicacionTemporal = $_FILES["tax_file"]["tmp_name"];
-			$dir_subida = '../modulo/taxAlert/file/';
-			$nombreArchivo = $_FILES["tax_file"]["name"];
-			$extension = pathinfo($nombreArchivo, PATHINFO_EXTENSION);
-			// Renombrar archivo
-			$nuevoNombre = sprintf("%s_%d.%s", uniqid(), 1, $extension);
-			
-			$archivo = $nuevoNombre;
-				
-			$fichero_subido = $dir_subida.basename($nuevoNombre);
-			// Mover del temporal al directorio actual
-			move_uploaded_file($ubicacionTemporal, $fichero_subido);		
 
 			$img = '';
 
-			$ubicacionTemporal = $_FILES["tax_img"]["tmp_name"];
-			$dir_subida = '../modulo/taxAlert/img/';
-			$nombreArchivo = $_FILES["tax_img"]["name"];
+			$ubicacionTemporal = $_FILES["banner_img"]["tmp_name"];
+			$dir_subida = '../modulo/banner/img/';
+			$nombreArchivo = $_FILES["banner_img"]["name"];
 			$extension = pathinfo($nombreArchivo, PATHINFO_EXTENSION);
 			// Renombrar archivo
 			$nuevoNombre = sprintf("%s_%d.%s", uniqid(), 1, $extension);
@@ -87,7 +49,7 @@
 			// Mover del temporal al directorio actual
 			move_uploaded_file($ubicacionTemporal, $fichero_subido);
 
-			$sql = "UPDATE tax_alert set titulo = '$tax_title', resumen = '$tax_resume', contenido = '$tax_contens', archivo = '$archivo', imagen = '$img', creatorUser = '$idUser' WHERE id = $id";
+			$sql = "UPDATE banner set title = '$banner_title', subtitle = '$banner_subtitle', imagen = '$img', creatorUser = '$idUser' WHERE id = $banner_id";
 			$query = $db->Execute($sql);
 
 			return $query;
@@ -96,7 +58,7 @@
 		public function delet(){
 			global $db;
 			$id = $_POST["id"];
-			$sql = "DELETE from tax_alert WHERE id = '$id'";
+			$sql = "DELETE from banner WHERE id = '$id'";
 			$query = $db->Execute($sql);
 			
 			return $query;
@@ -104,21 +66,21 @@
 
 		public function list(){
 			global $db;			
-			$sql = "SELECT * FROM tax_alert ORDER BY (id) DESC";
+			$sql = "SELECT * FROM banner ORDER BY (id) DESC";
 			$query = $db->Execute($sql);
 			return $query;
 		}
 
 		public function edit( $id ){
 			global $db;			
-			$sql = "SELECT * FROM tax_alert	WHERE id = '$id'";
+			$sql = "SELECT * FROM banner WHERE id = '$id'";
 			$sqlQuery = $db->Execute($sql);
 			return $sqlQuery;
 		}
 
 		public function status($id, $val){
 			global $db;	
-			$sql = "UPDATE tax_alert set status = '$val' WHERE id = $id";
+			$sql = "UPDATE banner set status = '$val' WHERE id = $id";
 			$query = $db->Execute($sql);
 			return $query;
 		}

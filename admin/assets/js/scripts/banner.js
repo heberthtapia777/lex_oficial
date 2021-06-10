@@ -1,31 +1,29 @@
 $( document ).ready(function() {
 	init();	
-	$('ul#publi').addClass('show');
-    $('ul li a#tax').addClass('active');
+	$('ul#home').addClass('show');
+    $('ul li a#banner').addClass('active');
   });
 
 
 function init(){
 	validacion()
 	ocultarForm();
-	listaTaxAlert();
+	listaBanner();
 	$("#btnNuevo").click(verForm);    
 }
 
 var validator;
 
 function validacion(){
-	validator = $("#frmTaxAlert").submit(function() {
+	validator = $("#frmBanner").submit(function() {
 		// update underlying textarea before submit validation
 		tinyMCE.triggerSave();
 		}).validate({
 			ignore: "",
 			rules: {
-				tax_title: "required",			
-				tax_resume: "required",
-				tax_contens: "required",
-				tax_img: "required",	
-				tax_file: "required"
+				/*banner_title: "required",			
+				banner_subtitle: "required",	*/			
+				banner_img: "required"
 			},
 			errorElement: "em",
 			errorPlacement: function(label, element) {
@@ -72,17 +70,16 @@ function validacion(){
 function verForm(){        
 	$("#verForm").show("slow", function() {
 		// Animation complete.
-		$(this).find('h5').html('Nuevo Tax Alert');
+		$(this).find('h5').html('Nuevo Banner');
 		$('#btnCancel').css('display','block');
 		$('#btnNuevo').css('display', 'none');
 	});// Mostramos el formulario
 	$("#verLista").hide();// ocultamos el listado
-	cargaEditor();  
 }
 
 function ocultarForm(){
 	tinymce.remove();
-	$("#frmTaxAlert").get(0).reset();
+	$("#frmBanner").get(0).reset();
 	$("#tax_resume, #tax_contens").html('');
 	$("#verForm").hide();// Mostramos el formulario
 	$('#btnCancel').css('display', 'none');
@@ -97,10 +94,10 @@ function ocultarForm(){
 
 $.validator.setDefaults( {
     submitHandler: function () {
-        var formData = new FormData($("#frmTaxAlert")[0]);       
+        var formData = new FormData($("#frmBanner")[0]);       
     
         $.ajax({
-            url: "../../ajax/taxAlertAjax.php?op=saveOrUpdate",
+            url: "../../ajax/bannerAjax.php?op=saveOrUpdate",
             type: "POST",
             data: formData,      
             contentType: false,
@@ -111,12 +108,12 @@ $.validator.setDefaults( {
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
-                        title: 'TAX ALERT registrado exitosamente.',
+                        title: 'BANNER registrado exitosamente.',
                         showConfirmButton: false,
                         timer: 2000
                     }).then((result) =>{
 						ocultarForm();
-						listaTaxAlert();
+						listaBanner();
 					})
 
                 }
@@ -124,7 +121,7 @@ $.validator.setDefaults( {
                     Swal.fire({
                         position: 'top-end',
                         icon: 'error',
-                        title: 'Error al registrar TAX ALERT.',
+                        title: 'Error al registrar BANNER.',
                         showConfirmButton: false,
                         timer: 2000
                     })
@@ -133,19 +130,19 @@ $.validator.setDefaults( {
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
-                        title: 'TAX ALERT actualizado correctamente.',
+                        title: 'BANNER actualizado correctamente.',
                         showConfirmButton: false,
                         timer: 2000
                     }).then((result) => {
                         ocultarForm();
-                        listaTaxAlert();
+                        listaBanner();
                     })
                 }
                 if(data == 3){
                     Swal.fire({
                         position: 'top-end',
                         icon: 'error',
-                        title: 'Error al actulizar TAX ALERT.',
+                        title: 'Error al actulizar BANNER.',
                         showConfirmButton: false,
                         timer: 2000
                     })
@@ -157,63 +154,30 @@ $.validator.setDefaults( {
 });
 
 /**
- * Carga editor TINYMCE
- */
-
-function cargaEditor(){   
-    
-    tinymce.init({
-        selector: '#tax_resume, #tax_contens',
-        language: 'es',
-        height : "480",
-        plugins: 'print preview importcss searchreplace autolink autosave save directionality  visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap emoticons',
-
-        mobile: {
-        plugins: 'print preview importcss searchreplace autolink autosave save directionality  visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount textpattern noneditable help charmap emoticons'
-        },
-
-        menubar: ' edit view format table tc help',
-        toolbar: 'undo redo | bold italic underline strikethrough | formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | fullscreen  preview save print',
-        autosave_ask_before_unload: true,
-
-        setup: function(editor) {
-            editor.on('change', function(e) {
-                tinymce.triggerSave();
-                $("#" + editor.id).valid();
-            });
-        }
-    });
-}
-
-/**
  * Edita formulario
  */
 
- function cargaData(id){     
-
-	tinymce.remove();
+ function cargaData(id){  
        
     $("#verForm").show("slow", function() {
         // Animation complete.
-        $(this).find('h5').html('Actualizar Tax Alert');
+        $(this).find('h5').html('Actualizar Banner');
       });// Mostramos el formulario
     $("#verLista").hide();// ocultamos el listado   
            
 
         $.ajax({
-            url: "../../ajax/taxAlertAjax.php?op=edit",
+            url: "../../ajax/bannerAjax.php?op=edit",
             type: "POST",
             dataType: 'json',
             data:{
                 id: id
             },            
             success: function(data){
-                $('#tax_id').val(id);
-                $('#tax_title').val(data.tax_title);
-                $('#tax_resume').val(data.tax_resume);                
-                $('#tax_contens').val(data.tax_contens);
-
-                cargaEditor();  
+                $('#banner_id').val(id);
+                $('#banner_title').val(data.banner_title);
+                $('#banner_subtitle').val(data.banner_subtitle);
+                $('#banner_img').val(data.banner_img);
 				
 				$('#btnCancel').css('display','block');
 				$('#btnNuevo').css('display', 'none');
@@ -225,12 +189,12 @@ function cargaEditor(){
 }
 
 /**
- * Elimina un Tax Alert
+ * Elimina un BANNER
  */
 
  function delet(id){
     $.ajax({
-        url: "../../ajax/taxAlertAjax.php?op=delete",
+        url: "../../ajax/bannerAjax.php?op=delete",
         type: "POST",
         data: {
             id: id
@@ -241,17 +205,17 @@ function cargaEditor(){
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
-                    title: 'TAX ALERT eliminado exitosamente.',
+                    title: 'BANNER eliminado exitosamente.',
                     showConfirmButton: false,
                     timer: 2000
-                }).then(listaTaxAlert())
+                }).then(listaBanner())
 
             }
             if(data == 1){
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',
-                    title: 'Error al eliminar TAX ALERT.',
+                    title: 'Error al eliminar BANNER.',
                     showConfirmButton: false,
                     timer: 2000
                 })
@@ -265,8 +229,8 @@ function cargaEditor(){
  * Lista los Tax Alert
  */
 
-function listaTaxAlert(){
-	var table = $('#tblTaxAlert').dataTable(
+function listaBanner(){
+	var table = $('#tblBanner').dataTable(
 		{   "aProcessing": true,
             "aServerSide": true,
             "scrollX": true,
@@ -283,11 +247,10 @@ function listaTaxAlert(){
                 },                                
                 {   "mDataProp": "3"},
                 {   "mDataProp": "4"},
-                {   "mDataProp": "5"},
-                {   "mDataProp": "6"}                
+                {   "mDataProp": "5"}            
             ],"ajax":
             {
-                url: '../../ajax/taxAlertAjax.php?op=list',
+                url: '../../ajax/bannerAjax.php?op=list',
                 type : "get",
                 dataType : "json",
                 error: function(e){
@@ -302,14 +265,14 @@ function listaTaxAlert(){
 }
 
 /**
- * Cambia status del Tax Alert
+ * Cambia status del Banner
  * @param {*} id 
  * @param {*} val 
  */
 
 function status(id, val){	
     $.ajax({
-        url: "../../ajax/taxAlertAjax.php?op=status",
+        url: "../../ajax/bannerAjax.php?op=status",
         type: "POST",
         data:{
             id: id,
@@ -321,7 +284,7 @@ function status(id, val){
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
-                    title: 'Tax Alert INACTIVO',
+                    title: 'Banner INACTIVO',
                     showConfirmButton: false,
                     timer: 1500
                 })
@@ -330,13 +293,13 @@ function status(id, val){
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
-                    title: 'Tax Alert ACTIVO',
+                    title: 'Banner ACTIVO',
                     showConfirmButton: false,
                     timer: 1500
                 })
 				$('a#'+id).parent('td').html('<a href="#" id="'+id+'" onclick="status('+id+', 0)"><span class="badge bg-success"><i class="fas fa-check-circle"></i></span></a>')
             }
-            //listaTaxAlert();
+            //listaBanner();
             /*  OcultarForm();
             Limpiar();*/
         }
