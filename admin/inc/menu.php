@@ -25,9 +25,9 @@
 										</div>
 									</a>
 									<ul class="nav collapse" id="home" data-parent="#navbarVerticalCollapse">
-										<li class="nav-item"><a class="nav-link" id="banner" href="../../modulo/banner/banner.php">Gestor banner</a></li>
-										<li class="nav-item"><a class="nav-link" id="indice" href="../../modulo/indice/indice.php">Crear indice</a></li>
-										<li class="nav-item"><a class="nav-link" href="#">Crear temas</a></li>
+										<li class="nav-item"><a class="nav-link" id="banner" href="../../modulo/banner/banner.php">Gestor Banner</a></li>
+										<li class="nav-item"><a class="nav-link" id="indice" href="../../modulo/indice/indice.php">Gestor Indice</a></li>
+										<li class="nav-item"><a class="nav-link" id="tema" href="../../modulo/tema/tema.php">Gestor Temas</a></li>
 										<li class="nav-item"><a class="nav-link" href="#">Crear Subtemas</a></li>
 									</ul>
 								</li>

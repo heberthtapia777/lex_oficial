@@ -102,7 +102,7 @@
 											</tr>
 										</tfoot>
 
-										<tbody id="">
+										<tbody>
 
 										</tbody>
 									</table>
@@ -124,16 +124,16 @@
 						</div>
 					</div>
 				</div>
-				<form role="form" name="frmIndice" id="frmIndice" enctype="multipart/form-data" class="cmxform">
+				<form role="form" name="frmTema" id="frmTema" enctype="multipart/form-data" class="cmxform">
 				<div class="row g-0">				
 					<div class="col-lg-12 pr-lg-2">
 						<div class="card mb-3">                
 							<div class="card-body bg-light">							
 								<div class="row gx-2">
 									<div class="col-12 mb-3">
-										<input id="indice_id" type="hidden" name="indice_id" />
-										<label class="form-label" for="indice_title">Indice</label>
-										<input class="form-control" id="indice_title" name="indice_title" type="text" placeholder="Titulo" />
+										<input id="tema_id" type="hidden" name="tema_id" />
+										<label class="form-label" for="tema_title">Indice</label>
+										<input class="form-control" id="tema_title" name="tema_title" type="text" placeholder="Titulo" />
 									</div>									
 								</div>
 							
@@ -253,7 +253,7 @@
 			include '../../inc/footer.php'
 		?>
 
-		<script src="../../assets/js/scripts/indice.js"></script>
+		<script src="../../assets/js/scripts/tema.js"></script>
 
 	</body>
 </html>
