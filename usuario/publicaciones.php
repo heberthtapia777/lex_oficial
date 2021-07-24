@@ -13,7 +13,7 @@
                                         <script src="../js/responsiveslides.min.js">
                                         </script>
                                         <title>
-                                            Area privada
+                                            Area privada<!-- Area privada -->
                                         </title>
                                     </link>
                                 </link>
