@@ -1,33 +1,33 @@
 <?php
 	session_start();
-	
+
 	include "../inc/comunicado.php";
 
 	$objComunicado = new comunicado();
 
 	switch ($_GET["op"]) {
 
-		case 'saveOrUpdate':	
-			$com_id			= $_POST['com_id'];		
+		case 'saveOrUpdate':
+			$com_id			= $_POST['com_id'];
 			$com_title  	= $_POST['com_title'];
 			$com_resume   	= $_POST['com_resume'];
 			$com_contens  	= $_POST['com_contens'];
-			$com_autor		= $_POST['com_autor'];			
+			$com_autor		= $_POST['com_autor'];
 
 			$idUser = $_SESSION['idUser'];
 
 			$character  = array("&#8216;","&#8217;","'");
 			$change		= array("‘","’","&#39;");
 			$com_resume = str_replace($character, $change, $com_resume);
-			$com_contens = str_replace($character, $change, $com_contens);			
-			
+			$com_contens = str_replace($character, $change, $com_contens);
+
 			if(empty($_POST['com_id'])){
 				if($objComunicado->Registrar($com_title, $com_resume, $com_contens, $com_autor, $idUser)){
 					echo 0;
 				}else{
 					echo 1;
 				}
-			}else{				
+			}else{
 				if($objComunicado->Modificar($com_id, $com_title, $com_resume, $com_contens, $com_autor, $idUser)){
 					echo 2;
 				}else{
@@ -37,7 +37,7 @@
 
 		break;
 
-		case "delete":			
+		case "delete":
 			$result = $objComunicado->delet();
 			if ($result) {
 				echo 0;
@@ -63,34 +63,34 @@
      				"0"=>$i,
                     "1"=>$reg['titulo'],
                     "2"=>$resumen,
-					"3"=>$img,					
+					"3"=>$img,
 					"4"=>$status,
                     "5"=>'<button class="btn btn-warning btn-sm mr-1 mb-1" data-toggle="tooltip" title="Editar" onclick="cargaData('.$reg['id'].')"><i class="fas fa-pencil-alt"></i> </button>&nbsp;'.
 					'<button class="btn btn-danger btn-sm mr-1 mb-1" data-toggle="tooltip" title="Eliminar" onclick="delet('.$reg['id'].')"><i class="fas fa-trash"></i> </button>');
                 $i++;
-			}			
+			}
             $results = array(
             "sEcho" => 1,
         	"iTotalRecords" => count($data),
         	"iTotalDisplayRecords" => count($data),
-			"aaData"=>$data);			
+			"aaData"=>$data);
 			echo json_encode($results);
 
 			break;
 
-		case "status":			
+		case "status":
 			$id = $_POST['id'];
 			$val = $_POST['val'];
-			
+
 			$query = $objComunicado->status($id, $val);
-			
+
 			if($query)
 				echo 1;
 			else
 				echo 0;
 
 			break;
-	
+
 
 		case "edit":
 			$id		 = $_POST['id'];
@@ -98,16 +98,16 @@
 
 			$data = new stdClass();
 
-			$reg = $query->FetchRow();				
+			$reg = $query->FetchRow();
 			$data->com_title   = $reg['titulo'];
 			$data->com_resume  = $reg['resumen'];
 			$data->com_contens = $reg['contenido'];
 			$data->com_img	   = $reg['imagen'];
 			$data->com_file    = $reg['archivo'];
 			$data->com_autor   = $reg['autor'];
-		
-		   	echo json_encode($data);  
-	        break;		
+
+		   	echo json_encode($data);
+	        break;
 
 		case "Salir":
 			session_unset();

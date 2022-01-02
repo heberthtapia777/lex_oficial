@@ -13,5 +13,6 @@
 	//$flags =  MYSQL_CLIENT_COMPRESS;
 	$dsn   = "mysqli://root:$pwd@localhost/bd_lex?persist";
 	$db    = ADONewConnection($dsn);  # no need for PConnect()
+	$db->setCharset('utf8');
 	if (!$db) die("Conexion incorrecta");
 ?>

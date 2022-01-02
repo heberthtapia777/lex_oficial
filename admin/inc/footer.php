@@ -32,6 +32,7 @@
 <!-- <script type="text/javascript" src="../../vendors/datatables/jquery.ui.autocomplete.js"></script> -->
 <!-- <script type="text/javascript" src="../../assets/js/jquery.form-validator.js"></script> -->
 <script src="../../assets/js/jquery.validate.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script type="text/javascript" src="../../vendors/gijgo/js/gijgo.js"></script>

@@ -1,5 +1,5 @@
 <?php
-	include "conexion.php";	
+	include "conexion.php";
 
 	class taxAlert{
 
@@ -17,12 +17,12 @@
 			$extension = pathinfo($nombreArchivo, PATHINFO_EXTENSION);
 			// Renombrar archivo
 			$nuevoNombre = sprintf("%s_%d.%s", uniqid(), 1, $extension);
-			
+
 			$archivo = $nuevoNombre;
-				
+
 			$fichero_subido = $dir_subida.basename($nuevoNombre);
 			// Mover del temporal al directorio actual
-			move_uploaded_file($ubicacionTemporal, $fichero_subido);		
+			move_uploaded_file($ubicacionTemporal, $fichero_subido);
 
 			$img = '';
 
@@ -32,17 +32,17 @@
 			$extension = pathinfo($nombreArchivo, PATHINFO_EXTENSION);
 			// Renombrar archivo
 			$nuevoNombre = sprintf("%s_%d.%s", uniqid(), 1, $extension);
-			
+
 			$img = $nuevoNombre;
-			
+
 			$fichero_subido = $dir_subida.basename($nuevoNombre);
 			// Mover del temporal al directorio actual
 			move_uploaded_file($ubicacionTemporal, $fichero_subido);
-			
+
 
 			$sql = "INSERT INTO tax_alert(titulo, resumen, contenido, archivo, imagen, creatorUser) VALUES('$tax_title', '$tax_resume', '$tax_contens', '$archivo', '$img', '$idUser')";
-			$query = $db->Execute($sql);		
-			
+			$query = $db->Execute($sql);
+
 			/*$dir_subida = '../modulo/taxAlert/file/';
 			$fichero_subido = $dir_subida.basename($_FILES['tax_file']['name']);
 			move_uploaded_file($_FILES['tax_file']['tmp_name'], $fichero_subido);
@@ -50,7 +50,7 @@
 			$dir_subida = '../modulo/taxAlert/img/';
 			$fichero_subido = $dir_subida.basename($_FILES['tax_img']['name']);
 			move_uploaded_file($_FILES['tax_img']['tmp_name'], $fichero_subido);*/
-			
+
 			return $query;
 		}
 
@@ -65,12 +65,12 @@
 			$extension = pathinfo($nombreArchivo, PATHINFO_EXTENSION);
 			// Renombrar archivo
 			$nuevoNombre = sprintf("%s_%d.%s", uniqid(), 1, $extension);
-			
+
 			$archivo = $nuevoNombre;
-				
+
 			$fichero_subido = $dir_subida.basename($nuevoNombre);
 			// Mover del temporal al directorio actual
-			move_uploaded_file($ubicacionTemporal, $fichero_subido);		
+			move_uploaded_file($ubicacionTemporal, $fichero_subido);
 
 			$img = '';
 
@@ -80,9 +80,9 @@
 			$extension = pathinfo($nombreArchivo, PATHINFO_EXTENSION);
 			// Renombrar archivo
 			$nuevoNombre = sprintf("%s_%d.%s", uniqid(), 1, $extension);
-			
+
 			$img = $nuevoNombre;
-			
+
 			$fichero_subido = $dir_subida.basename($nuevoNombre);
 			// Mover del temporal al directorio actual
 			move_uploaded_file($ubicacionTemporal, $fichero_subido);
@@ -98,26 +98,26 @@
 			$id = $_POST["id"];
 			$sql = "DELETE from tax_alert WHERE id = '$id'";
 			$query = $db->Execute($sql);
-			
+
 			return $query;
 		}
 
 		public function list(){
-			global $db;			
+			global $db;
 			$sql = "SELECT * FROM tax_alert ORDER BY (id) DESC";
 			$query = $db->Execute($sql);
 			return $query;
 		}
 
 		public function edit( $id ){
-			global $db;			
+			global $db;
 			$sql = "SELECT * FROM tax_alert	WHERE id = '$id'";
 			$sqlQuery = $db->Execute($sql);
 			return $sqlQuery;
 		}
 
 		public function status($id, $val){
-			global $db;	
+			global $db;
 			$sql = "UPDATE tax_alert set status = '$val' WHERE id = $id";
 			$query = $db->Execute($sql);
 			return $query;
@@ -125,7 +125,7 @@
 
 		public function listaEmpresa(){
 			global $db;
-			
+
 			$sql = "SELECT * FROM cliente_empresa";
 			$query = $db->Execute($sql);
 			return $query;
@@ -133,7 +133,7 @@
 
 		public function listaTypeIndice(){
 			global $db;
-			
+
 			$sql = "SELECT * FROM tipo";
 			$query = $db->Execute($sql);
 			return $query;
@@ -141,7 +141,7 @@
 
 		public function listaTema(){
 			global $db;
-			
+
 			$sql = "SELECT * FROM tema";
 			$query = $db->Execute($sql);
 			return $query;
@@ -150,7 +150,7 @@
 		public function listaConcor(){
 			global $db;
 			$idBol = $_GET['idBol'];
-			
+
 			$sql = "SELECT * FROM concordancia WHERE boletin = '$idBol'";
 			$query = $db->Execute($sql);
 			return $query;
@@ -161,9 +161,9 @@
 
 			$id = $_POST['idBol'];
 			$tipo = $_POST['tipo'];
-			$text = $_POST['text'];			
-			
-			$sql = "SELECT b.idBoletin FROM boletin AS b, tipo AS t WHERE b.id_tipo = t.id";			
+			$text = $_POST['text'];
+
+			$sql = "SELECT b.idBoletin FROM boletin AS b, tipo AS t WHERE b.id_tipo = t.id";
 			if($id != '')
 				$sql.= " AND b.idBoletin = $id";
 			if($tipo != '')
@@ -171,7 +171,7 @@
 			if($text != '')
 				$sql.= " AND t.asunto LIKE '%$text%'";
 
-			$sql.= " ORDER BY b.idBoletin DESC";	
+			$sql.= " ORDER BY b.idBoletin DESC";
 
 			$query = $db->Execute($sql);
 			return $query;
@@ -179,7 +179,7 @@
 
 		public function listaTypeUser(){
 			global $db;
-			
+
 			$sql = "SELECT * FROM usergroups";
 			$query = $db->Execute($sql);
 			return $query;

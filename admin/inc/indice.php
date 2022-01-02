@@ -1,5 +1,5 @@
 <?php
-	include "conexion.php";	
+	include "conexion.php";
 
 	class indice{
 
@@ -7,11 +7,11 @@
 		}
 
 		public function Registrar($indice_title, $idUser){
-			global $db;	
+			global $db;
 
 			$sql = "INSERT INTO tipo(tipo, id_usuario) VALUES('$indice_title', '$idUser')";
 			$query = $db->Execute($sql);
-			
+
 			return $query;
 		}
 
@@ -29,12 +29,12 @@
 			$id = $_POST["id"];
 			$sql = "DELETE from tipo WHERE id = '$id'";
 			$query = $db->Execute($sql);
-			
+
 			return $query;
 		}
 
 		public function list(){
-			global $db;			
+			global $db;
 			$sql = "SELECT * FROM tipo ORDER BY (id) DESC";
 			$db -> setCharset ( 'utf8' ) ;
 			$query = $db->Execute($sql);
@@ -42,7 +42,7 @@
 		}
 
 		public function edit( $id ){
-			global $db;			
+			global $db;
 			$sql = "SELECT * FROM tipo WHERE id = '$id'";
 			$db -> setCharset ( 'utf8' ) ;
 			$sqlQuery = $db->Execute($sql);
@@ -50,11 +50,11 @@
 		}
 
 		public function status($id, $val){
-			global $db;	
+			global $db;
 			$sql = "UPDATE tipo set status = '$val' WHERE id = $id";
 			$query = $db->Execute($sql);
 			return $query;
 		}
 
-		
+
 	}

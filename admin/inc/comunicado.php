@@ -1,5 +1,5 @@
 <?php
-	include "conexion.php";	
+	include "conexion.php";
 
 	class comunicado{
 
@@ -7,8 +7,8 @@
 		}
 
 		public function Registrar($com_title, $com_resume, $com_contens, $com_autor, $idUser){
-			global $db;		
-			
+			global $db;
+
 			/**
 			 * subida de una imagen
 			 */
@@ -20,9 +20,9 @@
 			$extension = pathinfo($nombreArchivo, PATHINFO_EXTENSION);
 			// Renombrar archivo
 			$nuevoNombre = sprintf("%s_%d.%s", uniqid(), 1, $extension);
-			
+
 			$img = $nuevoNombre;
-			
+
 			$fichero_subido = $dir_subida.basename($nuevoNombre);
 			// Mover del temporal al directorio actual
 			move_uploaded_file($ubicacionTemporal, $fichero_subido);
@@ -38,17 +38,17 @@
 			$extension = pathinfo($nombreArchivo, PATHINFO_EXTENSION);
 			// Renombrar archivo
 			$nuevoNombre = sprintf("%s_%d.%s", uniqid(), 0, $extension);
-			
+
 			$archivo = $nuevoNombre;
-			
+
 			$fichero_subido = $dir_subida.basename($nuevoNombre);
 			// Mover del temporal al directorio actual
 			move_uploaded_file($ubicacionTemporal, $fichero_subido);
-			
+
 
 			$sql = "INSERT INTO comunicado(titulo, resumen, contenido, autor, archivo, imagen, creatorUser) VALUES('$com_title', '$com_resume', '$com_contens', '$com_autor', '$archivo', '$img','$idUser')";
-			$query = $db->Execute($sql);	
-			
+			$query = $db->Execute($sql);
+
 			return $query;
 		}
 
@@ -67,9 +67,9 @@
 			$extension = pathinfo($nombreArchivo, PATHINFO_EXTENSION);
 			// Renombrar archivo
 			$nuevoNombre = sprintf("%s_%d.%s", uniqid(), 1, $extension);
-			
+
 			$img = $nuevoNombre;
-			
+
 			$fichero_subido = $dir_subida.basename($nuevoNombre);
 			// Mover del temporal al directorio actual
 			move_uploaded_file($ubicacionTemporal, $fichero_subido);
@@ -86,9 +86,9 @@
 			$extension = pathinfo($nombreArchivo, PATHINFO_EXTENSION);
 			// Renombrar archivo
 			$nuevoNombre = sprintf("%s_%d.%s", uniqid(), 0, $extension);
-			
+
 			$archivo = $nuevoNombre;
-			
+
 			$fichero_subido = $dir_subida.basename($nuevoNombre);
 			// Mover del temporal al directorio actual
 			move_uploaded_file($ubicacionTemporal, $fichero_subido);
@@ -104,26 +104,26 @@
 			$id = $_POST["id"];
 			$sql = "DELETE from comunicado WHERE id = '$id'";
 			$query = $db->Execute($sql);
-			
+
 			return $query;
 		}
 
 		public function list(){
-			global $db;			
+			global $db;
 			$sql = "SELECT * FROM comunicado ORDER BY (id) DESC";
 			$query = $db->Execute($sql);
 			return $query;
 		}
 
 		public function edit( $id ){
-			global $db;			
+			global $db;
 			$sql = "SELECT * FROM comunicado	WHERE id = '$id'";
 			$sqlQuery = $db->Execute($sql);
 			return $sqlQuery;
 		}
 
 		public function status($id, $val){
-			global $db;	
+			global $db;
 			$sql = "UPDATE comunicado set status = '$val' WHERE id = $id";
 			$query = $db->Execute($sql);
 			return $query;
@@ -131,7 +131,7 @@
 
 		public function listaEmpresa(){
 			global $db;
-			
+
 			$sql = "SELECT * FROM cliente_empresa";
 			$query = $db->Execute($sql);
 			return $query;
@@ -139,7 +139,7 @@
 
 		public function listaTypeIndice(){
 			global $db;
-			
+
 			$sql = "SELECT * FROM tipo";
 			$query = $db->Execute($sql);
 			return $query;
@@ -147,7 +147,7 @@
 
 		public function listaTema(){
 			global $db;
-			
+
 			$sql = "SELECT * FROM tema";
 			$query = $db->Execute($sql);
 			return $query;
@@ -156,7 +156,7 @@
 		public function listaConcor(){
 			global $db;
 			$idBol = $_GET['idBol'];
-			
+
 			$sql = "SELECT * FROM concordancia WHERE boletin = '$idBol'";
 			$query = $db->Execute($sql);
 			return $query;
@@ -167,9 +167,9 @@
 
 			$id = $_POST['idBol'];
 			$tipo = $_POST['tipo'];
-			$text = $_POST['text'];			
-			
-			$sql = "SELECT b.idBoletin FROM boletin AS b, tipo AS t WHERE b.id_tipo = t.id";			
+			$text = $_POST['text'];
+
+			$sql = "SELECT b.idBoletin FROM boletin AS b, tipo AS t WHERE b.id_tipo = t.id";
 			if($id != '')
 				$sql.= " AND b.idBoletin = $id";
 			if($tipo != '')
@@ -177,7 +177,7 @@
 			if($text != '')
 				$sql.= " AND t.asunto LIKE '%$text%'";
 
-			$sql.= " ORDER BY b.idBoletin DESC";	
+			$sql.= " ORDER BY b.idBoletin DESC";
 
 			$query = $db->Execute($sql);
 			return $query;
@@ -185,7 +185,7 @@
 
 		public function listaTypeUser(){
 			global $db;
-			
+
 			$sql = "SELECT * FROM usergroups";
 			$query = $db->Execute($sql);
 			return $query;

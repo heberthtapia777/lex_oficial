@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	
+
 	include "../inc/boletines.php";
 
 	$objboletin = new boletin();
@@ -12,7 +12,7 @@
 			$dateImpresion   = $_POST["dateImpresion"];
 			//$imgBol          = $_POST["imgBol"];
 			$pieImg          = $_POST["pieImg"];
-			$indice          = $_POST["indice"];
+			$indice          = $_POST["cboIndice"];
 			$datePubli       = $_POST['datePubli'];
 			$dateBoletin     = $_POST['dateBoletin'];
 			$asunto          = $_POST['asunto'];
@@ -20,7 +20,7 @@
 			$cont            = $_POST['cont'];
 			$info            = $_POST['info'];
 			$nota            = $_POST['nota'];
-			$tema 			 = $_POST['tema'];
+			$tema 			 = $_POST['checkTema'];
 
 			$nombre_img    = $_FILES['imgBol']['name'];
 			$tipo_img      = $_FILES['imgBol']['type'];
@@ -33,8 +33,8 @@
 			$intro = str_replace($character, $change, $intro);
 			$cont = str_replace($character, $change, $cont);
 
-			$idUser = $_SESSION['idUser'];			
-			
+			$idUser = $_SESSION['idUser'];
+
 			if(empty($_POST["idBoletin"])){
 				if($objboletin->Registrar($indice, $idUser, $nroRef, $dateImpresion, $datePubli, $dateBoletin, $asunto, $info, $intro, $cont, $nombre_img, $pieImg, $nota)){
 					echo 0;
@@ -52,7 +52,7 @@
 
 		break;
 
-		case "delete":			
+		case "delete":
 			$result = $objboletin->deletBoletin();
 			if ($result) {
 				echo 0;
@@ -74,9 +74,9 @@
      			$data[] = array(
      				"0"=>$i,
                     "1"=>$reg['idBoletin'],
-                    "2"=>$asunto,                    
-					"3"=>htmlentities($reg['indice']),
-					"4"=>htmlentities($reg['tema']),
+                    "2"=>$asunto,
+					"3"=>($reg['indice']),
+					"4"=>($reg['tema']),
 					"5"=>$reg['fecha_creacion'],
 					"6"=>$reg['fecha_publicacion'],
 					"7"=>$reg['visita'],
@@ -84,12 +84,12 @@
                     "9"=>'<button class="btn btn-warning btn-sm mr-1 mb-1" data-toggle="tooltip" title="Editar" onclick="cargaDataBoletin('.$reg['idBoletin'].')"><i class="fas fa-pencil-alt"></i> </button>&nbsp;'.
 					'<button class="btn btn-danger btn-sm mr-1 mb-1" data-toggle="tooltip" title="Eliminar" onclick="deletBoletin('.$reg['idBoletin'].')"><i class="fas fa-trash"></i> </button>');
                 $i++;
-			}			
+			}
             $results = array(
             "sEcho" => 1,
         	"iTotalRecords" => count($data),
         	"iTotalDisplayRecords" => count($data),
-			"aaData"=>$data);			
+			"aaData"=>$data);
 			echo json_encode($results);
 
 			break;
@@ -109,7 +109,7 @@
 				echo 0;
 
 			break;
-	
+
 
 		case "editBoletin":
 			$idBol = $_POST['idBoletin'];
@@ -119,38 +119,38 @@
 			$c=0;
 			//$data = json_encode($data);
 
-			$reg = $query->FetchRow();				
-			$data->circular    = htmlentities($reg['circular']);
+			$reg = $query->FetchRow();
+			$data->circular    = $reg['circular'];
 			$data->datePubli   = $reg['fecha_publicacion'];
-			$data->imagen      = htmlentities($reg['imagen']);
-			$data->pie_imagen  = htmlentities($reg['pie_imagen']);
-			$data->idIn        = ($reg['idIn']);
+			$data->imagen      = $reg['imagen'];
+			$data->pie_imagen  = $reg['pie_imagen'];
+			$data->idIn        = $reg['idIn'];
 			$data->indice      = ($reg['indice']);
 			$data->idTema[0]   = ($reg['idTema']);
-			$data->tema[0]     = htmlentities('--->'.$reg['tema']);
+			$data->tema[0]     = $reg['tema'];
 			$data->dateCirc    = $reg['fecha_circular'];
 			$data->dateCrea    = $reg['fecha_creacion'];
 			$data->asunto      = ($reg['asunto']);
-			$data->intro       = htmlentities($reg['introduccion']);
-			$data->cont        = htmlentities($reg['contenido']);
-			$data->info        = htmlentities($reg['info_adicional']);
-			$data->nota        = htmlentities($reg['nota']);
+			$data->intro       = $reg['introduccion'];
+			$data->cont        = $reg['contenido'];
+			$data->info        = $reg['info_adicional'];
+			$data->nota        = $reg['nota'];
 
-			while ($reg = $query->FetchRow()) {				
+			while ($reg = $query->FetchRow()) {
 				$c++;
-				$data->idTema[$c] = ($reg['idTema']);				
-				$data->tema[$c] = htmlentities($reg['tema']);				
-			   }			
-		
-		   	echo json_encode($data);  
+				$data->idTema[$c] = ($reg['idTema']);
+				$data->tema[$c] = htmlentities($reg['tema']);
+			   }
+
+		   	echo json_encode($data);
 	        break;
 
 		case "listEmpleado":
-			
+
 			$query_Tipo = $objboletin->listaEmpresa();
 			$data = Array();
             $i = 1;
-     		while ($reg = $query_Tipo->FetchRow()) {				
+     		while ($reg = $query_Tipo->FetchRow()) {
      			$data[] = array(
      				"0"=>'<input type="radio" name="optEmpleado" id="optEmpleado" data-empresa="'.utf8_encode($reg['empresa']).'" value="'.$reg['id'].'" />',
                     "1"=>$i,
@@ -159,12 +159,12 @@
 					"4"=>utf8_encode($reg['email']),
 					);
                 $i++;
-			}			
+			}
             $results = array(
             "sEcho" => 1,
         	"iTotalRecords" => count($data),
         	"iTotalDisplayRecords" => count($data),
-			"aaData"=>$data);			
+			"aaData"=>$data);
 			echo json_encode($results);
 
 			break;
@@ -174,7 +174,7 @@
 			$query_Tipo = $objboletin->listaTypeIndice();
 
 			echo '<option value="">Seleccione</option>';
-            
+
      		while ($reg = $query_Tipo->FetchRow()) {
 				echo '<option value=' . $reg['id'] . '>' . ($reg['tipo']) . '</option>';
 			}
@@ -188,40 +188,40 @@
 
 			$query_Tipo = $objboletin->listaTypeIndice();
 
-			echo '<option value='.$idIn.'>'.$indice.'</option>';
-			
-				while ($reg = $query_Tipo->FetchRow()) {
-				echo '<option value=' . $reg['id'] . '>' . ($reg['tipo']) . '</option>';
+			echo '<option value="'.$idIn.'">'.$indice.'</option>';
+
+			while ($reg = $query_Tipo->FetchRow()) {
+				echo '<option value="' . $reg['id'] . '">' . ($reg['tipo']) . '</option>';
 			}
 
 			break;
-		
+
 		case "listTemas":
 
-			$query_Tipo = $objboletin->listaTema();	
-			//$c = 0;	
+			$query_Tipo = $objboletin->listaTema();
+			//$c = 0;
 
 			$reg = $query_Tipo->FetchRow();
 				echo '<div class="form-group row"><div class="col-sm-12"><div class="form-check">
-					<input class="form-check-input" type="checkbox" value="'.$reg['id'].'" id="tema'.$reg['id'].'" name="tema[]" required minlength="1" data-msg-required="Elija por lo menos una opción">
+					<input class="form-check-input" type="checkbox" value="'.$reg['id'].'" id="checkTema'.$reg['id'].'" name="checkTema[]" required minlength="1" data-msg-required="Elija por lo menos una opción">
 					<label class="form-check-label" >
 						'.($reg['tema']).'
 					</label>
 				</div>';
-			
+
 			while ($reg = $query_Tipo->FetchRow()) {
 				$c++;
 				echo '<div class="form-group row"><div class="col-sm-12"><div class="form-check">
-					<input class="form-check-input" type="checkbox" value="'.$reg['id'].'" id="tema'.$reg['id'].'" name="tema[]" >
+					<input class="form-check-input" type="checkbox" value="'.$reg['id'].'" id="checkTema'.$reg['id'].'" name="checkTema[]" >
 					<label class="form-check-label" >
 						'.($reg['tema']).'
 					</label>
 				</div>';
-				
+
 			}
 
 			break;
-		
+
 		case "listTemasCheck":
 
 			$temas = Array();
@@ -230,30 +230,30 @@
 			$temas = explode(",", $temas);
 
 			echo json_encode($temas);
-						
+
 			break;
-		
+
 		case "listCargaConcor":
 			$c=0;
 			$data = new stdClass();
-			$query = $objboletin->listaConcor();	
-			while ($reg = $query->FetchRow()) {								
+			$query = $objboletin->listaConcor();
+			while ($reg = $query->FetchRow()) {
 				$data->idCon[] = $reg['id_concordancia'];
 				$data->idCla[] = $reg['id_clase'];
-				$c++;		
-			}			
-		
-		   	echo json_encode($data);  
-						
-			break;
-		
-		case "search":			
+				$c++;
+			}
 
-			$query_Tipo = $objboletin->searchBol();		
-			
+		   	echo json_encode($data);
+
+			break;
+
+		case "search":
+
+			$query_Tipo = $objboletin->searchBol();
+
 			$idCon = $_POST['idCon'];
 			$idNam = $_POST['idNam'];
-			
+
 			while ($reg = $query_Tipo->FetchRow()) {
 				echo '<span id="'.$reg['idBoletin'].'" class="badge bg-warning"><a href="#" onclick="addIdBoletin('.$reg['idBoletin'].',&#39;'.$idNam.'&#39;,'.$idCon.')">'.utf8_encode($reg['idBoletin']).'</a></span>';
 			}

@@ -6,12 +6,12 @@ $( document ).ready(function() {
 });
 
 
-function init(){   
+function init(){
     ocultarForm();
     listadoUsuarios();
     comboTypeUser();
 
-    $("#btnNuevo").click(verForm);     
+    $("#btnNuevo").click(verForm);
     $("#btnBuscarCliente").click(abrirModalCliente);
 
     $("#btnAgregarEmpresa").click(function(e){
@@ -27,7 +27,7 @@ function init(){
 
 function validacion() {
     validator = $("#frmUser").submit(function() {
-        // update underlying textarea before submit validation				
+        // update underlying textarea before submit validation
     }).validate({
         ignore: "",
         rules: {
@@ -48,9 +48,9 @@ function validacion() {
                 equalTo: "#txtPassword"
             },
             txtUsuario: "required"
-        },				
+        },
         messages: {
-            txtEmail: "Por favor, introduce una dirección de correo válida",					
+            txtEmail: "Por favor, introduce una dirección de correo válida",
             txtPassword: {
                 required: "Por favor ingrese una contraseña",
                 minlength: "Tu contraseña debe tener al menos 5 caracteres"
@@ -76,7 +76,7 @@ function validacion() {
                 } else {
                     label.insertAfter(element)
                 }
-            }							
+            }
         },
         highlight: function ( error, errorClass, validClass ) {
             $( error ).addClass( "is-invalid" ).removeClass( "is-valid" );
@@ -84,7 +84,7 @@ function validacion() {
         unhighlight: function (error, errorClass, validClass) {
             $( error ).addClass( "is-valid" ).removeClass( "is-invalid" );
         }
-        
+
     });
 
 }
@@ -115,10 +115,10 @@ function verForm(){
 }
 
 function ocultarForm(){
-    
-    $("#frmUser").get(0).reset();    
+
+    $("#frmUser").get(0).reset();
     $("#verForm").hide();// Mostramos el formulario
-    
+
     $('#btnCancel').css('display', 'none');
 	$('#btnNuevo').css('display', 'block');
     $("#verLista").show();
@@ -134,7 +134,7 @@ function abrirModalCliente(){
         	"aoColumns":[
         	     	{   "mDataProp": "0"},
                     {   "mDataProp": "1"},
-                    {   "mDataProp": "2"},                    
+                    {   "mDataProp": "2"},
                     {   "mDataProp": "3"},
                     {   "mDataProp": "4"}
             ],
@@ -147,8 +147,8 @@ function abrirModalCliente(){
 					error: function(e){
 				   		console.log(e.responseText);
 					}
-                },           
-            
+                },
+
 	        "bDestroy": true
 
         }).DataTable();
@@ -156,13 +156,13 @@ function abrirModalCliente(){
 
 $.validator.setDefaults( {
     submitHandler: function () {
-        
-        var formData = new FormData($("#frmUser")[0]);       
-    
+
+        var formData = new FormData($("#frmUser")[0]);
+
         $.ajax({
             url: "../../ajax/usersAjax.php?op=SaveOrUpdate",
             type: "POST",
-            data: formData,      
+            data: formData,
             contentType: false,
             processData: false,
             success: function(data){
@@ -212,9 +212,9 @@ $.validator.setDefaults( {
                 }
             }
 
-        });       
+        });
     }
-    
+
 });
 
 function listadoUsuarios(){
@@ -224,20 +224,20 @@ function listadoUsuarios(){
             "scrollX": true,
             language: {
                 url: 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
-            },          
+            },
    			dom: 'Bfrtip',
-	        buttons: [	            
-	            'excelHtml5',	            
+	        buttons: [
+	            'excelHtml5',
 	            'pdfHtml5'
 	        ],
         	"aoColumns":[
         	     	{   "mDataProp": "0"},
                     {   "mDataProp": "1"},
                     {   "mDataProp": "2"},
-                    {   
+                    {
                         "mDataProp": "3",
                         className: 'dt-body-center'
-                    },               
+                    },
                     {   "mDataProp": "4"},
                     {   "mDataProp": "5"},
                     {   "mDataProp": "6"},
@@ -253,31 +253,31 @@ function listadoUsuarios(){
 					error: function(e){
 				   		console.log(e.responseText);
 					}
-                },           
-            
+                },
+
 	        "bDestroy": true
 
-        }).DataTable(); 
-        
+        }).DataTable();
+
 };
 
-function cargaData(id){    
-       
+function cargaData(id){
+
     $("#verForm").show("slow", function() {
         // Animation complete.
         $(this).find('h5').html('Actualizar Usuario');
     });// Mostramos el formulario
-    
-    $("#verLista").hide();// ocultamos el listado   
-               
+
+    $("#verLista").hide();// ocultamos el listado
+
     $.ajax({
         url: "../../ajax/usersAjax.php?op=edit",
         type: "POST",
         dataType: 'json',
         data:{
             id: id
-        },            
-        success: function(data){  
+        },
+        success: function(data){
 
             $("#txtIdUsuario").val(id);
             $("#txtIdEmpresa").val(data.idEmp);
@@ -286,7 +286,7 @@ function cargaData(id){
             $("#cboTypeUser").val(data.title);
             $("#txtEmail").val(data.email);
             $("#txtUser").val(data.username);
-                    
+
             $('#btnCancel').css('display','block');
             $('#btnNuevo').css('display', 'none');
         },
@@ -304,21 +304,21 @@ function comboTypeUser(){
 
 /**
  * Cambia status del Tax Alert
- * @param {*} id 
- * @param {*} val 
+ * @param {*} id
+ * @param {*} val
  */
 
- function status(id, val){	
+ function status(id, val){
     $.ajax({
         url: "../../ajax/usersAjax.php?op=status",
         type: "POST",
         data:{
             id: id,
             val: val
-        },        
+        },
         success: function(data)
         {
-            if(val == 1){				
+            if(val == 1){
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
@@ -355,7 +355,7 @@ function comboTypeUser(){
         type: "POST",
         data: {
             id: id
-        },              
+        },
         success: function(data){
             //  $('#resSearch').html(data);
             if(data == 0){
@@ -376,7 +376,7 @@ function comboTypeUser(){
                     showConfirmButton: false,
                     timer: 2000
                 })
-            }            
+            }
         }
 
     });

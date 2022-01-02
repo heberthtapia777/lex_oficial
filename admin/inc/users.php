@@ -12,14 +12,14 @@
 
 			date_default_timezone_set("America/La_Paz");
 			$date = date( 'Y-m-d H:i', time());
-			
+
 			$sql = "INSERT INTO users(name, email, username, password, block, registerDate) VALUES('$usuario', '$email', '$nameUsers', '$password', '0', '$date')";
-			$query = $db->Execute($sql);			
+			$query = $db->Execute($sql);
 
 			$lastId = $db->insert_Id();
 
 			$sql = "INSERT INTO user_usergroup_map(user_id, group_id) VALUES('$lastId', '$typeUser')";
-			$query = $db->Execute($sql);			
+			$query = $db->Execute($sql);
 
 			$sql = "INSERT INTO cliente_usuario(id_usuario, id_empresa, nombre, cargo, email) VALUES('$lastId', '$empresaId', '$usuario', '', '$email')";
 			$query = $db->Execute($sql);
@@ -38,7 +38,7 @@
 
 			$sql = "UPDATE user_usergroup_map set group_id = '$typeUser' WHERE user_id = '$usersId'";
 			$query = $db->Execute($sql);
-			
+
 			$sql = "UPDATE cliente_usuario set id_empresa = '$empresaId', nombre = '$usuario', cargo = '', email = '$email' WHERE id_usuario = '$usersId' ";
 			$query = $db->Execute($sql);
 			return $query;
@@ -60,7 +60,7 @@
 		}
 
 		public function edit( $id ){
-			global $db;			
+			global $db;
 			$sql = "SELECT e.id AS idEmp, e.empresa, u.id, u.name, u.username, u.block, g.id AS title, u.email, u.registerDate, u.lastVisitDate FROM users u INNER JOIN user_usergroup_map m ON u.id = m.user_id INNER JOIN usergroups g ON m.group_id = g.id INNER JOIN cliente_usuario s ON s.id_usuario = u.id INNER JOIN cliente_empresa e ON s.id_empresa = e.id WHERE u.id = '$id' ORDER BY u.id DESC";
 			$sqlQuery = $db->Execute($sql);
 			return $sqlQuery;
@@ -68,7 +68,7 @@
 
 		public function listaEmpresa(){
 			global $db;
-			
+
 			$sql = "SELECT * FROM cliente_empresa";
 			$query = $db->Execute($sql);
 			return $query;
@@ -89,14 +89,14 @@
 
 		public function listaTypeUser(){
 			global $db;
-			
+
 			$sql = "SELECT * FROM usergroups";
 			$query = $db->Execute($sql);
 			return $query;
-		}		
+		}
 
 		public function status($id, $val){
-			global $db;	
+			global $db;
 			$sql = "UPDATE users set block = $val WHERE id = $id";
 			$query = $db->Execute($sql);
 			return $query;

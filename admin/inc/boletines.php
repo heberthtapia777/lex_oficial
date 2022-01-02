@@ -1,5 +1,5 @@
 <?php
-	include "conexion.php";	
+	include "conexion.php";
 
 	class boletin{
 
@@ -11,7 +11,7 @@
 
 			date_default_timezone_set("America/La_Paz");
 			$date = date( 'Y-m-d H:i', time());
-			
+
 			$strQuery = "SELECT max(idBoletin) FROM boletin";
 			$query = $db->Execute($strQuery);
 			$idLastBoletin = $query->FetchRow();
@@ -20,15 +20,15 @@
 
 			$sql = "INSERT INTO boletin(idBoletin , id_tipo, id_usuario, ficha, circular, fecha_circular, fecha_publicacion, fecha_creacion, fecha_impresion, asunto, info_adicional, introduccion, contenido, imagen, pie_imagen, nota)
 						VALUES('$idLastBoletin[0]','$indice', '$idUser', 0, '$nroRef', '$dateImpresion', '$datePubli', '$dateBoletin', '$dateImpresion', '$asunto', '$info', '$intro', '$cont', '$nombre_img', '$pieImg', '$nota')";
-			$query = $db->Execute($sql);		
-			
+			$query = $db->Execute($sql);
+
 			$dir_subida = '../modulo/boletin/img/';
 			$fichero_subido = $dir_subida.basename($_FILES['imgBol']['name']);
 			move_uploaded_file($_FILES['imgBol']['tmp_name'], $fichero_subido);
 
-			if(!empty($_POST['tema'])){
+			if(!empty($_POST['checkTema'])){
 				// Bucle para almacenar y mostrar los valores de la casilla de verificación comprobación individual.
-				foreach($_POST['tema'] as $selected){
+				foreach($_POST['checkTema'] as $selected){
 					$sql = "INSERT INTO boletin_rel_tema(ficha, boletin, id_tema) VALUES(0, $idLastBoletin[0], $selected)";
 					$queryT = $db->Execute($sql);
 				}
@@ -54,20 +54,20 @@
 			global $db;
 
 			date_default_timezone_set("America/La_Paz");
-			$date = date( 'Y-m-d H:i', time());			
+			$date = date( 'Y-m-d H:i', time());
 
 			$sql = "UPDATE boletin set id_tipo = '$indice', id_usuario = '$idUser', ficha = '0', circular = '$nroRef', fecha_circular = '$dateImpresion', fecha_publicacion = '$datePubli', fecha_creacion = '$dateBoletin', fecha_impresion = '$dateImpresion', asunto = '$asunto', info_adicional = '$info', introduccion = '$intro', contenido = '$cont', imagen = '$nombre_img', pie_imagen = '$pieImg', nota = '$nota' WHERE idBoletin = $idBoletin";
-			$query = $db->Execute($sql);			
+			$query = $db->Execute($sql);
 
 			$dir_subida = '../modulo/boletin/img/';
 			$fichero_subido = $dir_subida.basename($_FILES['imgBol']['name']);
 			move_uploaded_file($_FILES['imgBol']['tmp_name'], $fichero_subido);
 
-			if(!empty($_POST['tema'])){
+			if(!empty($_POST['checkTema'])){
 				$sql = "DELETE FROM boletin_rel_tema WHERE boletin = '$idBoletin'";
 				$query = $db->Execute($sql);
 				// Bucle para almacenar y mostrar los valores de la casilla de verificación comprobación individual.
-				foreach($_POST['tema'] as $selected){
+				foreach($_POST['checkTema'] as $selected){
 					$sql = "INSERT INTO boletin_rel_tema(ficha, boletin, id_tema) VALUES(0, $idBoletin, $selected)";
 					$queryT = $db->Execute($sql);
 				}
@@ -81,7 +81,7 @@
 			$query = $db->Execute($sqlC);
 
 			while ($reg = $resQuery->FetchRow()) {
-				if(!empty($_POST[$reg[0].'Check'])){					
+				if(!empty($_POST[$reg[0].'Check'])){
 					// Bucle para almacenar y mostrar los valores de la casilla de verificación comprobación individual.
 					foreach($_POST[$reg[0].'Check'] as $selected){
 						$sql = "INSERT INTO concordancia(id_usuario, boletin, id_concordancia, id_clase, fecha) VALUES($idUser, $idBoletin, $selected, $reg[0], '$date')";
@@ -109,9 +109,9 @@
 		}
 
 		public function listaBoletin(){
-			global $db;			
+			global $db;
 			$sql = "SELECT b.idBoletin, b.asunto, tp.tipo AS indice, GROUP_CONCAT(t.tema) AS tema, b.fecha_creacion, b.fecha_publicacion, b.visita, b.blocked
-			FROM boletin AS b LEFT JOIN boletin_rel_tema AS rt ON b.idBoletin = rt.boletin LEFT JOIN tema AS t ON rt.id_tema = t.id 
+			FROM boletin AS b LEFT JOIN boletin_rel_tema AS rt ON b.idBoletin = rt.boletin LEFT JOIN tema AS t ON rt.id_tema = t.id
 			LEFT JOIN tipo AS tp ON tp.id = b.id_tipo
 			GROUP BY b.idBoletin
 			ORDER BY b.idBoletin DESC ";
@@ -120,9 +120,9 @@
 		}
 
 		public function editBoletin( $idBoletin ){
-			global $db;			
+			global $db;
 			$sql = "SELECT b.idBoletin, b.circular, b.imagen, b.pie_imagen, tp.id AS idIn, tp.tipo AS indice, t.id AS idTema, t.tema AS tema, b.fecha_circular, b.fecha_creacion, b.fecha_publicacion, b.asunto, b.introduccion, b.contenido, b.info_adicional, b.nota
-			FROM boletin AS b LEFT JOIN boletin_rel_tema AS rt ON b.idBoletin = rt.boletin LEFT JOIN tema AS t ON rt.id_tema = t.id 
+			FROM boletin AS b LEFT JOIN boletin_rel_tema AS rt ON b.idBoletin = rt.boletin LEFT JOIN tema AS t ON rt.id_tema = t.id
 			LEFT JOIN tipo AS tp ON tp.id = b.id_tipo
 			WHERE idBoletin = '$idBoletin'";
 			$sqlQuery = $db->Execute($sql);
@@ -130,7 +130,7 @@
 		}
 
 		public function block($idBol, $val){
-			global $db;	
+			global $db;
 			$sql = "UPDATE boletin set blocked = $val WHERE idBoletin = $idBol";
 			$query = $db->Execute($sql);
 			return $query;
@@ -138,7 +138,7 @@
 
 		public function listaEmpresa(){
 			global $db;
-			
+
 			$sql = "SELECT * FROM cliente_empresa";
 			$query = $db->Execute($sql);
 			return $query;
@@ -146,7 +146,7 @@
 
 		public function listaTypeIndice(){
 			global $db;
-			
+
 			$sql = "SELECT * FROM tipo";
 			$query = $db->Execute($sql);
 			return $query;
@@ -154,7 +154,7 @@
 
 		public function listaTema(){
 			global $db;
-			
+
 			$sql = "SELECT * FROM tema";
 			$query = $db->Execute($sql);
 			return $query;
@@ -163,7 +163,7 @@
 		public function listaConcor(){
 			global $db;
 			$idBol = $_GET['idBol'];
-			
+
 			$sql = "SELECT * FROM concordancia WHERE boletin = '$idBol'";
 			$query = $db->Execute($sql);
 			return $query;
@@ -174,9 +174,9 @@
 
 			$id = $_POST['idBol'];
 			$tipo = $_POST['tipo'];
-			$text = $_POST['text'];			
-			
-			$sql = "SELECT b.idBoletin FROM boletin AS b, tipo AS t WHERE b.id_tipo = t.id";			
+			$text = $_POST['text'];
+
+			$sql = "SELECT b.idBoletin FROM boletin AS b, tipo AS t WHERE b.id_tipo = t.id";
 			if($id != '')
 				$sql.= " AND b.idBoletin = $id";
 			if($tipo != '')
@@ -184,7 +184,7 @@
 			if($text != '')
 				$sql.= " AND t.asunto LIKE '%$text%'";
 
-			$sql.= " ORDER BY b.idBoletin DESC";	
+			$sql.= " ORDER BY b.idBoletin DESC";
 
 			$query = $db->Execute($sql);
 			return $query;
@@ -192,7 +192,7 @@
 
 		public function listaTypeUser(){
 			global $db;
-			
+
 			$sql = "SELECT * FROM usergroups";
 			$query = $db->Execute($sql);
 			return $query;

@@ -9,7 +9,7 @@
 
 		public function Registrar($empresa, $nit, $date, $email, $fono, $fax, $address, $city, $sus, $plan, $lic, $hab){
 			global $db;
-			
+
 			$sql = "INSERT INTO cliente_empresa(empresa, nit, cf_created, email, telefono, fax, direccion, ciudad, suscripcion, plan, licencias, block)
 						VALUES('$empresa', '$nit', '$date', '$email', '$fono', '$fax', '$address', '$city', '$sus', '$plan', '$lic', '$hab')";
 			$query = $db->Execute($sql);
@@ -39,7 +39,7 @@
 		}
 
 		public function edit( $id ){
-			global $db;			
+			global $db;
 			$sql = "SELECT * FROM cliente_empresa WHERE id = '$id'";
 			$sqlQuery = $db->Execute($sql);
 			return $sqlQuery;
@@ -47,7 +47,7 @@
 
 		public function listaTypePlan(){
 			global $db;
-			
+
 			$sql = "SELECT * FROM cliente_licencias";
 			$query = $db->Execute($sql);
 			return $query;
@@ -55,14 +55,14 @@
 
 		public function listaTypeUser(){
 			global $db;
-			
+
 			$sql = "SELECT * FROM usergroups";
 			$query = $db->Execute($sql);
 			return $query;
-		}		
+		}
 
 		public function status($id, $val){
-			global $db;	
+			global $db;
 			$sql = "UPDATE cliente_empresa set block = $val WHERE id = $id";
 			$query = $db->Execute($sql);
 			return $query;

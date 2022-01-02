@@ -78,8 +78,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="verLista">
-				
+			<div id="verLista">				
 				<div class="row g-0">				
 					<div class="col-lg-12">
 						<div class="card mb-3">                
@@ -119,9 +118,6 @@
 						</div>
 					</div>
 				</div>
-					
-					
-					
 			</div>
 			<div id="verForm">
 				<div class="card mb-3">

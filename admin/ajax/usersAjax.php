@@ -5,7 +5,7 @@
 
 	switch ($_GET["op"]) {
 
-		case 'SaveOrUpdate':			
+		case 'SaveOrUpdate':
 
 			$usersId	= $_POST["txtIdUsuario"];
 			$empresaId	= $_POST["txtIdEmpresa"];
@@ -14,9 +14,9 @@
 			$typeUser	= $_POST["cboTypeUser"];
 			$email		= $_POST['txtEmail'];
 			$nameUsers	= $_POST['txtUser'];
-			$password	= $_POST['txtPassword'];	
+			$password	= $_POST['txtPassword'];
 
-				if(empty($_POST["txtIdUsuario"])){					
+				if(empty($_POST["txtIdUsuario"])){
 
 					if($objusuario->Registrar($empresaId, $empresa, $usuario, $typeUser, $email, $nameUsers, $password)){
 						echo 0;
@@ -51,7 +51,7 @@
 			$data = Array();
             $i = 1;
      		while ($reg = $query_Tipo->FetchRow()) {
-				if($reg['block'] == 0)					
+				if($reg['block'] == 0)
 					$status = '<a href="#" id="'.$reg["id"].'" onclick="status('.$reg["id"].', 1)"><span class="badge bg-success"><i class="fas fa-check-circle"></i></span></a>';
 				else
 					$status = '<a href="#" id="'.$reg["id"].'" onclick="status('.$reg["id"].', 0)"><span class="badge bg-danger"><i class="fas fa-times-circle"></i></span></a>';
@@ -67,35 +67,35 @@
                     "8"=>'<button class="btn btn-warning btn-sm mr-1 mb-1" data-toggle="tooltip" title="Editar" onclick="cargaData('.$reg['id'].')"><i class="fas fa-pencil-alt"></i> </button>&nbsp;'.
 					'<button class="btn btn-danger btn-sm mr-1 mb-1" data-toggle="tooltip" title="Eliminar" onclick="delet('.$reg['id'].')"><i class="fas fa-trash"></i> </button>');
                 $i++;
-			}			
+			}
             $results = array(
             "sEcho" => 1,
         	"iTotalRecords" => count($data),
         	"iTotalDisplayRecords" => count($data),
-			"aaData"=>$data);			
+			"aaData"=>$data);
 			echo json_encode($results);
 
 			break;
-		
-		case "status":			
+
+		case "status":
 			$id = $_POST['id'];
 			$val = $_POST['val'];
-			
+
 			$query = $objusuario->status($id, $val);
-				
+
 			if($query)
 				echo 1;
 			else
 				echo 0;
-	
+
 			break;
-		
+
 		case "edit":
 			$id		 = $_POST['id'];
 			$query 	 = $objusuario->edit($id);
-	
+
 			$data = new stdClass();
-	
+
 			$reg = $query->FetchRow();
 
             $data->idEmp	= $reg['idEmp'];
@@ -104,16 +104,16 @@
             $data->title	= $reg['title'];
             $data->email	= $reg['email'];
             $data->username	= $reg['username'];
-			
-		   	echo json_encode($data);  
+
+		   	echo json_encode($data);
 		break;
 
 		case "listEmpleado":
-			
+
 			$query_Tipo = $objusuario->listaEmpresa();
 			$data = Array();
             $i = 1;
-     		while ($reg = $query_Tipo->FetchRow()) {				
+     		while ($reg = $query_Tipo->FetchRow()) {
      			$data[] = array(
      				"0"=>'<input type="radio" name="optEmpleado" id="optEmpleado" data-empresa="'.utf8_encode($reg['empresa']).'" value="'.$reg['id'].'" />',
                     "1"=>$i,
@@ -122,12 +122,12 @@
 					"4"=>utf8_encode($reg['email']),
 					);
                 $i++;
-			}			
+			}
             $results = array(
             "sEcho" => 1,
         	"iTotalRecords" => count($data),
         	"iTotalDisplayRecords" => count($data),
-			"aaData"=>$data);			
+			"aaData"=>$data);
 			echo json_encode($results);
 
 			break;
@@ -137,12 +137,12 @@
 			$query_Tipo = $objusuario->listaTypeUser();
 
 			echo '<option value="">Seleccione</option>';
-            
+
      		while ($reg = $query_Tipo->FetchRow()) {
 				echo '<option value=' . $reg['id'] . '>' . $reg['title'] . '</option>';
 			}
 
-			break;	    
+			break;
 
 		case "verPerfil":
 	        require_once "../model/usuario.php";
@@ -156,26 +156,26 @@
 	        echo $reg->mnu_perfil;
 
 	        break;
-		
+
 			case "ingresarSistema":
 
 				$data = stripslashes($_POST['res']);
-	
+
 				$data = json_decode($data);
-	
+
 				$user = $data->userName;
 				$pass = $data->password;
-	
+
 				$query = $objusuario->Ingresar_Sistema($user, md5($pass));
 				$array = $query->FetchRow();
-	
+
 				if(isset($array)){
 					$_SESSION["idUser"]   = $array['id'];
 					$_SESSION["nameUser"]  = $array['name'];
 				}
-	
-				echo json_encode($array);			
-	
+
+				echo json_encode($array);
+
 				/*if(isset($array)){
 					$_SESSION["idUsuario"]            = $array['idUsuario'];
 					$_SESSION["idEmpleado"]           = $array['idEmpleado'];

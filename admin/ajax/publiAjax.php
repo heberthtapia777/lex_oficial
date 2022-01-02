@@ -1,33 +1,33 @@
 <?php
 	session_start();
-	
+
 	include "../inc/publicacion.php";
 
 	$objPublicacion = new publicacion();
 
 	switch ($_GET["op"]) {
 
-		case 'saveOrUpdate':	
-			$publi_id		= $_POST['publi_id'];		
+		case 'saveOrUpdate':
+			$publi_id		= $_POST['publi_id'];
 			$publi_title  	= $_POST['publi_title'];
 			$publi_resume   = $_POST['publi_resume'];
 			$publi_contens  = $_POST['publi_contens'];
-			$publi_autor	= $_POST['publi_autor'];			
+			$publi_autor	= $_POST['publi_autor'];
 
 			$idUser = $_SESSION['idUser'];
-			
+
 			$character  = array("&#8216;","&#8217;","'");
 			$change		= array("‘","’","&#39;");
 			$publi_resume = str_replace($character, $change, $publi_resume);
-			$publi_contens = str_replace($character, $change, $publi_contens);			
-			
+			$publi_contens = str_replace($character, $change, $publi_contens);
+
 			if(empty($_POST['publi_id'])){
 				if($objPublicacion->Registrar($publi_title, $publi_resume, $publi_contens, $publi_autor, $idUser)){
 					echo 0;
 				}else{
 					echo 1;
 				}
-			}else{				
+			}else{
 				if($objPublicacion->Modificar($publi_id, $publi_title, $publi_resume, $publi_contens, $publi_autor, $idUser)){
 					echo 2;
 				}else{
@@ -37,7 +37,7 @@
 
 		break;
 
-		case "delete":			
+		case "delete":
 			$result = $objPublicacion->delet();
 			if ($result) {
 				echo 0;
@@ -62,36 +62,36 @@
      			$data[] = array(
      				"0"=>$i,
                     "1"=>$reg['titulo'],
-                    "2"=>$resumen,                    
+                    "2"=>$resumen,
 					"3"=>$reg['autor'],
-					"4"=>$img,					
+					"4"=>$img,
 					"5"=>$status,
                     "6"=>'<button class="btn btn-warning btn-sm mr-1 mb-1" data-toggle="tooltip" title="Editar" onclick="cargaData('.$reg['id'].')"><i class="fas fa-pencil-alt"></i> </button>&nbsp;'.
 					'<button class="btn btn-danger btn-sm mr-1 mb-1" data-toggle="tooltip" title="Eliminar" onclick="delet('.$reg['id'].')"><i class="fas fa-trash"></i> </button>');
                 $i++;
-			}			
+			}
             $results = array(
             "sEcho" => 1,
         	"iTotalRecords" => count($data),
         	"iTotalDisplayRecords" => count($data),
-			"aaData"=>$data);			
+			"aaData"=>$data);
 			echo json_encode($results);
 
 			break;
 
-		case "status":			
+		case "status":
 			$id = $_POST['id'];
 			$val = $_POST['val'];
-			
+
 			$query = $objPublicacion->status($id, $val);
-			
+
 			if($query)
 				echo 1;
 			else
 				echo 0;
 
 			break;
-	
+
 
 		case "edit":
 			$id		 = $_POST['id'];
@@ -99,16 +99,16 @@
 
 			$data = new stdClass();
 
-			$reg = $query->FetchRow();				
+			$reg = $query->FetchRow();
 			$data->publi_title   = $reg['titulo'];
 			$data->publi_resume  = $reg['resumen'];
 			$data->publi_contens = $reg['contenido'];
 			$data->publi_img	 = $reg['imagen'];
 			$data->publi_file    = $reg['archivo'];
 			$data->publi_autor   = $reg['autor'];
-		
-		   	echo json_encode($data);  
-	        break;		
+
+		   	echo json_encode($data);
+	        break;
 
 		case "Salir":
 			session_unset();
