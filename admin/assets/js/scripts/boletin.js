@@ -305,7 +305,7 @@ $.validator.setDefaults( {
 						/* Read more about isConfirmed, isDenied below */
 						limpiar();
 						ocultarForm();
-						listaBoletin();
+						//listaBoletin();
 					})
 				}
 				if(data == 3){
@@ -352,19 +352,30 @@ function limpiar() {
 }
 
 function verForm(){
-	//validator.resetForm();
-	$("#verForm").show("slow", function() {
-		// Animation complete.
-		$(this).find('h5').html('Nuevo Boletin');
-		$('#btnCancel').css('display','block');
-		$('#btnNuevo').css('display', 'none');
-	});// Mostramos el formulario
-	$("#verLista").hide();// ocultamos el listado
-	comboTemas();
-	cargaEditor();
-	for (let i = 1; i <= 12; i++) {
-		$('#check'+i).html('');
-	}
+	$.ajax({
+		url: "../../inc/sessionControljs.php",
+		type: "POST",
+		success: function(data){
+			if(data == 0){
+				window.location.href = '../../index.html';
+			}else{
+				//validator.resetForm();
+				$("#verForm").show("slow", function() {
+					// Animation complete.
+					$(this).find('h5').html('Nuevo Boletín');
+					$('#btnCancel').css('display','block');
+					$('#btnNuevo').css('display', 'none');
+				});// Mostramos el formulario
+				$("#verLista").hide();// ocultamos el listado
+				comboTemas();
+				cargaEditor();
+				for (let i = 1; i <= 12; i++) {
+					$('#check'+i).html('');
+				}
+			}
+		}
+		})
+
 }
 
 function ocultarForm(){
@@ -490,46 +501,57 @@ function listaBoletin(){
 function cargaDataBoletin(idBoletin){
 	tinymce.remove();
 	$.ajax({
-		url: "../../ajax/boletinAjax.php?op=editBoletin",
-		cache: false,
-		async: true,
+		url: "../../inc/sessionControljs.php",
 		type: "POST",
-		dataType: 'json',
-		data:{
-			idBoletin: idBoletin
-		},
 		success: function(data){
-			$("#verForm").show("slow", function() {
-				// Animation complete.
-				$(this).find('h3').html('Actualizar Boletin');
-			});// Mostramos el formulario
-			$("#verLista").hide();// ocultamos el listado
+			//alert(data);
+			if(data != 1){
+				window.location.href = '../../index.html';
+			}else{
+				$.ajax({
+					url: "../../ajax/boletinAjax.php?op=editBoletin",
+					cache: false,
+					async: true,
+					type: "POST",
+					dataType: 'json',
+					data:{
+						idBoletin: idBoletin
+					},
+					success: function(data){
+						$("#verForm").show("slow", function() {
+							// Animation complete.
+							$(this).find('h5').html('Editar Boletín: '+idBoletin);
+						});// Mostramos el formulario
+						$("#verLista").hide();// ocultamos el listado
 
-			$('#idBoletin').val(idBoletin);
-			$('#nroRef').val(data.circular);
-			$('#dateImpresion').val(data.dateCirc);
-			//$('#imgBol').val(data.imagen);
-			$('#pieImg').val(data.pie_imagen);
-			$('#cboIndice').val(data.idIn);			
-			comboVerCheck(data.idTema);
-			$('#datePubli').val(data.datePubli);
-			$('#dateBoletin').val(data.dateCrea);
-			$('#asunto').val(data.asunto);
-			$('#intro').html(data.intro);
-			$('#cont').html(data.cont);
-			$('#info').val(data.info);
-			$('#nota').val(data.nota);
-			comboCargaConcor(idBoletin);
+						$('#idBoletin').val(idBoletin);
+						$('#nroRef').val(data.circular);
+						$('#dateImpresion').val(data.dateCirc);
+						//$('#imgBol').val(data.imagen);
+						$('#pieImg').val(data.pie_imagen);
+						$('#cboIndice').val(data.idIn);
+						comboVerCheck(data.idTema);
+						$('#datePubli').val(data.datePubli);
+						$('#dateBoletin').val(data.dateCrea);
+						$('#asunto').val(data.asunto);
+						$('#intro').html(data.intro);
+						$('#cont').html(data.cont);
+						$('#info').val(data.info);
+						$('#nota').val(data.nota);
+						comboCargaConcor(idBoletin);
 
-			cargaEditor();
+						cargaEditor();
 
-			$('#btnCancel').css('display','block');
-			$('#btnNuevo').css('display', 'none');
-		},
-		error: function(e) {
-			console.log(e.responseText);
+						$('#btnCancel').css('display','block');
+						$('#btnNuevo').css('display', 'none');
+					},
+					error: function(e) {
+						console.log(e.responseText);
+					}
+				});
+			}
 		}
-	});
+	})
 }
 
 function comboTypeIndice(){

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 <head>
-	<?PHP
+	<?PHP		
 		include '../../inc/sessionControl.php';
 		include '../../inc/header.php';
 	?>
@@ -21,11 +21,11 @@
 			container.classList.add('container-fluid');
 		  }
 		</script>
-
+		
 		<?PHP
 			include '../../inc/menu.php';
 		?>
-
+		
 		<div class="content">
 		  <nav class="navbar navbar-light navbar-glass navbar-top navbar-expand" style="display: none;">
 			<button class="btn navbar-toggler-humburger-icon navbar-toggler mr-1 mr-sm-3" type="button" data-toggle="collapse" data-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
@@ -35,9 +35,9 @@
 				<?PHP
 					include '../../inc/search.php';
 					include '../../inc/menuTop.php';
-			  	?>
+			  	?>            
 		  </nav>
-
+		  
 		  <script>
 			var navbarPosition = localStorage.getItem('navbarPosition');
 			var navbarVertical = document.querySelector('.navbar-vertical');
@@ -68,25 +68,25 @@
 						<div class="col-md">
 							<h5 class="mb-2 mb-md-0">Clientes</h5>
 						</div>
-						<div class="col-auto">
+						<div class="col-auto">							
 							<button class="btn btn-outline-primary btn-sm" id="btnNuevo"><i class="fas fa-plus"></i> Nuevo</button>
 							<button class="btn btn-outline-danger btn-sm" id="btnCancel" onclick="ocultarForm()"><i class="fas fa-window-close"></i> Cancelar</button>
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>		  	
 			<div id="verLista">
-				<div class="row g-0">
+				<div class="row g-0">				
 					<div class="col-lg-12">
-						<div class="card mb-3">
-							<div class="card-body bg-light">
-								<div class="row gx-2">
+						<div class="card mb-3">                
+							<div class="card-body bg-light">							
+								<div class="row gx-2">	
 									<table id="tblCliente" class="table table-striped table-bordered table-condensed table-hover" cellspacing="0" cellpadding="0" width="100%">
 											<thead>
 												<tr>
 													<th>#</th>
 													<th>Empresa</th>
-													<th>NIT</th>
+													<th>NIT</th>													
 													<th>Plan</th>
 													<th>Plan</th>
 													<th>Licencias</th>
@@ -101,7 +101,7 @@
 												<tr>
 													<th>#</th>
 													<th>Empresa</th>
-													<th>NIT</th>
+													<th>NIT</th>													
 													<th>Plan</th>
 													<th>Plan</th>
 													<th>Licencias</th>
@@ -117,9 +117,9 @@
 											</tbody>
 									</table>
 								</div>
-							</div>
+							</div>	
 						</div>
-					</div>
+					</div>				
 				</div>
 			</div>
 			<div id="verForm">
@@ -128,101 +128,101 @@
 						<div class="row flex-between-center">
 							<div class="col-md">
 								<h5 class="mb-2 mb-md-0">Nuevo Cliente</h5>
-							</div>
+							</div>							
 						</div>
 					</div>
 				</div>
 				<form role="form" name="frmClient" id="frmClient" enctype="multipart/form-data">
-					<div class="row g-0">
+					<div class="row g-0">				
 						<div class="col-lg-12">
-							<div class="card mb-3">
-								<div class="card-body bg-light">
+							<div class="card mb-3">                
+								<div class="card-body bg-light">							
 									<div class="row gx-2">
 										<div class="col-md-4 mb-3">
 											<div class="form-group">
 												<input id="client_id" type="hidden" maxlength="50" class="form-control" name="client_id" />
-												<div class="form-group">
-												<label>Nombre Cliente ó Empresa:</label>
+												<div class="form-group">									
+												<label>Nombre Cliente ó Empresa:</label>								
 													<input id="client_emp" type="text" class="form-control" name="client_emp" placeholder="Nombre Cliente ó Empresa" data-validation="required" />
 											</div>
 											</div>
 										</div>
 										<div class="col-md-4 mb-3">
-											<div class="form-group">
-												<div class="form-group">
-												<label>NIT:</label>
+											<div class="form-group">										
+												<div class="form-group">									
+												<label>NIT:</label>								
 													<input id="client_nit" type="text" class="form-control" name="client_nit" placeholder="NIT" />
 											</div>
 											</div>
 										</div>
 										<div class="col-md-4 mb-3">
-											<div class="form-group">
-												<div class="form-group">
-												<label>Fecha de Creación:</label>
+											<div class="form-group">										
+												<div class="form-group">									
+												<label>Fecha de Creación:</label>								
 													<input id="client_date" type="text" class="form-control" name="client_date" readonly value="" />
 											</div>
 											</div>
 										</div>
 									</div>
-
-									<div class="row gx-2">
+														
+									<div class="row gx-2">									
 										<div class="col-md-4 mb-3">
-											<div class="form-group">
-												<label>Correo Electronico:</label>
+											<div class="form-group">									
+												<label>Correo Electronico:</label>								
 													<input id="client_email" type="text" class="form-control" name="client_email" placeholder="Correo Electronico" />
 											</div>
 										</div>
 										<div class="col-md-4 mb-3">
-											<div class="form-group">
-												<label>Telefono:</label>
+											<div class="form-group">									
+												<label>Telefono:</label>								
 													<input id="client_fono" type="text" class="form-control" name="client_fono" placeholder="Telefono" />
 											</div>
 										</div>
 										<div class="col-md-4 mb-3">
-											<div class="form-group">
-												<label>Fax:</label>
+											<div class="form-group">									
+												<label>Fax:</label>								
 													<input id="client_fax" type="text" class="form-control" name="client_fax" placeholder="Fax" />
 											</div>
-										</div>
+										</div>								
 									</div>
 
-									<div class="row gx-2">
+									<div class="row gx-2">									
 										<div class="col-md-8 mb-3">
-											<div class="form-group">
-												<label>Dirección:</label>
+											<div class="form-group">									
+												<label>Dirección:</label>								
 													<input id="client_address" type="text" class="form-control" name="client_address" placeholder="Dirección" />
 											</div>
 										</div>
 										<div class="col-md-4 mb-3">
-											<div class="form-group">
-												<label>Ciudad:</label>
+											<div class="form-group">									
+												<label>Ciudad:</label>								
 													<input id="client_city" type="text" class="form-control" name="client_city" placeholder="Ciudad" />
 											</div>
-										</div>
+										</div>																
 									</div>
 
-									<div class="row gx-2">
+									<div class="row gx-2">									
 											<div class="col-md-7 mb-3">
-												<div class="form-group">
-													<label>Suscripción:</label>
+												<div class="form-group">									
+													<label>Suscripción:</label>								
 													<input id="client_sus" type="text" class="form-control" name="client_sus" data-validation="required" placeholder="Suscripción" />
 												</div>
 											</div>
 											<div class="col-md-3 mb-3">
-												<div class="form-group">
+												<div class="form-group">									
 													<label>Plan:</label>
-													<select id="client_plan" name="client_plan" class="form-select form-control-sm" aria-label="Default select example" >
-													</select>
-
+													<select id="client_plan" name="client_plan" class="form-select form-control-sm" aria-label="Default select example" >													
+													</select>							
+														
 												</div>
 											</div>
 											<div class="col-md-2 mb-3">
-												<div class="form-group">
-													<label>Licencias:</label>
+												<div class="form-group">									
+													<label>Licencias:</label>								
 														<input id="client_lic" type="number" class="form-control" name="client_lic" placeholder="Licencias" />
 												</div>
-											</div>
-									</div>
+											</div>								
+									</div>							
 
 									<div class="row gx-2">
 										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 left">
@@ -233,15 +233,15 @@
 													</label>
 											</div>
 										</div>
-									</div>
+									</div>						
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="card mt-3">
 						<div class="card-body">
-							<div class="row justify-content-between align-items-center">
-								<div class="col-auto">
+							<div class="row justify-content-between align-items-center">	
+								<div class="col-auto">						
 									<button type="submit" class="btn btn-outline-success btn-sm mr-2"><i class="fas fa-save"></i> Guardar</button>
 									<button type="button" class="btn btn-outline-danger btn-sm" onclick="ocultarForm()"><i class="fas fa-window-close"></i> Cancelar</button>
 								</div>
@@ -250,7 +250,7 @@
 					</div>
 				</form>
 				</div>
-			</div>
+			</div>	
 			<footer>
 				<div class="row g-0 justify-content-between fs--1 mt-4 mb-3">
 				<div class="col-12 col-sm-auto text-center">
@@ -261,8 +261,8 @@
 				</div>
 				</div>
 			</footer>
-		</div>
-
+		</div>	
+		
 		<!-- Modal Empresas-->
 		<div class="modal fade" id="modalListaEmpresa" tabindex="-1" role="dialog" aria-labelledby="modalListaEmpresaLabel" aria-hidden="true">
 			<div class="modal-dialog modal-lg" role="document">
@@ -273,11 +273,11 @@
 					<div class="modal-body">
 						<table id="tblEmpresa" class="table table-striped table-bordered table-condensed table-hover" cellspacing="0" cellpadding="0" width="100%">
 							<thead>
-								<tr>
+								<tr>	
 									<th><i class="fas fa-check-circle"></i></th>
-									<th>#</th>
+									<th>#</th>									
 									<th>Empresa</th>
-									<th>NIT</th>
+									<th>NIT</th>									
 									<th>Email</th>
 								</tr>
 							</thead>
@@ -285,9 +285,9 @@
 							<tfoot>
 								<tr>
 									<th><i class="fas fa-check-circle"></i></th>
-									<th>#</th>
+									<th>#</th>									
 									<th>Empresa</th>
-									<th>NIT</th>
+									<th>NIT</th>									
 									<th>Email</th>
 								</tr>
 							</tfoot>
@@ -296,7 +296,7 @@
 
 							</tbody>
 						</table>
-					</div>
+					</div>				
 					<div class="modal-footer">
 						<button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cerrar</button>
 						<button class="btn btn-primary btn-sm" type="button" id="btnAgregarEmpresa">Agregar</button></div>
@@ -306,8 +306,8 @@
 		</div>
 		<?php
 			include "../../inc/modalConfig.php";
-		?>
-
+		?>		
+		
 	  </div>
 	</main><!-- ===============================================-->
 	<!--    End of Main Content-->
@@ -321,11 +321,11 @@
 	<?PHP
 		include '../../inc/footer.php'
 	?>
-	<script type="text/javascript" src="../../assets/js/scripts/client.js"></script>
+	<script type="text/javascript" src="../../assets/js/scripts/client.js"></script>	
 	<script>
 		$( document ).ready( function () {
 			var validator = $("#frmUsuarios").submit(function() {
-				// update underlying textarea before submit validation
+				// update underlying textarea before submit validation				
 			}).validate({
 				ignore: "",
 				rules: {
@@ -344,10 +344,10 @@
 						required: true,
 						minlength: 5,
 						equalTo: "#txtPassword"
-					},
-				},
+					},	
+				},				
 				messages: {
-					txtEmail: "Por favor, introduce una dirección de correo válida",
+					txtEmail: "Por favor, introduce una dirección de correo válida",					
 					txtPassword: {
 						required: "Por favor ingrese una contraseña",
 						minlength: "Tu contraseña debe tener al menos 5 caracteres"
@@ -373,7 +373,7 @@
 						} else {
 							label.insertAfter(element)
 						}
-					}
+					}							
 				},
 				highlight: function ( error, errorClass, validClass ) {
 					$( error ).addClass( "is-invalid" ).removeClass( "is-valid" );
@@ -381,8 +381,8 @@
 				unhighlight: function (error, errorClass, validClass) {
 					$( error ).addClass( "is-valid" ).removeClass( "is-invalid" );
 				}
-
-			});
+				
+			});			
 
 		});
 	</script>

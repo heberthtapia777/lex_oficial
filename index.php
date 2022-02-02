@@ -1,4 +1,4 @@
-<?php 
+<?php
     include "admin/inc/conexion.php";
 ?>
 <html lang="es">
@@ -138,10 +138,10 @@
                     while ($reg = $query->FetchRow()) {
                 ?>
                     <li class="<?=($c == 0) ? 'active' : '';?>" data-slide-to="<?=$c;?>" data-target="#carousel-example-2"></li>
-                <?php 
+                <?php
                     $c++;
                 }
-                ?> 
+                ?>
                 </ol>
                 <!--/.Indicators-->
                 <!--Slides-->
@@ -168,10 +168,10 @@
                             </p>
                         </div>
                     </div>
-                <?php 
+                <?php
                     $c++;
                 }
-                ?>                    
+                ?>
                 </div>
                 <!--/.Slides-->
                 <!--Controls-->
@@ -308,7 +308,7 @@
                 </div>
             </div>
         </section>
-        
+
         <br>
         <br>
         <br>
@@ -484,29 +484,27 @@
             </hr>
         </footer>
         <!-- Footer -->
-        <?php 
-          include "chat.php";
+        <?php
+            include "chat.php";
         ?>
         <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-        
 
-        
-        <script src="js/bootstrap.js">
-        </script>
-        <script src="js/mdb.js">
-        </script>
+
+
+        <script src="js/bootstrap.js"></script>
+        <script src="js/mdb.js"></script>
         <!-- <script src="fontawesome/js/fontawesome.js">
         </script>
         <script src="fontawesome/js/all.js">
         </script> -->
-        
+
         <script type="text/javascript">
             $(document).ready(function(){
                 $("#hide").on('click', function() {
                     $("#element").hide();
                     return false;
                 });
-             
+
                 $("#show").on('click', function() {
                     $("#element").show(3000);
                     return false;

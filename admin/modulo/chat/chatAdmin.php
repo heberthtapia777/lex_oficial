@@ -1,19 +1,23 @@
-<?php 
-	include '../../inc/sessionControl.php';
+<?php
+	include '../../inc/conexion.php';
+    include '../../inc/function.php';
+
+    $op = new cnFunction();
+	
 	require_once '../../PHPThumb/ThumbLib.inc.php';
 	/** id inicio de session del administrador */
 	$idAdmin = 651;
 	$idAdminTipo = "ADMIN";
 
-	setlocale(LC_TIME, "spanish");	
+	setlocale(LC_TIME, "spanish");
 ?>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
 <head>
-    <?PHP		
+    <?PHP
         include '../../inc/header.php';
     ?>
-</head>   
+</head>
   <body>
 	<!-- ===============================================-->
 	<!--    Main Content-->
@@ -32,7 +36,7 @@
             <?PHP
                 include '../../inc/menu.php';
             ?>
-		  
+
 		<div class="content">
 		  <nav class="navbar navbar-light navbar-glass navbar-top navbar-expand" style="display: none;">
 			<button class="btn navbar-toggler-humburger-icon navbar-toggler mr-1 mr-sm-3" type="button" data-toggle="collapse" data-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
@@ -41,10 +45,10 @@
             </a>
                 <?PHP
 				    include '../../inc/search.php';
-				    include '../../inc/menuTop.php';        	  	
-                ?>   
-			
-		  </nav>		  
+				    include '../../inc/menuTop.php';
+                ?>
+
+		  </nav>
 			<script>
 				var navbarPosition = localStorage.getItem('navbarPosition');
 				var navbarVertical = document.querySelector('.navbar-vertical');
@@ -73,20 +77,20 @@
 				<div class="card-body d-flex p-0 h-100">
 					<div class="chat-sidebar">
 						<div class="contacts-list bg-white scrollbar">
-							<div class="nav nav-tabs border-0 flex-column" role="tablist" aria-orientation="vertical">					
-								<?php 
+							<div class="nav nav-tabs border-0 flex-column" role="tablist" aria-orientation="vertical">
+								<?php
 									$sql = "SELECT *, SUBSTRING_INDEX(SUBSTRING_INDEX(timestamp, ' ', 1), ' ', -1) AS Fecha FROM loginClient ORDER BY user_id DESC";
 									$query = $db->Execute($sql);
 
 									$string = "SELECT MAX(user_id) AS LastId FROM loginClient";
 									$querySql = $db->Execute($string);
 									$reg = $querySql->FetchRow();
-									
+
 
 									while($row = $query->FetchRow()){
 										$r = ($reg[0] == $row['user_id']) ? 'active' : '';
 
-										//$fechaI = explode(" ", $reg['timestamp']);										
+										//$fechaI = explode(" ", $reg['timestamp']);
 										//$fechaI = strftime("%A, %d de %B de %Y", strtotime($row['Fecha']));
 										$date1 = utf8_encode(strftime("%A", strtotime($row['Fecha'])));
 										$dateString = $op->ToDayString($date1);
@@ -103,7 +107,7 @@
 										}else{
 											$msjLast = $messageLast['chat_message'];
 											}
-										
+
 								?>
 
 								<div class="hover-actions-trigger chat-contact <?=$r;?>">
@@ -118,14 +122,14 @@
 												<a class="dropdown-item" href="#!">Bloquear Mensajes</a>
 											</div>
 										</div>
-									</div>						
+									</div>
 									<div class="d-flex p-3 w-100" id="chat-link-<?=$row['user_id'];?>" data-toggle="tab" data-target="#chat-<?=$row['user_id'];?>" role="tab" aria-controls="chat-<?=$row['user_id'];?>" aria-selected="true">
 										<div class="avatar avatar-xl">
 											<img class="rounded-circle" src="../../assets/img/team/profile.png" alt="" />
-										</div>							
+										</div>
 										<div class="flex-1 chat-contact-body ml-2 d-md-none d-lg-block">
 											<div class="d-flex justify-content-between">
-												<h6 class="mb-0 chat-contact-title"><?=$row['name'];?></h6>												
+												<h6 class="mb-0 chat-contact-title"><?=$row['name'];?></h6>
 												<span class="message-time fs--2"><?=$dateString;?></span>
 											</div>
 											<div class="min-w-0">
@@ -138,10 +142,10 @@
 									</div>
 								</div>
 
-								<?php 
+								<?php
 								}
-								?>				
-								
+								?>
+
 							</div>
 						</div>
 						<!-- <form class="contacts-search-wrapper">
@@ -153,11 +157,11 @@
 						</form> -->
 					</div>
 				<div class="tab-content card-chat-content">
-					<?php 
+					<?php
 						$sql = "SELECT * FROM loginClient ORDER BY user_id DESC";
-						$query = $db->Execute($sql);						
+						$query = $db->Execute($sql);
 
-						$Query = $query;					
+						$Query = $query;
 
 						while($row = $Query->FetchRow()){
 							$r = ($reg[0] == $row['user_id']) ? 'active' : '';
@@ -165,7 +169,7 @@
 							$sumId = $idAdmin + $row['user_id'];
 
 							$fechaCliente = 0;
-					?>				
+					?>
 					<div class="tab-pane card-chat-pane <?=$r;?>" id="chat-<?=$row['user_id'];?>" role="tabpanel" aria-labelledby="chat-link-<?=$row['user_id'];?>">
 						<input type="hidden" name="idCliente" id="idCliente" value="<?=$row['user_id'];?>">
 						<div class="chat-content-header">
@@ -185,22 +189,22 @@
 									</button>
 									<button class="btn btn-sm btn-falcon-primary mr-2" type="button" data-index="1" data-toggle="tooltip" data-placement="top" title="Start a Video Call">
 										<span class="fas fa-video"></span>
-									</button> 
+									</button>
 									<button class="btn btn-sm btn-falcon-primary btn-info" type="button" data-index="1" data-toggle="tooltip" data-placement="top" title="Conversation Information">
 										<span class="fas fa-info"></span>
 									</button>-->
 								</div>
 							</div>
 						</div>
-						<div class="chat-content-body" style="display: inherit;">							
+						<div class="chat-content-body" style="display: inherit;">
 							<div class="chat-content-scroll-area scrollbar perfect-scrollbar chatMsj">
-								<?php 		
+								<?php
 								$sqlMes = "SELECT *, SUBSTRING_INDEX(SUBSTRING_INDEX(timestamp, ' ', 1), ' ', -1) AS Fecha, ";
 								$sqlMes.= "SUBSTRING_INDEX(SUBSTRING_INDEX(timestamp, ' ', -1), ' ', -1) AS Hora FROM chat_message ";
 								$sqlMes.= "WHERE chat_id = ".$sumId."  ORDER BY chat_message_id ASC";
 								$queryMes = $db->Execute($sqlMes);
-								
-								
+
+
 								while($reg = $queryMes->FetchRow()){
 									$fecha = explode("-", $reg['Fecha']);
 									$hora = explode(":", $reg['Hora']);
@@ -209,12 +213,12 @@
 										<div class="dateCenter text-center fs--2 text-500">
 											<span> <?=$op->ToMonth($fecha[1]).' '.$fecha[2].', '.$fecha[0].', '.$hora[0].':'.$hora[1];?></span>
 										</div>
-								<?php 
+								<?php
 									}
 									$fechaCliente = $reg['Fecha'];
 
 									if( $idAdmin == $reg['to_user_id']){
-								?>							
+								?>
 										<div class="d-flex p-3">
 											<div class="avatar avatar-l mr-2">
 												<img class="rounded-circle" src="../../assets/img/team/profile.png" alt="" />
@@ -233,7 +237,7 @@
 													<div class="text-400 fs--2"><span class="font-weight-semi-bold mr-2">Usuario</span><span><?=$hora[0].':'.$hora[1];?></span></div>
 												</div>
 											</div>
-										</div>																					
+										</div>
 									<?php
 									}else{
 									?>
@@ -254,16 +258,16 @@
 											</div>
 										</div>
 									<?php
-									}									
+									}
 								}
 								?>
 							</div>
 						</div>
 					</div>
-					<?php 
+					<?php
 					}
-					?>				
-					<form id="adminChat" class="chat-editor-area"> 
+					?>
+					<form id="adminChat" class="chat-editor-area">
 						<!-- <input class="d-none" type="file" id="chat-file-upload" />
 						<label class="mb-0 p-1 chat-file-upload cursor-pointer" for="chat-file-upload">
 							<span class="fas fa-paperclip"></span>
@@ -319,38 +323,38 @@
 		meses 	= ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 
 		$(document).ready(function () {
-			/** desde aqui codigo del chat */  		
+			/** desde aqui codigo del chat */
 			canal.bind('nuevo_mensaje', function(respuesta){
 				sendMessage(respuesta);
 			});
 
-			$('form#adminChat').submit(function (e) { 
+			$('form#adminChat').submit(function (e) {
 				e.preventDefault();
 				idCliente = $('.tab-content').find('.active').find('#idCliente').val();
-				$.post('ajaxAdmin.php', { 
+				$.post('ajaxAdmin.php', {
 					userFrom: <?=$idAdmin;?>, //inicio de session del administrador
 					userTo: idCliente,
 					msj: $('#chatMessage').html(),
-					socket_id: pusher.connection.socket_id 
-					}, 
+					socket_id: pusher.connection.socket_id
+					},
 					function(data){
 						//$('#chatbox').append('<div class="chatbox__body__message chatbox__body__message--right"><img src="img/user.png" alt="Picture"><p>'+ data.mensaje+'</p></div>');
 						sendSubmit(data);
 					}, 'json')
-					.always(function(data) {						
-						$('#chatMessage').html('');                    
+					.always(function(data) {
+						$('#chatMessage').html('');
 					});
 					//return false;
-			});			
-			
+			});
+
 		})
 
 /**
 Funcion envia mensaje al hacer click sobre boton
  */
 
-function sendSubmit(data){    
-	
+function sendSubmit(data){
+
 	mensaje = data.mensaje;
 	idCliente = data.idCliente;
 	idAdmin = data.idAdmin;
@@ -377,7 +381,7 @@ function sendSubmit(data){
 		if( r != 'true'){
 
 			if(data.fecha > data.fechaAnt){
-				$('#chat-'+data.idCliente).find('div.chatMsj').append(`				
+				$('#chat-'+data.idCliente).find('div.chatMsj').append(`
 					<div class="dateCenter text-center fs--2 text-500">
 						<span>`+meses[hoy.getMonth()]+` `+hoy.getDate()+`, `+hoy.getFullYear()+` `+hora+`</span>
 					</div>
@@ -385,7 +389,7 @@ function sendSubmit(data){
 			}
 
 			$('#chat-'+data.idCliente).find('div.chatMsj').append(`
-				
+
 				<div class="d-flex p-3">
 					<div class="flex-1 d-flex justify-content-end">
 						<div class="w-100 w-xxl-75">
@@ -400,14 +404,14 @@ function sendSubmit(data){
 
 		}else{
 			if(data.fecha > data.fechaAnt){
-				$('#chat-'+data.idCliente).find('div.chatMsj').append(`				
+				$('#chat-'+data.idCliente).find('div.chatMsj').append(`
 					<div class="dateCenter text-center fs--2 text-500">
 						<span>`+meses[hoy.getMonth()]+` `+hoy.getDate()+`, `+hoy.getFullYear()+` `+hora+`</span>
 					</div>
 				`);
 			}
-			$('#chat-'+data.idCliente).find('div.chatMsj').append(`				
-						
+			$('#chat-'+data.idCliente).find('div.chatMsj').append(`
+
 				<div class="d-flex p-3">
 					<div class="avatar avatar-l mr-2">
 						<img class="rounded-circle" src="../../assets/img/team/profile.png" alt="" />
@@ -460,14 +464,14 @@ function sendMessage(data){
 						<a class="dropdown-item" href="#!">Bloquear Mensajes</a>
 					</div>
 				</div>
-			</div>						
+			</div>
 			<div class="d-flex p-3 w-100" id="chat-link-`+data.idCliente+`" data-toggle="tab" data-target="#chat-`+data.idCliente+`" role="tab" aria-controls="chat-`+data.idCliente+`" aria-selected="true">
 				<div class="avatar avatar-xl status-online">
 					<img class="rounded-circle" src="../../assets/img/team/profile.png" alt="" />
-				</div>							
+				</div>
 				<div class="flex-1 chat-contact-body ml-2 d-md-none d-lg-block">
 					<div class="d-flex justify-content-between">
-						<h6 class="mb-0 chat-contact-title">`+data.username+`</h6>												
+						<h6 class="mb-0 chat-contact-title">`+data.username+`</h6>
 						<span class="message-time fs--2">`+hora+`</span>
 					</div>
 					<div class="min-w-0">
@@ -480,10 +484,10 @@ function sendMessage(data){
 			</div>
 		</div>`);
 
-		$('#newTab-'+data.idCliente).click(function(){				
+		$('#newTab-'+data.idCliente).click(function(){
 			$(this).removeClass('unread-message').addClass('active');
 		});
-		
+
 		$('.tab-content').prepend(`
 		<div class="tab-pane card-chat-pane" id="chat-`+data.idCliente+`" role="tabpanel" aria-labelledby="chat-link-`+data.idCliente+`">
 			<input type="hidden" name="idCliente" id="idCliente" value="`+data.idCliente+`">
@@ -504,29 +508,29 @@ function sendMessage(data){
 							</button>
 							<button class="btn btn-sm btn-falcon-primary mr-2" type="button" data-index="1" data-toggle="tooltip" data-placement="top" title="Start a Video Call">
 								<span class="fas fa-video"></span>
-							</button> 
+							</button>
 							<button class="btn btn-sm btn-falcon-primary btn-info" type="button" data-index="1" data-toggle="tooltip" data-placement="top" title="Conversation Information">
 								<span class="fas fa-info"></span>
 							</button>-->
 						</div>
 					</div>
 				</div>
-			<div class="chat-content-body" style="display: inherit;">							
+			<div class="chat-content-body" style="display: inherit;">
 				<div class="chat-content-scroll-area scrollbar perfect-scrollbar chatMsj"></div>
 			</div>
 		</div>
 		`);
-	}	
+	}
 
 	if(data.fecha > data.fechaAnt){
-		$('#chat-'+data.idCliente).find('div.chatMsj').append(`				
+		$('#chat-'+data.idCliente).find('div.chatMsj').append(`
 			<div class="dateCenter text-center fs--2 text-500">
 				<span>`+meses[hoy.getMonth()]+` `+hoy.getDate()+`, `+hoy.getFullYear()+` `+hora+`</span>
 			</div>
 		`);
 	}
-    
-	$('#chat-'+data.idCliente).find('div.chatMsj').append(`			
+
+	$('#chat-'+data.idCliente).find('div.chatMsj').append(`
 		<div class="d-flex p-3">
 			<div class="avatar avatar-l mr-2">
 				<img class="rounded-circle" src="../../assets/img/team/profile.png" alt="" />
@@ -534,13 +538,13 @@ function sendMessage(data){
 			<div class="flex-1">
 				<div class="w-xxl-75">
 					<div class="hover-actions-trigger d-flex align-items-center">
-						<div class="chat-message bg-200 p-2 rounded-lg">`+data.mensaje+`</div>						
+						<div class="chat-message bg-200 p-2 rounded-lg">`+data.mensaje+`</div>
 					</div>
 					<div class="text-400 fs--2"><span class="font-weight-semi-bold mr-2">Usuario</span><span>`+hora+`</span></div>
 				</div>
 			</div>
 		</div>
-	`);	
+	`);
 }
 	</script>
   </body>

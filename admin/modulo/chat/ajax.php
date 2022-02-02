@@ -1,8 +1,12 @@
-<?php 
+<?php
     session_start();
 
-    include '../../inc/sessionControl.php';    
     require '../../lib/Pusher.php';
+
+    include '../../inc/conexion.php';
+    include '../../inc/function.php';
+
+    $op = new cnFunction();
 
     date_default_timezone_set("America/La_Paz" );
 
@@ -36,10 +40,10 @@
 	if($intID != 0){
 		$sql = "INSERT INTO chat_message(chat_id, to_user_id, from_user_id, chat_message) VALUES('$intID', '$idAdmin', '$idCliente', '$mensaje')";
 		$resp = $db->Execute($sql);
-	}    
+	}
 
-    $fecha = date( 'Y-m-d' );		
-	$hora = date('H:i:s');			
+    $fecha = date( 'Y-m-d' );
+	$hora = date('H:i:s');
 
     $options = array(
 		//'encrypted' => true

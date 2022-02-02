@@ -1,5 +1,9 @@
 <?php 
-    include '../../inc/sessionControl.php';
+    include '../../inc/conexion.php';
+    include '../../inc/function.php';
+
+    $op = new cnFunction();
+    
     require '../../lib/Pusher.php';
     
     date_default_timezone_set("America/La_Paz" );    

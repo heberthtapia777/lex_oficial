@@ -172,6 +172,7 @@
 				if(isset($array)){
 					$_SESSION["idUser"]   = $array['id'];
 					$_SESSION["nameUser"]  = $array['name'];
+					$_SESSION["timeout"] = time();
 				}
 
 				echo json_encode($array);
@@ -211,10 +212,11 @@
 				break;
 
 		case "Salir":
-			session_unset();
+			/*session_unset();
 			session_destroy();
-			header("Location:../");
+			header("Location:../");*/
 			break;
 
 
 	}
+?>

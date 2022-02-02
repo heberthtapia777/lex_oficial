@@ -1,31 +1,31 @@
 <?php
 	session_start();
-	
+
 	include "../inc/banner.php";
 
 	$objBanner = new banner();
 
 	switch ($_GET["op"]) {
 
-		case 'saveOrUpdate':	
-			$banner_id			= $_POST['banner_id'];		
+		case 'saveOrUpdate':
+			$banner_id			= $_POST['banner_id'];
 			$banner_title  		= $_POST['banner_title'];
-			$banner_subtitle	= $_POST['banner_subtitle'];			
-			
+			$banner_subtitle	= $_POST['banner_subtitle'];
+
 			$name_img	= $_FILES['banner_img']['name'];
 			$type_img   = $_FILES['banner_img']['type'];
 			$size_img   = $_FILES['banner_img']['size'];
 
 			$idUser = $_SESSION['idUser'];
-			
-			
+
+
 			if(empty($_POST["banner_id"])){
 				if($objBanner->Registrar($banner_title, $banner_subtitle, $name_img, $idUser)){
 					echo 0;
 				}else{
 					echo 1;
 				}
-			}else{				
+			}else{
 				if($objBanner->Modificar($banner_id, $banner_title, $banner_subtitle, $name_img, $idUser)){
 					echo 2;
 				}else{
@@ -35,7 +35,7 @@
 
 		break;
 
-		case "delete":			
+		case "delete":
 			$result = $objBanner->delet();
 			if ($result) {
 				echo 0;
@@ -49,7 +49,7 @@
 			$data = Array();
             $i = 1;
      		while ($reg = $query_Tipo->FetchRow()) {
-				
+
 				if($reg['status'] == 1)
 					$status = '<a href="#" id="'.$reg["id"].'" onclick="status('.$reg["id"].', 0)"><span class="badge bg-success"><i class="fas fa-check-circle"></i></span></a>';
 				else
@@ -59,36 +59,36 @@
 
      			$data[] = array(
      				"0"=>$i,
-                    "1"=>$reg['title'],         
+                    "1"=>$reg['title'],
 					"2"=>$reg['subtitle'],
 					"3"=>$img,
 					"4"=>$status,
                     "5"=>'<button class="btn btn-warning btn-sm mr-1 mb-1" data-toggle="tooltip" title="Editar" onclick="cargaData('.$reg['id'].')"><i class="fas fa-pencil-alt"></i> </button>&nbsp;'.
 					'<button class="btn btn-danger btn-sm mr-1 mb-1" data-toggle="tooltip" title="Eliminar" onclick="delet('.$reg['id'].')"><i class="fas fa-trash"></i> </button>');
                 $i++;
-			}			
+			}
             $results = array(
             "sEcho" => 1,
         	"iTotalRecords" => count($data),
         	"iTotalDisplayRecords" => count($data),
-			"aaData"=>$data);			
+			"aaData"=>$data);
 			echo json_encode($results);
 
 			break;
 
-		case "status":			
+		case "status":
 			$id = $_POST['id'];
 			$val = $_POST['val'];
-			
+
 			$query = $objBanner->status($id, $val);
-			
+
 			if($query)
 				echo 1;
 			else
 				echo 0;
 
 			break;
-	
+
 
 		case "edit":
 			$id		 = $_POST['id'];
@@ -96,20 +96,20 @@
 
 			$data = new stdClass();
 
-			$reg = $query->FetchRow();				
+			$reg = $query->FetchRow();
 			$data->banner_title   	= $reg['title'];
 			$data->banner_subtitle	= $reg['subtitle'];
 			$data->banner_img	   	= $reg['imagen'];
-		
-		   	echo json_encode($data);  
+
+		   	echo json_encode($data);
 	        break;
 
 		case "listEmpleado":
-			
+
 			$query_Tipo = $objBanner->listaEmpresa();
 			$data = Array();
             $i = 1;
-     		while ($reg = $query_Tipo->FetchRow()) {				
+     		while ($reg = $query_Tipo->FetchRow()) {
      			$data[] = array(
      				"0"=>'<input type="radio" name="optEmpleado" id="optEmpleado" data-empresa="'.utf8_encode($reg['empresa']).'" value="'.$reg['id'].'" />',
                     "1"=>$i,
@@ -118,12 +118,12 @@
 					"4"=>utf8_encode($reg['email']),
 					);
                 $i++;
-			}			
+			}
             $results = array(
             "sEcho" => 1,
         	"iTotalRecords" => count($data),
         	"iTotalDisplayRecords" => count($data),
-			"aaData"=>$data);			
+			"aaData"=>$data);
 			echo json_encode($results);
 
 			break;
@@ -133,7 +133,7 @@
 			$query_Tipo = $objBanner->listaTypeIndice();
 
 			echo '<option value="">Seleccione</option>';
-            
+
      		while ($reg = $query_Tipo->FetchRow()) {
 				echo '<option value=' . $reg['id'] . '>' . ($reg['tipo']) . '</option>';
 			}
@@ -148,17 +148,17 @@
 			$query_Tipo = $objBanner->listaTypeIndice();
 
 			echo '<option value='.$idIn.'>'.$indice.'</option>';
-			
+
 				while ($reg = $query_Tipo->FetchRow()) {
 				echo '<option value=' . $reg['id'] . '>' . ($reg['tipo']) . '</option>';
 			}
 
 			break;
-		
+
 		case "listTemas":
 
-			$query_Tipo = $objBanner->listaTema();	
-			//$c = 0;	
+			$query_Tipo = $objBanner->listaTema();
+			//$c = 0;
 
 			$reg = $query_Tipo->FetchRow();
 				echo '<div class="form-group row"><div class="col-sm-12"><div class="form-check">
@@ -167,7 +167,7 @@
 						'.($reg['tema']).'
 					</label>
 				</div>';
-			
+
 			while ($reg = $query_Tipo->FetchRow()) {
 				$c++;
 				echo '<div class="form-group row"><div class="col-sm-12"><div class="form-check">
@@ -176,11 +176,11 @@
 						'.($reg['tema']).'
 					</label>
 				</div>';
-				
+
 			}
 
 			break;
-		
+
 		case "listTemasCheck":
 
 			$temas = Array();
@@ -189,30 +189,30 @@
 			$temas = explode(",", $temas);
 
 			echo json_encode($temas);
-						
+
 			break;
-		
+
 		case "listCargaConcor":
 			$c=0;
 			$data = new stdClass();
-			$query = $objBanner->listaConcor();	
-			while ($reg = $query->FetchRow()) {								
+			$query = $objBanner->listaConcor();
+			while ($reg = $query->FetchRow()) {
 				$data->idCon[] = $reg['id_concordancia'];
 				$data->idCla[] = $reg['id_clase'];
-				$c++;		
-			}			
-		
-		   	echo json_encode($data);  
-						
-			break;
-		
-		case "search":			
+				$c++;
+			}
 
-			$query_Tipo = $objBanner->searchBol();		
-			
+		   	echo json_encode($data);
+
+			break;
+
+		case "search":
+
+			$query_Tipo = $objBanner->searchBol();
+
 			$idCon = $_POST['idCon'];
 			$idNam = $_POST['idNam'];
-			
+
 			while ($reg = $query_Tipo->FetchRow()) {
 				echo '<span id="'.$reg['idBoletin'].'" class="badge bg-warning"><a href="#" onclick="addIdBoletin('.$reg['idBoletin'].',&#39;'.$idNam.'&#39;,'.$idCon.')">'.utf8_encode($reg['idBoletin']).'</a></span>';
 			}
@@ -340,3 +340,4 @@
 
 
 	}
+?>

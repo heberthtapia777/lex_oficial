@@ -1,25 +1,33 @@
-<?php 
-    //error_reporting(E_ALL ^ E_WARNING);
-    //require 'lib/Pusher.php';
-    
-    include 'admin/inc/sessionControl.php';
+<?php
+//error_reporting(E_ALL ^ E_WARNING);
+//require 'lib/Pusher.php';
 
-    session_start();
+include 'admin/inc/conexion.php';
+include 'admin/inc/function.php';
 
-    $username   = $_POST['username'];
-    $email      = $_POST['email'];
+$op = new cnFunction();
 
-    $sql = "INSERT INTO loginClient(name, email) VALUES('$username', '$email')";
+session_start();
 
-    $query = $db->Execute($sql);
-    $lastId = $db->insert_Id();
+$username = $_POST['username'];
+$email = $_POST['email'];
 
-    $date = $op->ToFormatToDay();
+$sql = "INSERT INTO loginClient(name, email) VALUES('$username', '$email')";
 
-    $_SESSION['idClient'] = $lastId;
-    $_SESSION['userName'] = $username;
-    $_SESSION['email']    = $email;
-    $_SESSION['date']     = $date;
+$query = $db->Execute($sql);
+$lastId = $db->insert_Id();
 
-    echo json_encode(array('lastId' => $lastId, 'username' => $username, 'email' => $email, 'date' => $date));
+$date = $op->ToFormatToDay();
+
+$_SESSION['idClient'] = $lastId;
+$_SESSION['userName'] = $username;
+$_SESSION['email'] = $email;
+$_SESSION['date'] = $date;
+
+echo json_encode([
+    'lastId' => $lastId,
+    'username' => $username,
+    'email' => $email,
+    'date' => $date,
+]);
 ?>

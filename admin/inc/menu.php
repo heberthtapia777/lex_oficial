@@ -34,8 +34,7 @@
 								<li class="nav-item"><a class="nav-link dropdown-indicator" href="#contac" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="contac">
 										<div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-id-card-alt"></span></span><span class="nav-link-text"> Contactos</span></div>
 									</a>
-									<ul class="nav collapse" id="contac" data-parent="#navbarVerticalCollapse">
-										<li class="nav-item"><a class="nav-link" href="../../modulo/empleado/employe.php">Empleados</a></li>
+									<ul class="nav collapse" id="contac" data-parent="#navbarVerticalCollapse">										
 										<li class="nav-item"><a class="nav-link" id="user" href="../../modulo/usuario/user.php">Usuarios</a></li>
 										<li class="nav-item"><a class="nav-link" id="client" href="../../modulo/client/client.php">Clientes</a></li>   
 										<li class="nav-item"><a class="nav-link" href="../../modulo/empleado/client.php">Recuperar contraseña</a></li>                  

@@ -82,7 +82,7 @@ class cnFunction{
 		}
 
 	public function ToDayString($op){
-		
+
 		switch( $op ){
 			case "lunes": $dia = 'Lun';
 			break;
@@ -190,7 +190,7 @@ class cnFunction{
 	}
 
 	public function validPage(){
-		session_start();
+		//session_start();
 		/*if( !session_is_registered( $_SESSION['user'] )  ){
 			header( "HTTP/1.0 404 Not Found" );
 			die();

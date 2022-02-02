@@ -212,7 +212,6 @@
 					</div>
 				</div>
 				</form>
-				</div>
 			</div>
 			<footer>
 				<div class="row g-0 justify-content-between fs--1 mt-4 mb-3">
