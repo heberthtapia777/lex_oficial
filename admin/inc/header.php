@@ -1,6 +1,8 @@
-<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
+    <meta name="theme-color" content="#ffffff">
 
     <!-- ===============================================-->
     <!--    Document Title-->
@@ -15,8 +17,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/img/favicons/favicon-16x16.png">
     <link rel="shortcut icon" type="image/x-icon" href="../../assets/img/favicons/favicon.ico">
     <link rel="manifest" href="../../assets/img/favicons/manifest.json">
-    <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
-    <meta name="theme-color" content="#ffffff">
+    
     <script src="../../assets/js/config.navbar-vertical.js"></script>
 
     <!-- ===============================================-->
@@ -29,9 +30,7 @@
 
     <link href="../../assets/css/lightbox.css" rel="stylesheet">
     <link href="../../assets/css/theme-rtl.min.css" rel="stylesheet" id="style-rtl" />
-    <link href="../../assets/css/theme.min.css" rel="stylesheet" id="style-default" />
-
-    
+    <link href="../../assets/css/theme.min.css" rel="stylesheet" id="style-default" />    
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap5.min.css"/>
     <link rel="stylesheet" type="text/css" href="../../vendors/datatables/css/buttons.dataTables.min.css">

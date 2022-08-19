@@ -152,13 +152,91 @@
 			return $query;
 		}
 
-		public function listaTema(){
+		/** BUSCADOR AVANZADO */
+
+		public function listaTema($searchTerm){
 			global $db;
 
-			$sql = "SELECT * FROM tema";
+			$sql = "SELECT * FROM tema ";
+
+			if (isset($searchTerm)) {
+				$sql.= "WHERE tema LIKE '%".$searchTerm."%' ";
+			}
+
 			$query = $db->Execute($sql);
 			return $query;
 		}
+
+		public function listaIndice($searchTerm){
+			global $db;
+
+			$sql = "SELECT * FROM tipo ";
+
+			if (isset($searchTerm)) {
+				$sql.= "WHERE tipo LIKE '%".$searchTerm."%' ";
+			}
+
+			$query = $db->Execute($sql);
+			return $query;
+		}
+
+		public function listaNumBoletin($searchTerm){
+			global $db;
+
+			$sql = "SELECT * FROM boletin ";
+
+			if (isset($searchTerm)) {
+				$sql.= "WHERE idBoletin LIKE '%".$searchTerm."%' LIMIT 15";
+			}
+
+			$query = $db->Execute($sql);
+			return $query;
+		}
+
+		public function listaBoletinSearch(){
+			global $db;
+
+			$typeSearch	= $_POST['typeSearch'];
+			$idOption 	= $_POST['idOption'];
+			$termSearch = $_POST['termSearch'];
+
+			$sql = "SELECT b.idBoletin, b.asunto, tp.tipo AS indice, GROUP_CONCAT(t.tema) AS tema, b.fecha_creacion, b.fecha_publicacion, b.visita, b.blocked
+			FROM boletin AS b LEFT JOIN boletin_rel_tema AS rt ON b.idBoletin = rt.boletin LEFT JOIN tema AS t ON rt.id_tema = t.id
+			LEFT JOIN tipo AS tp ON tp.id = b.id_tipo ";
+			if ($typeSearch == 'tipo') {
+				$sql.= "WHERE tp.id = $idOption AND b.asunto LIKE '%$termSearch%' ";
+			}
+			if ($typeSearch == 'tema') {
+				$sql.= "WHERE t.id = $idOption AND b.asunto LIKE '%$termSearch%' ";
+			}
+			if ($typeSearch == 'boletin') {
+				$sql.= "WHERE b.idBoletin = $idOption ";
+			}
+
+			$sql.="GROUP BY b.idBoletin
+			ORDER BY b.idBoletin DESC ";
+			$query = $db->Execute($sql);
+			return $query;
+		}
+
+		public function listaBoletinSearchSimple(){
+			global $db;
+
+			$search	= $_POST['search'];
+
+			$sql = "SELECT b.idBoletin, b.asunto, tp.tipo AS indice, GROUP_CONCAT(t.tema) AS tema, b.fecha_creacion, b.fecha_publicacion, b.visita, b.blocked
+			FROM boletin AS b LEFT JOIN boletin_rel_tema AS rt ON b.idBoletin = rt.boletin LEFT JOIN tema AS t ON rt.id_tema = t.id
+			LEFT JOIN tipo AS tp ON tp.id = b.id_tipo ";
+
+			$sql.= "WHERE b.idBoletin LIKE '%$search%' OR b.asunto LIKE '%$search%' OR tp.tipo LIKE '%$search%' OR t.tema LIKE '%$search%'  ";
+
+			$sql.="GROUP BY b.idBoletin
+			ORDER BY b.idBoletin DESC ";
+			$query = $db->Execute($sql);
+			return $query;
+		}
+
+		/** FIN BUSCADOR */
 
 		public function listaConcor(){
 			global $db;
@@ -214,6 +292,19 @@
 			global $conexion;
 			$sql = "SELECT mnu_perfil from usuario WHERE idusuario = $idusuario";
 			$query = $conexion->query($sql);
+			return $query;
+		}
+
+		/** CONSULTA BUSQUEDA AVANZADA */
+
+		public function listaSearchAdvance(){
+			global $db;
+			$sql = "SELECT b.idBoletin, b.asunto, tp.tipo AS indice, GROUP_CONCAT(t.tema) AS tema, b.fecha_creacion, b.fecha_publicacion, b.visita, b.blocked
+			FROM boletin AS b LEFT JOIN boletin_rel_tema AS rt ON b.idBoletin = rt.boletin LEFT JOIN tema AS t ON rt.id_tema = t.id
+			LEFT JOIN tipo AS tp ON tp.id = b.id_tipo
+			GROUP BY b.idBoletin
+			ORDER BY b.idBoletin DESC ";
+			$query = $db->Execute($sql);
 			return $query;
 		}
 

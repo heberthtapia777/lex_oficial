@@ -1,11 +1,16 @@
-<!DOCTYPE html>
-<html lang="en-US" dir="ltr">
-<head>
-    <?PHP
-        include '../../inc/header.php';
-    ?>
-</head>
+<?php
+	require '../../inc/sessionControl.php';
+	//require_once '../../PHPThumb/ThumbLib.inc.php';
 
+	setlocale(LC_TIME, "spanish");
+?>
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+	<?PHP
+		include '../../inc/header.php';
+	?>
+</head>
   <body>
     <!-- ===============================================-->
     <!--    Main Content-->
@@ -20,11 +25,11 @@
             container.classList.add('container-fluid');
           }
         </script>
-        
+
         <?PHP
             include '../../inc/menu.php';
         ?>
-        
+
         <div class="content">
           <nav class="navbar navbar-light navbar-glass navbar-top navbar-expand" style="display: none;">
             <button class="btn navbar-toggler-humburger-icon navbar-toggler mr-1 mr-sm-3" type="button" data-toggle="collapse" data-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
@@ -34,9 +39,9 @@
             	<?PHP
 				    include '../../inc/search.php';
 				    include '../../inc/menuTop.php';
-        	  	?>            
+        	  	?>
           </nav>
-          
+
           <script>
             var navbarPosition = localStorage.getItem('navbarPosition');
             var navbarVertical = document.querySelector('.navbar-vertical');
@@ -397,17 +402,17 @@
         include '../../inc/footer.php'
     ?>
 	<script type="text/javascript" src="../../assets/js/scripts/employe.js"></script>
-	
+
 	<script>
 		(function () {
           'use strict'
           //alert('entra');
           // Fetch all the forms we want to apply custom Bootstrap validation styles to
-          var forms = document.querySelectorAll('.needs-validation')			
+          var forms = document.querySelectorAll('.needs-validation')
           // Loop over them and prevent submission
           Array.prototype.slice.call(forms)
-            .forEach(function (form) {				
-              form.addEventListener('submit', function (event) {				
+            .forEach(function (form) {
+              form.addEventListener('submit', function (event) {
                 if (!form.checkValidity()) {
                   event.preventDefault()
                   event.stopPropagation()

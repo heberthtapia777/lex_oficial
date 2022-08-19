@@ -1,18 +1,16 @@
-	<?php
-		include '../../inc/sessionControl.php';
-		require_once '../../PHPThumb/ThumbLib.inc.php';
+<?php
+	require '../../inc/sessionControl.php';
+	//require_once '../../PHPThumb/ThumbLib.inc.php';
 
-		setlocale(LC_TIME, "spanish");
+	setlocale(LC_TIME, "spanish");
+?>
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+	<?PHP
+		include '../../inc/header.php';
 	?>
-	<!DOCTYPE html>
-	<html lang="es" dir="ltr">
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	<head>
-		<?PHP
-			include '../../inc/header.php';
-		?>
-	</head>
-
+</head>
 	<body>
 		<!-- ===============================================-->
 		<!--    Main Content-->

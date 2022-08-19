@@ -1,18 +1,16 @@
-	<?php 
-		include '../../inc/sessionControl.php';
-		require_once '../../PHPThumb/ThumbLib.inc.php';	
+<?php
+	require '../../inc/sessionControl.php';
+	//require_once '../../PHPThumb/ThumbLib.inc.php';
 
-		setlocale(LC_TIME, "spanish");	
+	setlocale(LC_TIME, "spanish");
+?>
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+	<?PHP
+		include '../../inc/header.php';
 	?>
-	<!DOCTYPE html>
-	<html lang="es" dir="ltr">
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	<head>
-		<?PHP		
-			include '../../inc/header.php';
-		?>
-	</head>
-
+</head>
 	<body>
 		<!-- ===============================================-->
 		<!--    Main Content-->
@@ -38,9 +36,9 @@
 				</a>
 					<?PHP
 						include '../../inc/search.php';
-						include '../../inc/menuTop.php';        	  	
-					?> 
-			</nav>          
+						include '../../inc/menuTop.php';
+					?>
+			</nav>
 			<script>
 				var navbarPosition = localStorage.getItem('navbarPosition');
 				var navbarVertical = document.querySelector('.navbar-vertical');
@@ -71,7 +69,7 @@
 						<div class="col-md">
 							<h5 class="mb-2 mb-md-0">Gestor Banner</h5>
 						</div>
-						<div class="col-auto">							
+						<div class="col-auto">
 							<button class="btn btn-outline-primary btn-sm" id="btnNuevo"><i class="fas fa-plus"></i> Nuevo</button>
 							<button class="btn btn-outline-danger btn-sm" id="btnCancel" onclick="ocultarForm()"><i class="fas fa-window-close"></i> Cancelar</button>
 						</div>
@@ -79,11 +77,11 @@
 				</div>
 			</div>
 			<div id="verLista">
-				
-				<div class="row g-0">				
+
+				<div class="row g-0">
 					<div class="col-lg-12">
-						<div class="card mb-3">                
-							<div class="card-body bg-light">							
+						<div class="card mb-3">
+							<div class="card-body bg-light">
 								<div class="row gx-2">
 									<table id="tblBanner" class="table table-striped table-bordered table-condensed table-hover" cellspacing="0" cellpadding="0" width="100%">
 										<thead>
@@ -91,7 +89,7 @@
 												<th>#</th>
 												<th>Imagen</th>
 												<th>Titulo</th>
-												<th>SubTitulo</th>												
+												<th>SubTitulo</th>
 												<th>Status</th>
 												<th>Acciones</th>
 											</tr>
@@ -102,7 +100,7 @@
 												<th>#</th>
 												<th>Imagen</th>
 												<th>Titulo</th>
-												<th>SubTitulo</th>												
+												<th>SubTitulo</th>
 												<th>Status</th>
 												<th>Acciones</th>
 											</tr>
@@ -117,9 +115,9 @@
 						</div>
 					</div>
 				</div>
-					
-					
-					
+
+
+
 			</div>
 			<div id="verForm">
 				<div class="card mb-3">
@@ -128,15 +126,15 @@
 							<div class="col-md">
 								<h5 class="mb-2 mb-md-0">Nuevo Banner</h5>
 							</div>
-							
+
 						</div>
 					</div>
 				</div>
 				<form role="form" name="frmBanner" id="frmBanner" enctype="multipart/form-data" class="cmxform">
-				<div class="row g-0">				
+				<div class="row g-0">
 					<div class="col-lg-8 pr-lg-2">
-						<div class="card mb-3">                
-							<div class="card-body bg-light">							
+						<div class="card mb-3">
+							<div class="card-body bg-light">
 								<div class="row gx-2">
 									<div class="col-12 mb-3">
 										<input id="banner_id" type="hidden" name="banner_id" />
@@ -148,11 +146,11 @@
 										<input class="form-control" id="banner_subtitle" name="banner_subtitle" type="text" placeholder="Titulo" />
 									</div>
 								</div>
-							
+
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-4 pl-lg-2">					
+					<div class="col-lg-4 pl-lg-2">
 						<div class="card mb-3 mb-lg-0">
 							<div class="card-header">
 								<h6 class="mb-0">Subir Archivos</h6>
@@ -164,16 +162,16 @@
 										<span class="form-file-text">Elija una imagen...</span>
 										<span class="form-file-button">Examinar</span>
 									</label>
-								</div>								
+								</div>
 							</div>
-						</div>					
-					</div>				
+						</div>
+					</div>
 				</div>
-				
+
 				<div class="card mt-3">
 					<div class="card-body">
-						<div class="row justify-content-between align-items-center">					
-							<div class="col-auto">						
+						<div class="row justify-content-between align-items-center">
+							<div class="col-auto">
 								<button type="submit" class="btn btn-outline-success btn-sm mr-2"><i class="fas fa-save"></i> Guardar</button>
 								<button class="btn btn-outline-danger btn-sm" onclick="ocultarForm()"><i class="fas fa-window-close"></i> Cancelar</button>
 							</div>
@@ -193,58 +191,58 @@
 				</div>
 			</footer>
 			</div>
-			
+
 			<!-- Modal Empresas-->
 			<div class="modal fade" id="modalBuscaBoletin" tabindex="-1" role="dialog" aria-labelledby="modalBuscaBoletinLabel" aria-hidden="true">
 				<div class="modal-dialog modal-lg" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
 							<h5 class="modal-title" id="modalBuscaBoletinLabel">Buscar boletin</h5><button class="btn-close" type="button" data-dismiss="modal" aria-label="Close"></button>
-						</div>					
+						</div>
 						<div class="modal-body" id="busBol">
 							<form role="form" name="frmSearch" id="frmSearch" enctype="multipart/form-data">
 								<div class="row mb-3">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left">
 										<div class="form-group">
-											<label>Nro. boletin:</label>			
-											<input id="idCon" type="hidden" name="idCon" value="" />									
-											<input id="idNam" type="hidden" name="idNam" value="" />									
+											<label>Nro. boletin:</label>
+											<input id="idCon" type="hidden" name="idCon" value="" />
+											<input id="idNam" type="hidden" name="idNam" value="" />
 											<input id="idBol" type="text" class="form-control" name="idBol" placeholder="Nro. boletin" />
 										</div>
-									</div>																					
+									</div>
 								</div>
 								<div class="row mb-3">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left">
 										<div class="form-group">
 											<label>Tipo:</label>
 											<select id="tipo" name="tipo" class="form-select" aria-label="Default select example" data-validation="required" >
-																			
+
 											</select>
 										</div>
-									</div>																					
+									</div>
 								</div>
 								<div class="row mb-3">
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left">
 										<div class="form-group">
-											<label>Palabras:</label>															
+											<label>Palabras:</label>
 											<input id="text" type="text" class="form-control" name="text" placeholder="Nro. boletin" />
 										</div>
-									</div>																					
-								</div>	
+									</div>
+								</div>
 								<div class="row mb-3">
 									<div class="form-group">
 										<button type="submit" class="btn btn-success"><i class="fas fa-search"></i> Buscar</button>
 									</div>
-								</div>	
-							</form>	
+								</div>
+							</form>
 							<div class="row mb-3">
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left" id="resSearch">
 
 								</div>
-							</div>						
-						</div>				
+							</div>
+						</div>
 						<div class="modal-footer">
-							<button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cerrar</button>						
+							<button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cerrar</button>
 						</div>
 					</div>
 				</div>
@@ -276,7 +274,7 @@
 		<script src="../vendors/list.js/list.min.js"></script>
 		<script src="../assets/js/theme.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:100,200,300,400,500,600,700,800,900&amp;display=swap" rel="stylesheet"> -->
-		
+
 		<?PHP
 			include '../../inc/footer.php'
 		?>

@@ -69,7 +69,7 @@
     overflow: hidden;
 }
 .fondo-banner {
-    height: 100vh;
+    height: 50vh;
     background: url(../images/banner/banner-usuario01.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -127,50 +127,43 @@ h3 {
 .gris {
     background: rgba(255, 255, 255);
 }
-.nav-link {
-    color: #000 !important;
-    padding: 5px 15px 5px 15px;
-    transition: background 1s, color 1s;
-}
-/*.nav-link {
-    display: inline-block;
-    color: #f2f2f2;
-    
-}*/
-
 .navbar-collapse {
     margin: 0px -20px;
     padding: 20px;
-    background: #f4f4f4 !important;
+    background: #fffff !important;
 }
 .menu-icono:hover {
     border-bottom: 2px solid #e0301e;
 }
-.nav-link:hover {
-    /*background: rgba(21, 47, 79, 0.940);*/
-    color: #fff;
-    border-bottom: 2px solid #e0301e;
-}
-.dropdown-item:hover {
-    color: #fff;
-    border-bottom: 2px solid #e0301e;
-}
+.hoverme::after{
+    content:'';
+    height: 2px;
+    width: 0%;
+    background-color: #e0301e;
+    display: block;
+    transition: .5s ease-in-out;
+  }
+  .hoverme:hover:after{
+    content: '';
+    height: 2px;
+    width: 100%;
+    background-color: #e0301e;
+    display: block;
+  }
 .active-menu {
     border: none;
     border: 1px;
+    width: 100%;
     border-color: #000;
     background: rgba(0, 0, 0, 0.740) !important;
     border-radius: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 .navbar-toggler-icons {
     background-color: #000 !important;
     border-radius: 4px;
 }
-/*.nav-item a:hover{
-  background: rgba(0, 0, 0, 0.740) !important;
-  border-radius: 6px;
-  color: #fff;
-}*/
 
 footer.page-footer {
     bottom: 0;
@@ -181,19 +174,19 @@ footer.page-footer {
 .stylish-color-dark {
     background-color: #121010 !important;
 }
-.map-container-7 {
-    overflow: hidden;
-    padding-bottom: 56.25%;
-    position: relative;
-    height: 0;
-}
-.map-container-7 iframe {
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-}
+.map-container-6{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+    }
+    .map-container-6 iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+    }
 /**************************************************/
 
 .form-dark .font-small {

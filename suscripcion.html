@@ -1,214 +1,319 @@
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <!-- Bootstrap CSS -->
-    <link rel="shortcut icon" type="image/x-icon" href="images/logo-pwc.ico" />
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/mdb.css">
-    <link rel="stylesheet" href="fontawesome/css/fontawesome.css">
-    <link rel="stylesheet" href="fontawesome/css/all.css">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/responsiveslides.min.js"></script>
-  <title>Formulario de suscripcion</title>
-</head>
-<style>
-  .bg-light{
+    <head>
+        <meta charset="utf-8">
+            <meta content="width=device-width, initial-scale=1.0" name="viewport">
+                <meta content="ie=edge" http-equiv="X-UA-Compatible">
+                    <!-- Bootstrap CSS -->
+                    <link href="images/logo-pwc.ico" rel="shortcut icon" type="image/x-icon"/>
+                    <link href="css/bootstrap.css" rel="stylesheet">
+                        <link href="css/mdb.css" rel="stylesheet">
+                            <link href="fontawesome/css/fontawesome.css" rel="stylesheet">
+                                <link href="fontawesome/css/all.css" rel="stylesheet">
+                                    <link href="css/style.css" rel="stylesheet">
+                                        <script src="js/responsiveslides.min.js">
+                                        </script>
+                                        <title>
+                                            Formulario de suscripcion
+                                        </title>
+                                    </link>
+                                </link>
+                            </link>
+                        </link>
+                    </link>
+                </meta>
+            </meta>
+        </meta>
+    </head>
+    <style>
+        .bg-light{
     background-color: #fff !important;
   }
-</style>
-<body>
-  <!-- Navbar burger on large screens items right-->
-<nav class="navbar navbar navbar-light bg-light scrolling-navbar fixed-top">
-
-    <div class="d-flex justify-content-start">
-      <img src="images/logo-pwc.jpg" class="img-fluid rounded mr-2 ml-3" width="80" height="auto">
-      <a class="navbar-brand ml-2 my-2" href="#" alt="">&nbsp;|&nbsp;Lex&nbsp;Legislacion&nbsp; Express</a>
-    </div>
-        <!-- Search form -->
-        <form class="form-inline d-flex justify-content-center md-form form-md my-2">
-          <i class="far fa-search" aria-hidden="true"></i>
-          <input class="form-control form-control-lg ml-3 w-75" type="text" placeholder="Buscar"
-            aria-label="Search">
-        </form>
-        <!-- Form -->
-        <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-          <span>Menu</span>
-        </button> 
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active ml-auto mr-3">
-              <a class="nav-link" href="index">Inicio <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item dropdown ml-auto mr-3">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Quienes somos
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item " href="quienes-somos">Lex - Legislacion express</a>
-              </div>
-            </li>
-            <li class="nav-item dropdown ml-auto mr-3">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Servicios legales
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item " href="tax-litigation">Tax litigation</a>
-                <a class="dropdown-item " href="Compliance-societario-integral">Compliance societario integral</a>
-                <a class="dropdown-item " href="Servicio-de-informacion-normativa-y-capacitacion">Servicio de informacion normativa y capacitacion</a>
-                <a class="dropdown-item " href="Consultoria-laboral-y-de-seguridad-social">Consultoria laboral y de seguridad social</a>
-                <a class="dropdown-item " href="LEX-legislacion-express">LEX - legislacion express</a>
-                <a class="dropdown-item " href="Asignaciones-internacionales">Asignaciones internacionales</a>
-              </div>
-            </li>
-            <li class="nav-item ml-auto mr-3">
-              <a class="nav-link" href="https://www.pwc.com/bo/es.html" target="blank">PWC - Bolivia</a>
-            </li>
-            <li class="nav-item ml-auto mr-3">
-              <a class="nav-link" href="https://www.pwc.com/bo/es/servicios/asesoramiento-tributario.html" target="blank">PWC - Tax & Legal</a>
-            </li>
-            <li class="nav-item ml-auto mr-3">
-              <a class="nav-link" href="#">Nuestro equipo</a>
-            </li>
-            <li class="nav-item dropdown ml-auto mr-3">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Contactos
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item " href="ubicacion-la-paz">Ubicacion La Paz</a>
-                <a class="dropdown-item " href="ubicacion-santa-cruz">Ubicacion Santa Cruz</a>
-              </div>
-            </li>
-          </ul>
-        </div>
-</nav>
-  <!-- Navbar burger on large screens right -->
-<section class="fondo banner">
-  <div class="row">
-        <div class="align-items-center mt-4 bienvenida">
-            <div class="col-lg-12 col-md-12 col-sm-12 ">
-                  <h3 class="display-5 font-weight-bold mb-2 text-center animated infinite pulse delay-2s slower">Area de suscripcion </h3> 
+    </style>
+    <body>
+        <!-- Navbar burger on large screens items right-->
+        <nav class="navbar navbar navbar-light bg-light scrolling-navbar fixed-top">
+            <div class="d-flex justify-content-start">
+                <img class="img-fluid rounded mr-2 ml-3" height="auto" src="images/logo-pwc.jpg" width="80">
+                    <a alt="" class="navbar-brand ml-2 my-2" href="#">
+                        | Lex Legislacion  Express
+                    </a>
+                </img>
             </div>
-        </div>
-  </div>
-</section>
-<!--Grid row-->
-<section class="container">
-    <h1 class="py-3 text-center">Elige uno de nuestros planes</h1>
-    <section class="container">  
-        <aside>
-            <p>A) Adquisición de LeX</p>
-        </aside>
-        <aside>
-            <p>Si su empresa está interesada en adquirir el LeX, seleccione la opción de su interés:</p>
-        </aside>
-    </section>
-    <div class="row">
-        <!--Grid column-->
-        <div class="col-md-4 mb-4">
-            <!-- Card Regular -->
-            <div class="card card-cascade">
-
-              <!-- Card image -->
-              <div class="view view-cascade overlay">
-                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/men.jpg" alt="Card image cap">
-                <a>
-                  <div class="mask rgba-white-slight"></div>
-                </a>
-              </div>
-
-              <!-- Card content -->
-              <div class="card-body card-body-cascade text-center">
-
-                <!-- Title -->
-                <h4 class="card-title"><strong>Plan estudiantil</strong></h4>
-                <!-- Subtitle -->
-                <h6 class="font-weight-bold indigo-text py-2">Caracteristicas</h6>
-                <!-- Text -->
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, ex, recusandae.
+            <!-- Search form -->
+            <form class="form-inline d-flex justify-content-center md-form form-md my-2">
+                <i aria-hidden="true" class="far fa-search">
+                </i>
+                <input aria-label="Search" class="form-control form-control-lg ml-3 w-75" placeholder="Buscar" type="text">
+                </input>
+            </form>
+            <!-- Form -->
+            <button aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler " data-target="#navbarNavDropdown" data-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon">
+                </span>
+                <span class="hoverme">
+                    Menu
+                </span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item ml-auto mr-3">
+                        <a class="nav-link hoverme" href="index">
+                            Inicio
+                            <span class="sr-only">
+                                (current)
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown ml-auto mr-3">
+                        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdownMenuLink">
+                            Quienes somos
+                        </a>
+                        <div aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item hoverme" href="quienes-somos">
+                                Lex - Legislacion express
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown ml-auto mr-3">
+                        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdownMenuLink">
+                            Servicios legales
+                        </a>
+                        <div aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item hoverme" href="tax-litigation">
+                                Tax litigation
+                            </a>
+                            <a class="dropdown-item hoverme" href="Compliance-societario-integral">
+                                Compliance societario integral
+                            </a>
+                            <a class="dropdown-item hoverme" href="Servicio-de-informacion-normativa-y-capacitacion">
+                                Servicio de informacion normativa y capacitacion
+                            </a>
+                            <a class="dropdown-item hoverme" href="Consultoria-laboral-y-de-seguridad-social">
+                                Consultoria laboral y de seguridad social
+                            </a>
+                            <a class="dropdown-item hoverme" href="LEX-legislacion-express">
+                                LEX - legislacion express
+                            </a>
+                            <a class="dropdown-item hoverme" href="Asignaciones-internacionales">
+                                Asignaciones internacionales
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item ml-auto mr-3">
+                        <a class="nav-link hoverme" href="https://www.pwc.com/bo/es.html" target="blank">
+                            PWC - Bolivia
+                        </a>
+                    </li>
+                    <li class="nav-item ml-auto mr-3">
+                        <a class="nav-link hoverme" href="https://www.pwc.com/bo/es/servicios/asesoramiento-tributario.html" target="blank">
+                            PWC - Tax & Legal
+                        </a>
+                    </li>
+                    <li class="nav-item ml-auto mr-3">
+                        <a class="nav-link hoverme" href="#">
+                            Nuestro equipo
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown ml-auto mr-3">
+                        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdownMenuLink">
+                            Contactos
+                        </a>
+                        <div aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item hoverme" href="ubicacion-la-paz">
+                                Ubicacion La Paz
+                            </a>
+                            <a class="dropdown-item hoverme" href="ubicacion-santa-cruz">
+                                Ubicacion Santa Cruz
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Navbar burger on large screens right -->
+        <section class="fondo banner">
+            <div class="row">
+                <div class="align-items-center mt-4 bienvenida">
+                    <div class="col-lg-12 col-md-12 col-sm-12 ">
+                        <h3 class="display-5 font-weight-bold mb-2 text-center animated infinite pulse delay-2s slower">
+                            Area de suscripcion
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Grid row-->
+        <section class="container">
+            <h1 class="py-3 text-center">
+                Elige uno de nuestros planes
+            </h1>
+            <section class="container">
+                <aside>
+                    <p>
+                        Si su empresa está interesada en adquirir el LeX, seleccione la opción de su interés:
+                    </p>
+                </aside>
+            </section>
+            <div class="row my-5">
+                <!--Grid column-->
+                <div class="col-md-3 mb-4">
+                    <!-- Card Regular -->
+                    <div class="card card-cascade">
+                        <!-- Card image -->
+                        <div class="view view-cascade overlay">
+                            <img alt="Card image cap" class="card-img-top" src="images/6.jpg">
+                                <a>
+                                    <div class="mask rgba-white-slight">
+                                    </div>
+                                </a>
+                            </img>
+                        </div>
+                        <!-- Card content -->
+                        <div class="card-body card-body-cascade text-center">
+                            <!-- Title -->
+                            <h4 class="card-title">
+                                <strong>
+                                    Plan 1
+                                </strong>
+                            </h4>
+                            <!-- Subtitle -->
+                            <h6 class="font-weight-bold indigo-text py-2">
+                                Caracteristicas
+                            </h6>
+                            <!-- Text -->
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, ex, recusandae.
                   Facere modi sunt, quod quibusdam.
-                </p>
-                <!-- Button -->
-                    <a class="btn btn-unique">Button</a>
-              </div>
-
-            </div>
-            <!-- Card Regular -->
-        </div>
-        <!--Grid column-->
-        <!--Grid column-->
-        <div class="col-md-4 mb-4">
-            <!-- Card Regular -->
-          <div class="card card-cascade">
-
-            <!-- Card image -->
-            <div class="view view-cascade overlay">
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/men.jpg" alt="Card image cap">
-              <a>
-                <div class="mask rgba-white-slight"></div>
-              </a>
-            </div>
-
-            <!-- Card content -->
-            <div class="card-body card-body-cascade text-center">
-
-              <!-- Title -->
-              <h4 class="card-title"><strong>Plan Empresarial</strong></h4>
-              <!-- Subtitle -->
-              <h6 class="font-weight-bold indigo-text py-2">Caracteristicas</h6>
-              <!-- Text -->
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, ex, recusandae.
-                Facere modi sunt, quod quibusdam.
-              </p>
-              <!-- Button -->
-                    <a class="btn btn-unique">Button</a>
-            </div>
-
-          </div>
-          <!-- Card Regular -->
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-md-4 mb-4">
-            <!-- Card Regular -->
-            <div class="card card-cascade">
-
-              <!-- Card image -->
-              <div class="view view-cascade overlay">
-                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/men.jpg" alt="Card image cap">
-                <a>
-                  <div class="mask rgba-white-slight"></div>
-                </a>
-              </div>
-
-              <!-- Card content -->
-              <div class="card-body card-body-cascade text-center">
-
-                <!-- Title -->
-                <h4 class="card-title"><strong>Plan corporativo</strong></h4>
-                <!-- Subtitle -->
-                <h6 class="font-weight-bold indigo-text py-2">Caracteristicas</h6>
-                <!-- Text -->
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, ex, recusandae.
+                            </p>
+                            <!-- Button -->
+                            <a class="btn btn-unique" href="datos-suscripcion">
+                                mas detalles..
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Card Regular -->
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-md-3 mb-4">
+                    <!-- Card Regular -->
+                    <div class="card card-cascade">
+                        <!-- Card image -->
+                        <div class="view view-cascade overlay">
+                            <img alt="Card image cap" class="card-img-top" src="images/3.jpg">
+                                <a>
+                                    <div class="mask rgba-white-slight">
+                                    </div>
+                                </a>
+                            </img>
+                        </div>
+                        <!-- Card content -->
+                        <div class="card-body card-body-cascade text-center">
+                            <!-- Title -->
+                            <h4 class="card-title">
+                                <strong>
+                                    Plan 2
+                                </strong>
+                            </h4>
+                            <!-- Subtitle -->
+                            <h6 class="font-weight-bold indigo-text py-2">
+                                Caracteristicas
+                            </h6>
+                            <!-- Text -->
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, ex, recusandae. Facere modi sunt, quod quibusdam.
+                            </p>
+                            <!-- Button -->
+                            <a class="btn btn-unique" href="datos-suscripcion">
+                                mas detalles..
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Card Regular -->
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-md-3 mb-4">
+                    <!-- Card Regular -->
+                    <div class="card card-cascade">
+                        <!-- Card image -->
+                        <div class="view view-cascade overlay">
+                            <img alt="Card image cap" class="card-img-top" src="images/5.jpg">
+                                <a>
+                                    <div class="mask rgba-white-slight">
+                                    </div>
+                                </a>
+                            </img>
+                        </div>
+                        <!-- Card content -->
+                        <div class="card-body card-body-cascade text-center">
+                            <!-- Title -->
+                            <h4 class="card-title">
+                                <strong>
+                                    Plan 3
+                                </strong>
+                            </h4>
+                            <!-- Subtitle -->
+                            <h6 class="font-weight-bold indigo-text py-2">
+                                Caracteristicas
+                            </h6>
+                            <!-- Text -->
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, ex, recusandae.
                   Facere modi sunt, quod quibusdam.
-                </p>
-                <!-- Button -->
-                    <a class="btn btn-unique">Button</a>
-
-              </div>
-
+                            </p>
+                            <!-- Button -->
+                            <a class="btn btn-unique" href="datos-suscripcion">
+                                mas detalles..
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Card Regular -->
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-md-3 mb-4">
+                    <!-- Card Regular -->
+                    <div class="card card-cascade">
+                        <!-- Card image -->
+                        <div class="view view-cascade overlay">
+                            <img alt="Card image cap" class="card-img-top" src="images/6.jpg">
+                                <a>
+                                    <div class="mask rgba-white-slight">
+                                    </div>
+                                </a>
+                            </img>
+                        </div>
+                        <!-- Card content -->
+                        <div class="card-body card-body-cascade text-center">
+                            <!-- Title -->
+                            <h4 class="card-title">
+                                <strong>
+                                    Plan 4
+                                </strong>
+                            </h4>
+                            <!-- Subtitle -->
+                            <h6 class="font-weight-bold indigo-text py-2">
+                                Caracteristicas
+                            </h6>
+                            <!-- Text -->
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, ex, recusandae.
+                  Facere modi sunt, quod quibusdam.
+                            </p>
+                            <!-- Button -->
+                            <a class="btn btn-unique" href="datos-suscripcion">
+                                mas detalles..
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Card Regular -->
+                </div>
+                <!--Grid column-->
             </div>
-            <!-- Card Regular -->
-        </div>
-        <!--Grid column-->
-    </div>
-    <!--Grid row-->
-</section>
-<section class="container">  
+            <!--Grid row-->
+        </section>
+        <!--<section class="container">  
     <aside>
         <p>B) Opciones de pago</p>
     </aside>
@@ -227,105 +332,104 @@ Nota.- Una vez realizado el depósito, por favor enviar el comprobante al Fax: (
     </aside>
     <aside>
         <p>Por favor complete los datos solicitados a continuación:</p>
-        <!--Section: Contact v.2-->
+        <!--Section: Contact v.2
         <section class="mb-4">
             <div class="row">
-                <!--Grid column-->
+                <!--Grid column--
                 <div class="col-md-9 mb-md-0 mb-5">
                     <form id="contact-form" name="contact-form" action="mail.php" method="POST">
 
-                        <!--Grid row-->
+                        <!--Grid row--
                         <div class="row">
 
-                            <!--Grid column-->
+                            <!--Grid column--
                             <div class="col-md-6">
                                 <div class="md-form mb-0">
                                     <input type="text" id="name" name="name" class="form-control">
                                     <label for="name" class="">Nombre de la Empresa:</label>
                                 </div>
                             </div>
-                            <!--Grid column-->
+                            <!--Grid column--
 
-                            <!--Grid column-->
+                            <!--Grid column--
                             <div class="col-md-6">
                                 <div class="md-form mb-0">
                                     <input type="text" id="email" name="email" class="form-control">
                                     <label for="email" class="">NIT:</label>
                                 </div>
                             </div>
-                            <!--Grid column-->
+                            <!--Grid column--
 
                         </div>
                         <!--Grid row-->
-                        <!--Grid row-->
-                        <div class="row">
-
-                            <!--Grid column-->
+        <!--Grid row-->
+        <div class="row">
+            <!--Grid column--
                             <div class="col-md-6">
                                 <div class="md-form mb-0">
                                     <input type="text" id="name" name="name" class="form-control">
                                     <label for="name" class="">Dirección:</label>
                                 </div>
                             </div>
-                            <!--Grid column-->
+                            <!--Grid column--
 
-                            <!--Grid column-->
+                            <!--Grid column--
                             <div class="col-md-6">
                                 <div class="md-form mb-0">
                                     <input type="text" id="email" name="email" class="form-control">
                                     <label for="email" class="">Ciudad:</label>
                                 </div>
                             </div>
-                            <!--Grid column-->
+                            <!--Grid column--
 
                         </div>
-                        <!--Grid row-->
-                        <!--Grid row-->
+                        <!--Grid row--
+                        <!--Grid row--
                         <div class="row">
 
-                            <!--Grid column-->
+                            <!--Grid column--
                             <div class="col-md-6">
                                 <div class="md-form mb-0">
                                     <input type="text" id="name" name="name" class="form-control">
                                     <label for="name" class="">Persona de contacto:</label>
                                 </div>
                             </div>
-                            <!--Grid column-->
+                            <!--Grid column--
 
-                            <!--Grid column-->
+                            <!--Grid column--
                             <div class="col-md-6">
                                 <div class="md-form mb-0">
                                     <input type="text" id="email" name="email" class="form-control">
                                     <label for="email" class="">Teléfono:</label>
                                 </div>
                             </div>
-                            <!--Grid column-->
+                            <!--Grid column--
 
                         </div>
-                        <!--Grid row-->
-                        <!--Grid row-->
+                        <!--Grid row--
+                        <!--Grid row--
                         <div class="row">
 
-                            <!--Grid column-->
+                            <!--Grid column--
                             <div class="col-md-6">
                                 <div class="md-form mb-0">
                                     <input type="text" id="name" name="name" class="form-control">
                                     <label for="name" class="">Email:</label>
                                 </div>
                             </div>
-                            <!--Grid column-->
+                            <!--Grid column--
 
-                            <!--Grid column-->
+                            <!--Grid column--
                             <div class="col-md-6">
                                 <div class="md-form mb-0">
                                     <input type="text" id="email" name="email" class="form-control">
                                     <label for="email" class="">  Fax:</label>
                                 </div>
                             </div>
-                            <!--Grid column-->
+                            <!--Grid column--
 
                         </div>
-                        <!--Grid row-->
+                        <!--Grid row--
                         <div class="text-center text-md-left">
                             <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Inscribisrse</a>
                         </div>
@@ -333,8 +437,7 @@ Nota.- Una vez realizado el depósito, por favor enviar el comprobante al Fax: (
                     <div class="status"></div>
                 </div>
                 <!--Grid column-->
-
-                <!--Grid column-->
+            <!--Grid column--
                 <div class="col-md-3 text-center">
                     <ul class="list-unstyled mb-0">
                         <li><i class="fas fa-map-marker-alt fa-2x"></i>
@@ -350,142 +453,197 @@ Nota.- Una vez realizado el depósito, por favor enviar el comprobante al Fax: (
                         </li>
                     </ul>
                 </div>
-                <!--Grid column-->
+                <!--Grid column--
 
             </div>
 
         </section>
-        <!--Section: Contact v.2-->
+        <!--Section: Contact v.2--
     </aside>
-</section><br>
-<!-- Footer -->
-<footer class="page-footer font-small stylish-color-dark pt-4">
-
-  <!-- Footer Links -->
-  <div class="container text-center text-md-left">
-
-    <!-- Grid row -->
-    <div class="row">
-
-      <!-- Grid column -->
-      <div class="col-md-4 mx-auto">
-
-        <!-- Content -->
-        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Oficinas</h5>
-        <p>La Paz: Edif. Ana Maria, Piso 1,2 y 3, Pasaje Villegas N° 383, San Jorge.</p>
-        <p>Santa Cruz:Calle Dr. Viador Pinto esquina calle I Equipetrol Edificio Omnia Dei - Primer Piso</p>
-
-      </div>
-      <!-- Grid column -->
-
-      <hr class="clearfix w-100 d-md-none">
-
-      <!-- Grid column -->
-      <div class="col-md-4 mx-auto">
-
-        <!-- Links -->
-        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Siguenos en</h5>
-		<!-- Social buttons -->
-		  <ul class="list-unstyled list-inline">
-		    <li class="list-inline-item">
-		      <a class="btn-floating btn-fb mx-3">
-		        <i class="fab fa-facebook-f"> </i>
-		      </a>
-		    </li>
-		    <li class="list-inline-item">
-		      <a class="btn-floating btn-tw mx-3">
-		        <i class="fab fa-twitter"> </i>
-		      </a>
-		    </li>
-		    <li class="list-inline-item">
-		      <a class="btn-floating btn-gplus mx-3">
-		        <i class="fab fa-google-plus-g"> </i>
-		      </a>
-		    </li>
-		    <li class="list-inline-item">
-		      <a class="btn-floating btn-li mx-3">
-		        <i class="fab fa-linkedin-in"> </i>
-		      </a>
-		    </li>
-		    <li class="list-inline-item">
-		      <a class="btn-floating btn-dribbble mx-3">
-		        <i class="fab fa-dribbble"> </i>
-		      </a>
-		    </li>
-		  </ul>
-		  <!-- Social buttons -->
-
-      </div>
-      <!-- Grid column -->
-
-      <hr class="clearfix w-100 d-md-none">
-
-      <!-- Grid column -->
-      <div class="col-md-4 mx-auto">
-        <!-- Links -->
-        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Escribenos</h5>
-		<p><a href="" class="btn btn-sm btn-success btn-rounded" data-toggle="modal" data-target="#modalLoginForm">Ingresar</a></p>
-        <p><button class="btn btn-sm btn-primary">Contacto</button></p>
-        <p><button class="btn btn-sm btn-primary">Mapa del sitio</button></p>
-      </div>
-      <!-- Grid column -->
-
-    </div>
-    <!-- Grid row -->
-
-  </div>
-  <!-- Footer Links -->
-  <hr>
-  <div class="mx-5">
-  	<p>© 2005 - 2013 PricewaterhouseCooper. Todos los Derechos Reservados. PricewaterhouseCoopers hace referencia a la Red de Firmas de miembro de PricewaterhouseCoopers International Limited, siendo cada una de ellas una entidad legal separada e independiente.</p>
-  </div>
-<!-- modal login -->
-<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" style="color: #000;">Ingresar</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <i class="far fa-user prefix grey-text"></i>
-          <input type="email" id="defaultForm-email" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="defaultForm-email">Usuario</label>
+</section>-->
+            <!-- Footer -->
+            <footer class="page-footer font-small pt-4">
+                <!-- Footer Links -->
+                <div class="container text-center text-md-left">
+                    <!-- Grid row -->
+                    <div class="row">
+                        <!-- Grid column -->
+                        <div class="col-md-4 mx-auto">
+                            <!-- Content -->
+                            <h5 class="font-weight-bold text-uppercase mt-3 mb-4">
+                                Oficinas
+                            </h5>
+                            <p>
+                                La Paz: Edif. Ana Maria, Piso 1,2 y 3, Pasaje Villegas N° 383, San Jorge.
+                            </p>
+                            <p>
+                                Santa Cruz:Calle Dr. Viador Pinto esquina calle I Equipetrol Edificio Omnia Dei - Primer Piso
+                            </p>
+                        </div>
+                        <!-- Grid column -->
+                        <hr class="clearfix w-100 d-md-none">
+                            <!-- Grid column -->
+                            <div class="col-md-4">
+                                <!-- Links -->
+                                <h5 class="font-weight-bold text-uppercase mt-3 mb-4">
+                                    Siguenos en
+                                </h5>
+                                <!-- Social buttons -->
+                                <ul class="list-unstyled list-inline">
+                                    <li class="list-inline-item">
+                                        <a class="btn-floating mx-1">
+                                            <img class="img-fluid" height="25" src="images/facebook.png" width="25">
+                                            </img>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a class="btn-floating mx-1">
+                                            <img class="img-fluid" height="25" src="images/twitter.png" width="25">
+                                            </img>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a class="btn-floating mx-1">
+                                            <img class="img-fluid" height="25" src="images/google_mas.png" width="25">
+                                            </img>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a class="btn-floating mx-1">
+                                            <img class="img-fluid" height="25" src="images/likedin.png" width="25">
+                                            </img>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a class="btn-floating mx-1">
+                                            <img class="img-fluid" height="25" src="images/mundo.png" width="25">
+                                            </img>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- Social buttons -->
+                            </div>
+                            <!-- Grid column -->
+                            <hr class="clearfix w-100 d-md-none">
+                                <!-- Grid column -->
+                                <div class="col-md-4 mx-auto">
+                                    <!-- Links -->
+                                    <h5 class="font-weight-bold text-uppercase mt-3 mb-4">
+                                        Escribenos
+                                    </h5>
+                                    <p>
+                                        <a class="btn btn-sm btn-success btn-rounded" data-target="#modalLoginForm" data-toggle="modal" href="">
+                                            Ingresar
+                                        </a>
+                                    </p>
+                                    <p>
+                                        <button class="btn btn-sm btn-primary">
+                                            Mapa del sitio
+                                        </button>
+                                    </p>
+                                </div>
+                                <!-- Grid column -->
+                            </hr>
+                        </hr>
+                    </div>
+                    <!-- Grid row -->
+                </div>
+                <!-- Footer Links -->
+                <hr>
+                    <div class="mx-3">
+                        <p>
+                            © 2017 - 2021 PwC. Todos los derechos reservados. No se permite la distribución adicional sin autorización de PwC. “PwC” hace referencia a la red de firmas miembros de PricewaterhouseCoopers International Limited (PwCIL) o, según cada caso concreto, a firmas miembros individuales de la red PwC. Cada firma miembro es una entidad jurídica independiente y no actúa como agente de PwCIL ni de ninguna otra firma miembro. PwCIL no presta servicios a clientes. PwCIL no se responsabiliza ni responde de los actos u omisiones de ninguna de sus firmas miembros, ni del contenido profesional de sus trabajos ni puede vincularlas u obligarlas en forma alguna. De igual manera, ninguna de las firmas miembro son responsables por los actos u omisiones del resto de las firmas miembros ni del contenido profesional de sus trabajos, ni pueden vincular u obligar ni a dichas firmas miembros ni a PwCIL en forma alguna.
+                        </p>
+                        <div class="row text-center mb-3">
+                            <div class="col-lg-3">
+                                <a href="">
+                                    Política de Privacidad
+                                </a>
+                            </div>
+                            <div class="col-lg-3">
+                                <a href="">
+                                    Información sobre cookies
+                                </a>
+                            </div>
+                            <div class="col-lg-3">
+                                <a href="">
+                                    Términos Legales
+                                </a>
+                            </div>
+                            <div class="col-lg-3">
+                                <a href="">
+                                    Acerca del proveedor de este sitio
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- modal login -->
+                    <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="modalLoginForm" role="dialog" tabindex="-1">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header text-center">
+                                    <h4 class="modal-title w-100 font-weight-bold" style="color: #000;">
+                                        Ingresar
+                                    </h4>
+                                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                                        <span aria-hidden="true">
+                                            ×
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="modal-body mx-3">
+                                    <div class="md-form mb-5">
+                                        <i class="far fa-user prefix grey-text">
+                                        </i>
+                                        <input class="form-control validate" id="defaultForm-email" type="email">
+                                            <label data-error="wrong" data-success="right" for="defaultForm-email">
+                                                Usuario
+                                            </label>
+                                        </input>
+                                    </div>
+                                    <div class="md-form mb-4">
+                                        <i class="far fa-lock prefix grey-text">
+                                        </i>
+                                        <input class="form-control validate" id="defaultForm-pass" type="password">
+                                            <label data-error="wrong" data-success="right" for="defaultForm-pass">
+                                                Contraseña
+                                            </label>
+                                        </input>
+                                    </div>
+                                </div>
+                                <div class="modal-footer d-flex justify-content-center">
+                                    <button class="btn btn-sm btn-secondary">
+                                        Ingresar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- modal login -->
+                    <!-- Copyright -->
+                    <div class="footer-copyright text-center py-3">
+                        © 2021 Copyright:
+                        <a href="http://www.technosoft-bolivia.com">
+                            TechnoSoft
+                        </a>
+                    </div>
+                    <!-- Copyright -->
+                </hr>
+            </footer>
+            <!-- Footer -->
+            <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+            <script src="js/jquery.js">
+            </script>
+            <script src="js/bootstrap.js">
+            </script>
+            <script src="js/mdb.js">
+            </script>
+            <script src="fontawesome/js/fontawesome.js">
+            </script>
+            <script src="fontawesome/js/all.js">
+            </script>
+            <script src="js/jquery-3.3.1.slim.min.js">
+            </script>
         </div>
-
-        <div class="md-form mb-4">
-          <i class="far fa-lock prefix grey-text"></i>
-          <input type="password" id="defaultForm-pass" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="defaultForm-pass">Contraseña</label>
-        </div>
-
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-sm btn-secondary">Ingresar</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- modal login -->
-
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2021 Copyright:
-    <a href="http://www.technosoft-bolivia.com"> TechnoSoft</a>
-  </div>
-  <!-- Copyright -->
-
-</footer>
-<!-- Footer -->
-<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/mdb.js"></script>
-    <script src="fontawesome/js/fontawesome.js"></script>
-    <script src="fontawesome/js/all.js"></script>
-    <script src="js/jquery-3.3.1.slim.min.js"></script>
-</body>
+    </body>
 </html>

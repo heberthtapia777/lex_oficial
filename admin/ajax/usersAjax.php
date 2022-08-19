@@ -1,4 +1,6 @@
 <?php
+	session_start();
+
 	include "../inc/users.php";
 
 	$objusuario = new usuario();
@@ -157,59 +159,59 @@
 
 	        break;
 
-			case "ingresarSistema":
+		case "ingresarSistema":
 
-				$data = stripslashes($_POST['res']);
+			$data = stripslashes($_POST['res']);
 
-				$data = json_decode($data);
+			$data = json_decode($data);
 
-				$user = $data->userName;
-				$pass = $data->password;
+			$user = $data->userName;
+			$pass = $data->password;
 
-				$query = $objusuario->Ingresar_Sistema($user, md5($pass));
-				$array = $query->FetchRow();
+			$query = $objusuario->Ingresar_Sistema($user, md5($pass));
+			$array = $query->FetchRow();
 
-				if(isset($array)){
-					$_SESSION["idUser"]   = $array['id'];
-					$_SESSION["nameUser"]  = $array['name'];
-					$_SESSION["timeout"] = time();
-				}
+			if(isset($array)){
+				$_SESSION["idUser"]   = $array['id'];
+				$_SESSION["nameUser"]  = $array['name'];
+				$_SESSION["timeout"] = time();
+			}
 
-				echo json_encode($array);
+			echo json_encode($array);
 
-				/*if(isset($array)){
-					$_SESSION["idUsuario"]            = $array['idUsuario'];
-					$_SESSION["idEmpleado"]           = $array['idEmpleado'];
-					$_SESSION["empleado"]             = $array['empleado'];
-					$_SESSION["name"]     		      = $array['name'];
-					$_SESSION["apPaterno"]            = $array['apPaterno'];
-					$_SESSION["apMaterno"]            = $array['apMaterno'];
-					$_SESSION["docType"]	     	  = $array['docType']	;
-					$_SESSION["docNum"]   	      	  = $array['docNum']	;
-					$_SESSION["userType"]         	  = $array['userType'];
-					$_SESSION["address"]    	      = $array['address'];
-					$_SESSION["number"] 	   	      = $array['number'];
-					$_SESSION["phone"]   	          = $array['phone'];
-					$_SESSION["celular"]   	          = $array['celular'];
-					$_SESSION["photo"]                = $array['photo'];
-					$_SESSION["logo"]                 = $array['logo'];
-					$_SESSION["email"]                = $array['email'];
-					$_SESSION["login"]                = $array['login'];
-					$_SESSION["cx"] 	              = $array['coorX'];
-					$_SESSION["cy"] 	              = $array['coorY'];
-					$_SESSION["birthDate"] 	          = $array['birthDate'];
-					$_SESSION["businessName"]         = $array['businessName'];
-					$_SESSION["mnu_almacen"]          = $array['mnu_almacen'];
-					$_SESSION["mnu_compras"]          = $array['mnu_compras'];
-					$_SESSION["mnu_ventas"]           = $array['mnu_ventas'];
-					$_SESSION["mnu_mantenimiento"]    = $array['mnu_mantenimiento'];
-					$_SESSION["mnu_seguridad"]        = $array['mnu_seguridad'];
-					$_SESSION["mnu_consulta_compras"] = $array['mnu_consulta_compras'];
-					$_SESSION["mnu_consulta_ventas"]  = $array['mnu_consulta_ventas'];
-					$_SESSION["mnu_admin"]            = $array['mnu_admin'];
-					$_SESSION["superadmin"]           = $array['superadmin'];
-				}*/
-				break;
+			/*if(isset($array)){
+				$_SESSION["idUsuario"]            = $array['idUsuario'];
+				$_SESSION["idEmpleado"]           = $array['idEmpleado'];
+				$_SESSION["empleado"]             = $array['empleado'];
+				$_SESSION["name"]     		      = $array['name'];
+				$_SESSION["apPaterno"]            = $array['apPaterno'];
+				$_SESSION["apMaterno"]            = $array['apMaterno'];
+				$_SESSION["docType"]	     	  = $array['docType']	;
+				$_SESSION["docNum"]   	      	  = $array['docNum']	;
+				$_SESSION["userType"]         	  = $array['userType'];
+				$_SESSION["address"]    	      = $array['address'];
+				$_SESSION["number"] 	   	      = $array['number'];
+				$_SESSION["phone"]   	          = $array['phone'];
+				$_SESSION["celular"]   	          = $array['celular'];
+				$_SESSION["photo"]                = $array['photo'];
+				$_SESSION["logo"]                 = $array['logo'];
+				$_SESSION["email"]                = $array['email'];
+				$_SESSION["login"]                = $array['login'];
+				$_SESSION["cx"] 	              = $array['coorX'];
+				$_SESSION["cy"] 	              = $array['coorY'];
+				$_SESSION["birthDate"] 	          = $array['birthDate'];
+				$_SESSION["businessName"]         = $array['businessName'];
+				$_SESSION["mnu_almacen"]          = $array['mnu_almacen'];
+				$_SESSION["mnu_compras"]          = $array['mnu_compras'];
+				$_SESSION["mnu_ventas"]           = $array['mnu_ventas'];
+				$_SESSION["mnu_mantenimiento"]    = $array['mnu_mantenimiento'];
+				$_SESSION["mnu_seguridad"]        = $array['mnu_seguridad'];
+				$_SESSION["mnu_consulta_compras"] = $array['mnu_consulta_compras'];
+				$_SESSION["mnu_consulta_ventas"]  = $array['mnu_consulta_ventas'];
+				$_SESSION["mnu_admin"]            = $array['mnu_admin'];
+				$_SESSION["superadmin"]           = $array['superadmin'];
+			}*/
+			break;
 
 		case "Salir":
 			/*session_unset();

@@ -1,13 +1,16 @@
+<?php
+	require '../../inc/sessionControl.php';
+	//require_once '../../PHPThumb/ThumbLib.inc.php';
+
+	setlocale(LC_TIME, "spanish");
+?>
 <!DOCTYPE html>
-<html lang="en-US" dir="ltr">
+<html lang="es" dir="ltr">
 <head>
 	<?PHP
-		date_default_timezone_set("America/La_Paz" );
-		include '../../inc/sessionControl.php';
 		include '../../inc/header.php';
 	?>
 </head>
-
   <body>
 	<!-- ===============================================-->
 	<!--    Main Content-->

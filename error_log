@@ -1,0 +1,81 @@
+[18-Aug-2022 20:10:14 America/Mexico_City] PHP Warning:  require_once(admin/PHPThumb/ThumbLib.inc.php): failed to open stream: No such file or directory in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php on line 3
+[18-Aug-2022 20:10:14 America/Mexico_City] PHP Fatal error:  require_once(): Failed opening required 'admin/PHPThumb/ThumbLib.inc.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php on line 3
+[18-Aug-2022 20:11:31 America/Mexico_City] PHP Fatal error:  Uncaught Error: Class 'PhpThumbFactory' not found in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php:42
+Stack trace:
+#0 /home2/radiomo3/sistemas.sstei.com/lex_oficial/index.php(506): include()
+#1 {main}
+  thrown in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php on line 42
+[18-Aug-2022 20:11:48 America/Mexico_City] PHP Fatal error:  Uncaught Error: Class 'PhpThumbFactory' not found in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php:42
+Stack trace:
+#0 /home2/radiomo3/sistemas.sstei.com/lex_oficial/index.php(506): include()
+#1 {main}
+  thrown in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php on line 42
+[18-Aug-2022 20:12:19 America/Mexico_City] PHP Fatal error:  Uncaught Error: Class 'PhpThumbFactory' not found in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php:42
+Stack trace:
+#0 /home2/radiomo3/sistemas.sstei.com/lex_oficial/index.php(506): include()
+#1 {main}
+  thrown in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php on line 42
+[18-Aug-2022 20:12:22 America/Mexico_City] PHP Fatal error:  Uncaught Error: Class 'PhpThumbFactory' not found in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php:42
+Stack trace:
+#0 /home2/radiomo3/sistemas.sstei.com/lex_oficial/index.php(506): include()
+#1 {main}
+  thrown in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php on line 42
+[18-Aug-2022 20:12:23 America/Mexico_City] PHP Fatal error:  Uncaught Error: Class 'PhpThumbFactory' not found in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php:42
+Stack trace:
+#0 /home2/radiomo3/sistemas.sstei.com/lex_oficial/index.php(506): include()
+#1 {main}
+  thrown in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php on line 42
+[18-Aug-2022 20:14:34 America/Mexico_City] PHP Fatal error:  Uncaught Error: Class 'PhpThumbFactory' not found in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php:42
+Stack trace:
+#0 /home2/radiomo3/sistemas.sstei.com/lex_oficial/index.php(501): include()
+#1 {main}
+  thrown in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php on line 42
+[18-Aug-2022 20:14:38 America/Mexico_City] PHP Fatal error:  Uncaught Error: Class 'PhpThumbFactory' not found in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php:42
+Stack trace:
+#0 /home2/radiomo3/sistemas.sstei.com/lex_oficial/index.php(501): include()
+#1 {main}
+  thrown in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php on line 42
+[18-Aug-2022 20:22:11 America/Mexico_City] PHP Fatal error:  Uncaught Error: Class 'PhpThumbFactory' not found in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php:42
+Stack trace:
+#0 /home2/radiomo3/sistemas.sstei.com/lex_oficial/index.php(506): include()
+#1 {main}
+  thrown in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php on line 42
+[18-Aug-2022 20:22:13 America/Mexico_City] PHP Fatal error:  Uncaught Error: Class 'PhpThumbFactory' not found in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php:42
+Stack trace:
+#0 /home2/radiomo3/sistemas.sstei.com/lex_oficial/index.php(506): include()
+#1 {main}
+  thrown in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php on line 42
+[18-Aug-2022 20:22:18 America/Mexico_City] PHP Fatal error:  Uncaught Error: Class 'PhpThumbFactory' not found in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php:42
+Stack trace:
+#0 /home2/radiomo3/sistemas.sstei.com/lex_oficial/index.php(506): include()
+#1 {main}
+  thrown in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php on line 42
+[18-Aug-2022 21:32:23 America/Mexico_City] PHP Fatal error:  Uncaught Error: Class 'PhpThumbFactory' not found in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php:42
+Stack trace:
+#0 /home2/radiomo3/sistemas.sstei.com/lex_oficial/index.php(506): include()
+#1 {main}
+  thrown in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php on line 42
+[18-Aug-2022 21:32:29 America/Mexico_City] PHP Fatal error:  Uncaught Error: Class 'PhpThumbFactory' not found in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php:42
+Stack trace:
+#0 /home2/radiomo3/sistemas.sstei.com/lex_oficial/index.php(506): include()
+#1 {main}
+  thrown in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php on line 42
+[18-Aug-2022 21:32:33 America/Mexico_City] PHP Fatal error:  Uncaught Error: Class 'PhpThumbFactory' not found in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php:42
+Stack trace:
+#0 /home2/radiomo3/sistemas.sstei.com/lex_oficial/index.php(506): include()
+#1 {main}
+  thrown in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php on line 42
+[18-Aug-2022 22:33:32 America/La_Paz] PHP Fatal error:  Uncaught Error: Class 'PhpThumbFactory' not found in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php:42
+Stack trace:
+#0 /home2/radiomo3/sistemas.sstei.com/lex_oficial/index.php(502): include()
+#1 {main}
+  thrown in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php on line 42
+[18-Aug-2022 22:33:35 America/La_Paz] PHP Fatal error:  Uncaught Error: Class 'PhpThumbFactory' not found in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php:42
+Stack trace:
+#0 /home2/radiomo3/sistemas.sstei.com/lex_oficial/index.php(502): include()
+#1 {main}
+  thrown in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php on line 42
+[18-Aug-2022 22:33:41 America/La_Paz] PHP Warning:  require_once(admin/PHPThumb/ThumbLib.inc.php): failed to open stream: No such file or directory in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php on line 3
+[18-Aug-2022 22:33:41 America/La_Paz] PHP Fatal error:  require_once(): Failed opening required 'admin/PHPThumb/ThumbLib.inc.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php on line 3
+[18-Aug-2022 22:33:46 America/La_Paz] PHP Warning:  require_once(admin/PHPThumb/ThumbLib.inc.php): failed to open stream: No such file or directory in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php on line 3
+[18-Aug-2022 22:33:46 America/La_Paz] PHP Fatal error:  require_once(): Failed opening required 'admin/PHPThumb/ThumbLib.inc.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/radiomo3/sistemas.sstei.com/lex_oficial/chat.php on line 3

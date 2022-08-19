@@ -1,10 +1,6 @@
 <?php
-	include '../../inc/conexion.php';
-    include '../../inc/function.php';
-
-    $op = new cnFunction();
-	
-	require_once '../../PHPThumb/ThumbLib.inc.php';
+	require '../../inc/sessionControl.php';	
+	//require_once '../../PHPThumb/ThumbLib.inc.php';
 	/** id inicio de session del administrador */
 	$idAdmin = 651;
 	$idAdminTipo = "ADMIN";

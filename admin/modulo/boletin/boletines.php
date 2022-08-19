@@ -1,12 +1,16 @@
+<?php
+	require '../../inc/sessionControl.php';
+	//require_once '../../PHPThumb/ThumbLib.inc.php';
+
+	setlocale(LC_TIME, "spanish");
+?>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
 <head>
-    <?PHP
-		include '../../inc/sessionControl.php';
-        include '../../inc/header.php';
-    ?>
+	<?PHP
+		include '../../inc/header.php';
+	?>
 </head>
-
   <body>
     <!-- ===============================================-->
     <!--    Main Content-->
@@ -164,351 +168,351 @@
 					</div>
 				</div>
 				<form role="form" name="frmBoletin" id="frmBoletin" enctype="multipart/form-data" class="cmxform" novalidate="novalidate">
-				<div class="row g-0">
-					<div class="col-lg-12 pr-lg-2">
-						<div class="card mb-3">
-							<div class="card-body bg-light">
-								<div class="row gx-2">
-									<div class="col-12 mb-3">
-										<table class="table table-hover">
-												<thead>
-													<tr>
-														<th scope="col" width="70%">CONTENIDO</th>
-														<th scope="col"> </th>
-														<th scope="col">CONCORDANCIAS</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>
-															<div class="row mb-3">
-																<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left">
-																	<div class="row mb-3">
-																		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 left">
-																			<input id="idBoletin" type="hidden" name="idBoletin" />
-																			<div class="form-group">
-																				<label>Nro. de refencia:</label>
-																				<input id="nroRef" type="text" class="form-control form-control-sm" name="nroRef" placeholder="Nro. de referencia" />
+					<div class="row g-0">
+						<div class="col-lg-12 pr-lg-2">
+							<div class="card mb-3">
+								<div class="card-body bg-light">
+									<div class="row gx-2">
+										<div class="col-12 mb-3">
+											<table class="table table-hover">
+													<thead>
+														<tr>
+															<th scope="col" width="70%">CONTENIDO</th>
+															<th scope="col"> </th>
+															<th scope="col">CONCORDANCIAS</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>
+																<div class="row mb-3">
+																	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left">
+																		<div class="row mb-3">
+																			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 left">
+																				<input id="idBoletin" type="hidden" name="idBoletin" />
+																				<div class="form-group">
+																					<label>Nro. de refencia:</label>
+																					<input id="nroRef" type="text" class="form-control form-control-sm" name="nroRef" placeholder="Nro. de referencia" />
+																				</div>
+																			</div>
+																			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 left">
+																				<!-- <div class="form-group">
+																					<label>F. de publicación de la norma para impresión:</label>
+																					<input id="dateImpresion" type="text" class="form-control form-control-sm" name="dateImpresion" placeholder="Fecha de publicación" />
+																				</div> -->
 																			</div>
 																		</div>
-																		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 left">
-																			<!-- <div class="form-group">
-																				<label>F. de publicación de la norma para impresión:</label>
-																				<input id="dateImpresion" type="text" class="form-control form-control-sm" name="dateImpresion" placeholder="Fecha de publicación" />
-																			</div> -->
-																		</div>
-																	</div>
-																	<div class="row mb-3">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left">
-																			<div class="form-group">
-																				<label>Elija una imagen ...</label>
-																				<input class="form-control form-control-sm" id="imgBol" name="imgBol" type="file">
-																			</div>
-
-																		</div>
-																	</div>
-																	<div class="row mb-3">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left">
-																			<div class="form-group">
-																				<label>Pie de imagen:</label>
-																				<input id="pieImg" type="text" class="form-control form-control-sm" name="pieImg" placeholder="Pie de imagen" />
-																			</div>
-																		</div>
-																	</div>
-																	<div class="row mb-3">
-																		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 left">
-																			<div class="form-group">
-																				<label>Indice:</label>
-																				<select id="cboIndice" name="cboIndice" class="form-select form-control-sm" >
-
-																				</select>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="row mb-3">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left">
-																		<label>Tema:</label>
-																			<div id="checkTema">
-																			</div>
-																			<label id="er"></label>
-																		</div>
-																	</div>
-																	<div class="row mb-3">
-																		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 left">
-																			<div class="form-group">
-																				<label>F. de publicación de la norma:</label>
-																				<input id="datePubli" type="text" class="form-control form-control-sm" name="datePubli" placeholder="Fecha de publicación" />
-																			</div>
-																		</div>
-																	</div>
-																	<div class="row mb-3">
-																		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 left">
-																			<div class="form-group">
-																				<label>F. de publicación del boletin:</label>
-																				<input id="dateBoletin" type="text" class="form-control form-control-sm" name="dateBoletin" placeholder="Fecha de publicación" />
-																			</div>
-																		</div>
-																	</div>
-																	<div class="row mb-3">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left">
-																			<div class="form-group">
-																				<label>Asunto:</label>
-																				<input id="asunto" type="text" class="form-control form-control-sm" name="asunto" placeholder="Asunto" />
-																			</div>
-																		</div>
-																	</div>
-																	<div class="row mb-3">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left">
-																			<div class="form-group">
-																				<label>Sintesis:</label>
-																				<textarea class="form-control form-control-sm" id="intro" name="intro" rows="3"></textarea><br>
+																		<div class="row mb-3">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left">
+																				<div class="form-group">
+																					<label>Elija una imagen ...</label>
+																					<input class="form-control form-control-sm" id="imgBol" name="imgBol" type="file">
+																				</div>
 
 																			</div>
-																			<div id="ter"></div>
 																		</div>
-																	</div>
-																	<div class="row mb-3">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left">
-																			<div class="form-group">
-																				<label>Disposición:</label>
-																				<textarea class="form-control form-control-sm" id="cont" name="cont" rows="3"></textarea>
+																		<div class="row mb-3">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left">
+																				<div class="form-group">
+																					<label>Pie de imagen:</label>
+																					<input id="pieImg" type="text" class="form-control form-control-sm" name="pieImg" placeholder="Pie de imagen" />
+																				</div>
 																			</div>
 																		</div>
-																	</div>
-																	<div class="row mb-3">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left">
-																			<div class="form-group">
-																				<label>Información adicional:</label>
-																				<input id="info" type="text" class="form-control form-control-sm" name="info" placeholder="Información adicional" />
-																			</div>
-																		</div>
-																	</div>
-																	<div class="row mb-3">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left">
-																			<div class="form-group">
-																				<label>Nota:</label>
-																				<input id="nota" type="text" class="form-control form-control-sm" name="nota" placeholder="Nota" />
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</td>
-														<td></td>
-														<td>
-															<div class="row mb-3">
-																<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
-																	<h6>Anteriores</h6>
-																</div>
-															</div>
-															<div class="row mb-3">
-																<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																	<div class="row mb-3">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
-																			<button type="button" class="btn btn-secondary btn-sm btn-block btn-rigth" id="1" name="abrg" >
-																				Abrogada por
-																			</button>
-																		</div>
-																	</div>
-																	<div class="row">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="check1">
-																		</div>
-																	</div>
-																</div>
-															</div>
-															<div class="row mb-3">
-																<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																	<div class="row mb-3">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
-																			<button type="button" class="btn btn-secondary btn-sm btn-block btn-rigth" id="2" name="drg" >
-																				Derogada por
-																			</button>
-																		</div>
-																	</div>
-																	<div class="row">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="check2">
-																		</div>
-																	</div>
-																</div>
-															</div>
-															<div class="row mb-3">
-																<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																	<div class="row mb-3">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
-																			<button type="button" class="btn btn-secondary btn-sm btn-block btn-rigth" id="3" name="mdf" >
-																				Modificada por
-																			</button>
-																		</div>
-																	</div>
-																	<div class="row">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="check3">
-																		</div>
-																	</div>
-																</div>
-															</div>
-															<div class="row mb-3">
-																<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																	<div class="row mb-3">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
-																			<button type="button" class="btn btn-secondary btn-sm btn-block btn-rigth" id="4" name="rgl" >
-																				Reglamentada por
-																			</button>
-																		</div>
-																	</div>
-																	<div class="row">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="check4">
-																		</div>
-																	</div>
-																</div>
-															</div>
-															<div class="row mb-3">
-																<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																	<div class="row mb-3">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
-																			<button type="button" class="btn btn-secondary btn-sm btn-block btn-rigth" id="5" name="cmpl" >
-																				Complementada por
-																			</button>
-																		</div>
-																	</div>
-																	<div class="row">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="check5">
-																		</div>
-																	</div>
-																</div>
-															</div>
-															<div class="row mb-3">
-																<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																	<div class="row mb-3">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
-																			<button type="button" class="btn btn-secondary btn-sm btn-block btn-rigth" id="6" name="mcd" >
-																				Mencionada por
-																			</button>
-																		</div>
-																	</div>
-																	<div class="row">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="check6">
-																		</div>
-																	</div>
-																</div>
-															</div>
+																		<div class="row mb-3">
+																			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 left">
+																				<div class="form-group">
+																					<label>Indice:</label>
+																					<select id="cboIndice" name="cboIndice" class="form-select form-control-sm" >
 
-															<div class="row mb-3">
-																<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
-																	<h6>Posteriores</h6>
-																</div>
-															</div>
-															<div class="row mb-3">
-																<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																	<div class="row mb-3">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
-																			<button type="button" class="btn btn-secondary btn-sm btn-block btn-rigth" id="7" name="pabrg" >
-																				Abrogada a
-																			</button>
+																					</select>
+																				</div>
+																			</div>
 																		</div>
-																	</div>
-																	<div class="row">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="check7">
+																		<div class="row mb-3">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left">
+																			<label>Tema:</label>
+																				<div id="checkTema">
+																				</div>
+																				<label id="er"></label>
+																			</div>
 																		</div>
-																	</div>
-																</div>
-															</div>
-															<div class="row mb-3">
-																<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																	<div class="row mb-3">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
-																			<button type="button" class="btn btn-secondary btn-sm btn-block btn-rigth" id="8" name="pdrg" >
-																				Derogada a
-																			</button>
+																		<div class="row mb-3">
+																			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 left">
+																				<div class="form-group">
+																					<label>F. de publicación de la norma:</label>
+																					<input id="datePubli" type="text" class="form-control form-control-sm" name="datePubli" placeholder="Fecha de publicación" />
+																				</div>
+																			</div>
 																		</div>
-																	</div>
-																	<div class="row">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="check8">
+																		<div class="row mb-3">
+																			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 left">
+																				<div class="form-group">
+																					<label>F. de publicación del boletin:</label>
+																					<input id="dateBoletin" type="text" class="form-control form-control-sm" name="dateBoletin" placeholder="Fecha de publicación" />
+																				</div>
+																			</div>
 																		</div>
-																	</div>
-																</div>
-															</div>
-															<div class="row mb-3">
-																<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																	<div class="row mb-3">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
-																			<button type="button" class="btn btn-secondary btn-sm btn-block btn-rigth" id="9" name="pmdf" >
-																				Modificada a
-																			</button>
+																		<div class="row mb-3">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left">
+																				<div class="form-group">
+																					<label>Asunto:</label>
+																					<input id="asunto" type="text" class="form-control form-control-sm" name="asunto" placeholder="Asunto" />
+																				</div>
+																			</div>
 																		</div>
-																	</div>
-																	<div class="row">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="check9">
+																		<div class="row mb-3">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left">
+																				<div class="form-group">
+																					<label>Sintesis:</label>
+																					<textarea class="form-control form-control-sm" id="intro" name="intro" rows="3"></textarea><br>
+
+																				</div>
+																				<div id="ter"></div>
+																			</div>
 																		</div>
-																	</div>
-																</div>
-															</div>
-															<div class="row mb-3">
-																<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																	<div class="row mb-3">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
-																			<button type="button" class="btn btn-secondary btn-sm btn-block btn-rigth" id="10" name="prgl" >
-																				Reglamentada a
-																			</button>
+																		<div class="row mb-3">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left">
+																				<div class="form-group">
+																					<label>Disposición:</label>
+																					<textarea class="form-control form-control-sm" id="cont" name="cont" rows="3"></textarea>
+																				</div>
+																			</div>
 																		</div>
-																	</div>
-																	<div class="row">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="check10">
+																		<div class="row mb-3">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left">
+																				<div class="form-group">
+																					<label>Información adicional:</label>
+																					<input id="info" type="text" class="form-control form-control-sm" name="info" placeholder="Información adicional" />
+																				</div>
+																			</div>
 																		</div>
-																	</div>
-																</div>
-															</div>
-															<div class="row mb-3">
-																<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																	<div class="row mb-3">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
-																			<button type="button" class="btn btn-secondary btn-sm btn-block btn-rigth" id="11" name="pcmpl" >
-																				Complementada a
-																			</button>
-																		</div>
-																	</div>
-																	<div class="row">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="check11">
+																		<div class="row mb-3">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left">
+																				<div class="form-group">
+																					<label>Nota:</label>
+																					<input id="nota" type="text" class="form-control form-control-sm" name="nota" placeholder="Nota" />
+																				</div>
+																			</div>
 																		</div>
 																	</div>
 																</div>
-															</div>
-															<div class="row mb-3">
-																<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																	<div class="row mb-3">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
-																			<button type="button" class="btn btn-secondary btn-sm btn-block btn-rigth" id="12" name="pmcd" >
-																				Mencionada a
-																			</button>
-																		</div>
+															</td>
+															<td></td>
+															<td>
+																<div class="row mb-3">
+																	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
+																		<h6>Anteriores</h6>
 																	</div>
-																	<div class="row">
-																		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="check12">
+																</div>
+																<div class="row mb-3">
+																	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+																		<div class="row mb-3">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
+																				<button type="button" class="btn btn-secondary btn-sm btn-block btn-rigth" id="1" name="abrg" >
+																					Abrogada por
+																				</button>
+																			</div>
+																		</div>
+																		<div class="row">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="check1">
+																			</div>
 																		</div>
 																	</div>
 																</div>
-															</div>
-														</td>
-													</tr>
-												</tbody>
-												<tfoot>
-													<tr>
-														<th col-span="3">
-															<div class="row mb-3">
-																<div class="form-group">
-																	<button type="submit" class="btn btn-outline-success btn-sm"><i class="fas fa-save"></i> Guardar</button>
-																	<button type="button" class="btn btn-outline-danger btn-sm" onclick="cancelar()"><i class="fas fa-window-close"></i> Cancelar</button>
+																<div class="row mb-3">
+																	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+																		<div class="row mb-3">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
+																				<button type="button" class="btn btn-secondary btn-sm btn-block btn-rigth" id="2" name="drg" >
+																					Derogada por
+																				</button>
+																			</div>
+																		</div>
+																		<div class="row">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="check2">
+																			</div>
+																		</div>
+																	</div>
 																</div>
-															</div>
-														</th>
-													</tr>
-												</tfoot>
-										</table>
+																<div class="row mb-3">
+																	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+																		<div class="row mb-3">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
+																				<button type="button" class="btn btn-secondary btn-sm btn-block btn-rigth" id="3" name="mdf" >
+																					Modificada por
+																				</button>
+																			</div>
+																		</div>
+																		<div class="row">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="check3">
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<div class="row mb-3">
+																	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+																		<div class="row mb-3">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
+																				<button type="button" class="btn btn-secondary btn-sm btn-block btn-rigth" id="4" name="rgl" >
+																					Reglamentada por
+																				</button>
+																			</div>
+																		</div>
+																		<div class="row">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="check4">
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<div class="row mb-3">
+																	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+																		<div class="row mb-3">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
+																				<button type="button" class="btn btn-secondary btn-sm btn-block btn-rigth" id="5" name="cmpl" >
+																					Complementada por
+																				</button>
+																			</div>
+																		</div>
+																		<div class="row">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="check5">
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<div class="row mb-3">
+																	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+																		<div class="row mb-3">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
+																				<button type="button" class="btn btn-secondary btn-sm btn-block btn-rigth" id="6" name="mcd" >
+																					Mencionada por
+																				</button>
+																			</div>
+																		</div>
+																		<div class="row">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="check6">
+																			</div>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="row mb-3">
+																	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
+																		<h6>Posteriores</h6>
+																	</div>
+																</div>
+																<div class="row mb-3">
+																	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+																		<div class="row mb-3">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
+																				<button type="button" class="btn btn-secondary btn-sm btn-block btn-rigth" id="7" name="pabrg" >
+																					Abrogada a
+																				</button>
+																			</div>
+																		</div>
+																		<div class="row">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="check7">
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<div class="row mb-3">
+																	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+																		<div class="row mb-3">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
+																				<button type="button" class="btn btn-secondary btn-sm btn-block btn-rigth" id="8" name="pdrg" >
+																					Derogada a
+																				</button>
+																			</div>
+																		</div>
+																		<div class="row">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="check8">
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<div class="row mb-3">
+																	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+																		<div class="row mb-3">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
+																				<button type="button" class="btn btn-secondary btn-sm btn-block btn-rigth" id="9" name="pmdf" >
+																					Modificada a
+																				</button>
+																			</div>
+																		</div>
+																		<div class="row">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="check9">
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<div class="row mb-3">
+																	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+																		<div class="row mb-3">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
+																				<button type="button" class="btn btn-secondary btn-sm btn-block btn-rigth" id="10" name="prgl" >
+																					Reglamentada a
+																				</button>
+																			</div>
+																		</div>
+																		<div class="row">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="check10">
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<div class="row mb-3">
+																	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+																		<div class="row mb-3">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
+																				<button type="button" class="btn btn-secondary btn-sm btn-block btn-rigth" id="11" name="pcmpl" >
+																					Complementada a
+																				</button>
+																			</div>
+																		</div>
+																		<div class="row">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="check11">
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<div class="row mb-3">
+																	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+																		<div class="row mb-3">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-self-center text-center">
+																				<button type="button" class="btn btn-secondary btn-sm btn-block btn-rigth" id="12" name="pmcd" >
+																					Mencionada a
+																				</button>
+																			</div>
+																		</div>
+																		<div class="row">
+																			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="check12">
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</td>
+														</tr>
+													</tbody>
+													<tfoot>
+														<tr>
+															<th col-span="3">
+																<div class="row mb-3">
+																	<div class="form-group">
+																		<button type="submit" class="btn btn-outline-success btn-sm"><i class="fas fa-save"></i> Guardar</button>
+																		<button type="button" class="btn btn-outline-danger btn-sm" onclick="cancelar()"><i class="fas fa-window-close"></i> Cancelar</button>
+																	</div>
+																</div>
+															</th>
+														</tr>
+													</tfoot>
+											</table>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
 				</form>
 			</div>
 

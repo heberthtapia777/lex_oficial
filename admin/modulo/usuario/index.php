@@ -1,9 +1,12 @@
+<?php
+	include '../../inc/sessionControl.php';
+?>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
 <head>
 	<?PHP
-		include '../../inc/sessionControl.php';
-		include '../../inc/header.php';		
+		//include '../../inc/sessionControl.php';
+		include '../../inc/header.php';
 	?>
 </head>
 

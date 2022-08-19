@@ -1,5 +1,6 @@
 var validator;
-$( document ).ready(function() {
+
+$(function(){
 	init();
 	$('ul#publi').addClass('show');
 	$('ul li a#bol').addClass('active');
@@ -99,6 +100,7 @@ function init(){
 	listaBoletin();
 	comboTypeIndice();
 	comboTemas();
+	//abrirModalBuscaBol();
 
 	$("#btnNuevo").click(verForm);
 }

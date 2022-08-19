@@ -173,7 +173,7 @@
 
 			$query_Tipo = $objboletin->listaTypeIndice();
 
-			echo '<option value="">Seleccione</option>';
+			echo '<option value="">Seleccione una opción</option>';
 
      		while ($reg = $query_Tipo->FetchRow()) {
 				echo '<option value=' . $reg['id'] . '>' . ($reg['tipo']) . '</option>';
@@ -198,7 +198,7 @@
 
 		case "listTemas":
 
-			$query_Tipo = $objboletin->listaTema();
+			$query_Tipo = $objboletin->listaTema('');
 			//$c = 0;
 
 			$reg = $query_Tipo->FetchRow();
@@ -257,6 +257,166 @@
 			while ($reg = $query_Tipo->FetchRow()) {
 				echo '<span id="'.$reg['idBoletin'].'" class="badge bg-warning"><a href="#" onclick="addIdBoletin('.$reg['idBoletin'].',&#39;'.$idNam.'&#39;,'.$idCon.')">'.utf8_encode($reg['idBoletin']).'</a></span>';
 			}
+
+			break;
+
+		/** BUSQUEDA AVANZADA */
+
+		case "listSearchAdvance":
+
+			$query_Tipo = $objboletin->listaBoletinSearch();
+
+			$data = Array();
+            $i = 1;
+     		while ($reg = $query_Tipo->FetchRow()) {
+				$asunto = htmlentities(mb_substr($reg['asunto'], 0, 70, 'UTF-8').'...');
+				if($reg['blocked'] == 0)
+					$hab = '<a href="#" id="'.$reg["idBoletin"].'" onclick="block('.$reg["idBoletin"].', 0)"><span class="badge bg-success"><i class="fas fa-check-circle"></i></span></a>';
+				else
+					$hab = '<a href="#" id="'.$reg["idBoletin"].'" onclick="block('.$reg["idBoletin"].', '.$reg["blocked"].')"><span class="badge bg-danger"><i class="fas fa-times-circle"></i></span></a>';
+     			$data[] = array(
+     				"0"=>$i,
+                    "1"=>$reg['idBoletin'],
+                    "2"=>$asunto,
+					"3"=>($reg['indice']),
+					"4"=>($reg['tema']),
+					"5"=>$reg['fecha_creacion'],
+					"6"=>$reg['fecha_publicacion'],
+					"7"=>$reg['visita'],
+					"8"=>$hab,
+                    "9"=>'<button class="btn btn-warning btn-sm mr-1 mb-1" data-toggle="tooltip" title="Editar" onclick="cargaDataBoletin('.$reg['idBoletin'].')"><i class="fas fa-pencil-alt"></i> </button>&nbsp;'.
+					'<button class="btn btn-danger btn-sm mr-1 mb-1" data-toggle="tooltip" title="Eliminar" onclick="deletBoletin('.$reg['idBoletin'].')"><i class="fas fa-trash"></i> </button>');
+                $i++;
+			}
+            $results = array(
+            "sEcho" => 1,
+        	"iTotalRecords" => count($data),
+        	"iTotalDisplayRecords" => count($data),
+			"aaData"=>$data);
+			echo json_encode($results);
+
+			break;
+		
+		/** BUSQUEDA AVANZADA */
+
+		case "listSearchSimple":
+
+			$query_Tipo = $objboletin->listaBoletinSearchSimple();
+
+			$data = Array();
+            $i = 1;
+     		while ($reg = $query_Tipo->FetchRow()) {
+				$asunto = htmlentities(mb_substr($reg['asunto'], 0, 70, 'UTF-8').'...');
+				if($reg['blocked'] == 0)
+					$hab = '<a href="#" id="'.$reg["idBoletin"].'" onclick="block('.$reg["idBoletin"].', 0)"><span class="badge bg-success"><i class="fas fa-check-circle"></i></span></a>';
+				else
+					$hab = '<a href="#" id="'.$reg["idBoletin"].'" onclick="block('.$reg["idBoletin"].', '.$reg["blocked"].')"><span class="badge bg-danger"><i class="fas fa-times-circle"></i></span></a>';
+     			$data[] = array(
+     				"0"=>$i,
+                    "1"=>$reg['idBoletin'],
+                    "2"=>$asunto,
+					"3"=>($reg['indice']),
+					"4"=>($reg['tema']),
+					"5"=>$reg['fecha_creacion'],
+					"6"=>$reg['fecha_publicacion'],
+					"7"=>$reg['visita'],
+					"8"=>$hab,
+                    "9"=>'<button class="btn btn-warning btn-sm mr-1 mb-1" data-toggle="tooltip" title="Editar" onclick="cargaDataBoletin('.$reg['idBoletin'].')"><i class="fas fa-pencil-alt"></i> </button>&nbsp;'.
+					'<button class="btn btn-danger btn-sm mr-1 mb-1" data-toggle="tooltip" title="Eliminar" onclick="deletBoletin('.$reg['idBoletin'].')"><i class="fas fa-trash"></i> </button>');
+                $i++;
+			}
+            $results = array(
+            "sEcho" => 1,
+        	"iTotalRecords" => count($data),
+        	"iTotalDisplayRecords" => count($data),
+			"aaData"=>$data);
+			echo json_encode($results);
+
+			break;
+
+		/** LISTA TEMAS */
+
+		case "listTypeSearch":
+
+			$arreglo = array();
+
+			if (!empty($_POST['termBD'])) {
+
+				switch ($_POST['termBD']) {
+					case 'tipo':
+						if (!empty($_POST['searchTerm'])) {
+							$query = $objboletin->listaIndice($_POST['searchTerm']);
+
+							while($row = $query->FetchRow()) {
+								$arreglo[]= array(
+									'id' => $row['id'],
+									'text' => $row['tipo']
+								);
+							}
+						}else{
+							$query = $objboletin->listaIndice('');
+
+							while($row = $query->FetchRow()) {
+								$arreglo[]= array(
+									'id' => $row['id'],
+									'text' => $row['tipo']
+								);
+							}
+						}
+						break;
+
+					case 'tema':
+						if (!empty($_POST['searchTerm'])) {
+							$query = $objboletin->listaTema($_POST['searchTerm']);
+
+							while($row = $query->FetchRow()) {
+								$arreglo[]= array(
+									'id' => $row['id'],
+									'text' => $row['tema']
+								);
+							}
+						}else{
+							$query = $objboletin->listaTema('');
+
+							while($row = $query->FetchRow()) {
+								$arreglo[]= array(
+									'id' => $row['id'],
+									'text' => $row['tema']
+								);
+							}
+						}
+						break;
+
+					case 'boletin':
+						if (!empty($_POST['searchTerm'])) {
+							$query = $objboletin->listaNumBoletin($_POST['searchTerm']);
+
+							while($row = $query->FetchRow()) {
+								$arreglo[]= array(
+									'id' => $row['idBoletin'],
+									'text' => $row['idBoletin']
+								);
+							}
+						}else{
+							$query = $objboletin->listaNumBoletin('');
+
+							while($row = $query->FetchRow()) {
+								$arreglo[]= array(
+									'id' => $row['idBoletin'],
+									'text' => $row['idBoletin']
+								);
+							}
+						}
+						break;
+
+					default:
+						# code...
+						break;
+				}
+
+			}
+
+			echo json_encode($arreglo);
 
 			break;
 
